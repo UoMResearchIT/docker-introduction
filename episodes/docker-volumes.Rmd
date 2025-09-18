@@ -205,10 +205,10 @@ This is great!... but there are downsides.
 
 To illustrate this, let's see what the permissions are on the file we just created.
 ```bash
-ls -l spuc/unicorn_sightings.txt
+ls -l spuc/output/unicorn_sightings.txt
 ```
 ```output
--rw-r--r-- 1 root root 57 Oct 11 14:14 spuc/unicorn_sightings.txt
+-rw-r--r-- 1 root root 57 Oct 11 14:14 spuc/output/unicorn_sightings.txt
 ```
 
 **Note:** This no longer seems to be the case from Docker version 27.3.1 onwards.
