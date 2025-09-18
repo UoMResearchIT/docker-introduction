@@ -3,6 +3,7 @@
 Just to get concept right.
 Not available for Linux.
 Freemium.
+**Do not follow!**
 
 
 ## Dashboard
@@ -111,6 +112,7 @@ Run a new spuc container **from the images** tab, and name it **SPUC** (**no por
 In the container list, it is easier to find... but we didn't map the port!  
 Try to use same name again, it fails.  
 We cannot reuse names, we need to clean up.
+Port re-using can also cause issues.
 
 
 ## Cleaning up
