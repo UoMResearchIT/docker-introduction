@@ -1,5 +1,8 @@
 #!/bin/bash
 #
+
+set -e
+
 # Create terminal for Software Carpentry lesson
 # with the log of the commands at the top.
 
