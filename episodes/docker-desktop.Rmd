@@ -1,6 +1,6 @@
 ---
 title: Docker Desktop
-teaching: 20
+teaching: 40
 exercises: 0
 ---
 

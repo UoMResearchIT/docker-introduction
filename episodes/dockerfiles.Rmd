@@ -1,7 +1,7 @@
 ---
 title: Creating Your Own Container Images
-teaching: 99
-exercises: 99
+teaching: 60
+exercises: 0
 ---
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::: objectives

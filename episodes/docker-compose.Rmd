@@ -1,7 +1,7 @@
 ---
 title: Using Docker Compose
-teaching: 99
-exercises: 99
+teaching: 60
+exercises: 0
 ---
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::: objectives

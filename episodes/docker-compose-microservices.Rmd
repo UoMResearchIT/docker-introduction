@@ -1,7 +1,7 @@
 ---
 title: And they lived happily ever after
-teaching: 99
-exercises: 99
+teaching: 10
+exercises: 0
 ---
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::: objectives
