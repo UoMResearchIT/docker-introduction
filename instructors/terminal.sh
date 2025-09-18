@@ -22,7 +22,7 @@ HISTORY_LINES="${HISTORY_LINES:-5}"
 
 # If $LOG_FILE exists, truncate it, otherwise create it.
 # Either way, this leaves us with an empty $LOG_FILE for tailing.
-> "${LOG_FILE}"
+# > "${LOG_FILE}"
 
 # Prompt colour
 CYAN="[1;36m"
@@ -78,7 +78,7 @@ tmux send-keys -t "${SHELL_PANE}" " unalias -a" enter
 tmux send-keys -t "${SHELL_PANE}" " export PS1=\"\[\033${CYAN}\]\! $\[\033[0m\] \"" enter
 
 #A prompt showing `user@host:~/directory$ ` can be achieved with:
-#tmux send-keys -t "${SHELL_PANE}" " export PS1=\"\\[\\e]0;\\u@\\h: \\w\\a\\]${debian_chroot:+($debian_chroot)}\\[\\033[01;32m\\]user@host\\[\\033[00m\\]:\\[\\033[01;34m\\]\\w\\[\\033[00m\\]\\$ \"" enter
+tmux send-keys -t "${SHELL_PANE}" " export PS1=\"\\[\\e]0;\\u@\\h: \\w\\a\\]${debian_chroot:+($debian_chroot)}\\[\\033[01;32m\\]\u\\[\\033[00m\\]:\\[\\033[01;34m\\]\\w\\[\\033[00m\\]\\$ \"" enter
 
 #Set terminal colours
 if [ ! -z "$BGCOLOR" ]; then
@@ -91,7 +91,7 @@ sleep 0.1
 # Clear the history so it starts over at number 1.
 # The script shouldn't run any more non-shell commands in the shell
 # pane after this.
-tmux send-keys -t "${SHELL_PANE}" "history -c" enter
+# tmux send-keys -t "${SHELL_PANE}" "history -c" enter
 
 # Send Bash the clear-screen command (see clear-screen in bash(1))
 tmux send-keys -t "${SHELL_PANE}" "C-l"
