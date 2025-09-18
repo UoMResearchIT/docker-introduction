@@ -575,6 +575,9 @@ services:
     environment:
       - EXPORT=true
     command: ["--units", "iulu"]
+
+volumes:
+  spuc-volume:
 ```
 
 This tells docker compose to look for the Dockerfile in the current directory.
