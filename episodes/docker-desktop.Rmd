@@ -513,7 +513,7 @@ Clicking on it will prompt you for confirmation, but it will fail.
 :::
 
 You'll probably notice that the status of the image is `In use`.
-That seems strange though, given that all the containers from that image excited immediately.
+That seems strange though, given that all the containers from that image exited immediately.
 
 Lets have a look at the `Containers` tab.
 Some of the containers in the list came from the `hello-world` image.
