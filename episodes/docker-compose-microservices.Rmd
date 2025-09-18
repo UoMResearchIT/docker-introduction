@@ -52,7 +52,7 @@ It is maintained by the University of Manchester's Research IT team, and can eas
 `Apperture` is comprised primarily of a compose file.
 Just like we have been looking at!
 
-The full `docker-compose.yml` file is available [on github](https://raw.githubusercontent.com/UoMResearchIT/apperture/refs/heads/main/docker-compose.yml).
+The full `compose.yml` file is available [on github](https://raw.githubusercontent.com/UoMResearchIT/apperture/refs/heads/main/docker-compose.yml).
 It is quite long, so we will reproduce a slimmed down version here.
 
 ```yml
@@ -105,15 +105,15 @@ volumes:
   lldap-postgres-data:
 ```
 
-This `docker-compose.yml` file is a little more complex than the ones we have been looking at so far, but it is still just a list of services and their configurations.
+This `compose.yml` file is a little more complex than the ones we have been looking at so far, but it is still just a list of services and their configurations.
 
 You'll see some familiar things, like `image`, `ports`, `depends_on` (and `healthchecks`), `volumes`, and `environment`.
 
-Notice the `image` field in the `services` section of the `docker-compose.yml` file.
+Notice the `image` field in the `services` section of the `compose.yml` file.
 Every service is using a pre-built Docker image from Docker Hub, straight off the shelf!
 This is the power of Docker Compose and microservices!
 
-To get an idea of what is going on, let's draw a diagram of the services in the `docker-compose.yml` file.
+To get an idea of what is going on, let's draw a diagram of the services in the `compose.yml` file.
 
 ![](fig/docker_compose_apperture.png){alt='Apperture Services: Showing a user accessing WhoAmI via the web portal, which is protected by Authelia, which authenticates against an LDAP server, which pulls user data from a Postgres database.'}
 
@@ -128,13 +128,13 @@ There is no reason we cannot combine the Apperture stack with the SPUC stack we 
 This would allow us to protect our SPUC interface with the Apperture portal.
 An important addition! We need to ensure poachers cannot falsely record sightings of the rare yet valuable unicorns!
 
-This can be achieved by making a couple of changes to the SPUC `docker-compose.yml` file.
+This can be achieved by making a couple of changes to the SPUC `compose.yml` file.
 
 In our previous lesson, we learned about networks, which allow services to communicate with each other.
 Now we want join the networks of the SPUC and Apperture stacks so that they can communicate with each other.
 
 ```yml
-# SPUC docker-compose.yml
+# SPUC compose.yml
 
 + networks:
 +   apperture:

@@ -11,7 +11,7 @@ exercises: 99
 ::::::::::::::::::::::::::::::::::::::::::::::::::: questions
 - What is Docker Compose?
 - Why and when would I use it?
-- How can I translate my `docker run` commands into a `docker-compose.yml` file?
+- How can I translate my `docker run` commands into a `compose.yml` file?
 - How can I make containers communicate with each other?
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -39,8 +39,8 @@ Let's take a look at Docker Compose and see how it can help us run SPUC and SPUC
 
 As an initial step, we will learn how to run a container using Docker Compose.
 
-The first thing we need to do is create a `docker-compose.yml` file.
-All `docker-compose.yml` files start with `services:`.
+The first thing we need to do is create a `compose.yml` file.
+All `compose.yml` files start with `services:`.
 This is the root element under which we define the services we want to run.
 ```yml
 services:
@@ -124,7 +124,7 @@ docker run -d --rm --name spuc_container -p 8321:8321 -v ./print.config:/spuc/co
 
 There are a lot of flags here!
 Each of these flags has a corresponding key in Docker Compose.
-Lets order all the elements we want in a table, so we can see what we need to add to our `docker-compose.yml` file.
+Lets order all the elements we want in a table, so we can see what we need to add to our `compose.yml` file.
 
 | Flag                                          | Description                                             |
 |-----------------------------------------------|---------------------------------------------------------|
@@ -273,7 +273,7 @@ docker compose up -d
 
 You do not necessarily need to `down` your containers to update the configuration, Docker Compose can be *smart* like that.
 
-You can update the `docker-compose.yml` file in your text editor and then run `docker compose up -d` to see the changes take effect.
+You can update the `compose.yml` file in your text editor and then run `docker compose up -d` to see the changes take effect.
 
 **Warning**: This is not always foolproof! Some changes will require a rebuild of the container.
 It is also worth noting that Docker Compose does not *save* the status with which you started your services.
@@ -585,7 +585,7 @@ If we run `up`, Docker Compose will default to checking if the image exists and 
 This is ok... unless we have made changes to the Dockerfile!
 
 To ensure that the image is built, we can run `docker compose build`.
-This will build (all) the image(s) specified inside our `docker-compose.yml`.
+This will build (all) the image(s) specified inside our `compose.yml`.
 After building, we use the usual `up` command.
 
 Alternatively, we can add the `--build` flag to the `up` command, which results in Docker building the image right before starting the container.
@@ -632,7 +632,7 @@ You should now have a container running with the stats plugin enabled!
 
 #### Simpler Dockerfile
 
-You may have noticed that we ended up *duplicating* most of the configuration from the Dockerfile within the `docker-compose.yml` file.
+You may have noticed that we ended up *duplicating* most of the configuration from the Dockerfile within the `compose.yml` file.
 
 In reality, if we are using Docker Compose we do not need to bake in all of the configuration inside the Dockerfile.
 The only thing that was different was the `pip install pandas` command.
@@ -642,9 +642,9 @@ FROM spuacv/spuc:latest
 RUN pip install pandas
 ```
 
-Alternatively, we could simplify our `docker-compose.yml` file by removing the duplicated configuration.
-However, this would make the `docker-compose.yml` file less self-contained and more dependent on the Dockerfile.
-It is usually a better idea to keep the configuration in the `docker-compose.yml` file, as it makes it easier to understand and maintain.
+Alternatively, we could simplify our `compose.yml` file by removing the duplicated configuration.
+However, this would make the `compose.yml` file less self-contained and more dependent on the Dockerfile.
+It is usually a better idea to keep the configuration in the `compose.yml` file, as it makes it easier to understand and maintain.
 
 :::::::::::::::::::::::::::::::::::
 
@@ -843,9 +843,9 @@ For example in a typical web app you may make it so that the frontend can connec
 #### Network names
 
 You may have noticed that the network that Docker Compose created for our stack is named `docker_intro_default`.
-This is because Docker Compose uses the name of the directory that the `docker-compose.yml` file is in as the name of the network.
+This is because Docker Compose uses the name of the directory that the `compose.yml` file is in as the name of the network.
 
-If you want to specify the name of the network, you can use the `networks` key in the `docker-compose.yml` file.
+If you want to specify the name of the network, you can use the `networks` key in the `compose.yml` file.
 You also need to specify the network name for each service that you want to connect to the network.
 
 For example, to specify the network name as `spuc_network`, you would add the following to the file:
@@ -1099,7 +1099,7 @@ The SPUC service shows an error, because it failed all 5 retries, and the SPUCSV
 ::::::::::::::::::::::::::::::::::::::::::::::::::: keypoints
 - Docker Compose is a tool for defining and running multi-container stacks in a YAML file.
   They can also serve as a way of structuring and documenting `docker run` commands for single containers.
-- Instructions are saved in a `docker-compose.yml` file, where services, networks, and volumes are defined.
+- Instructions are saved in a `compose.yml` file, where services, networks, and volumes are defined.
 - Each `service` is a separate container, and it can be fully configured from within the file.
 - Bind mounts and `volumes` can be declared for each service, and they can be shared between containers too.
 - You can define `networks`, which can be used to connect or isolate containers from each other.
