@@ -1,0 +1,42 @@
+Hello,
+ 
+You’re receiving this e-mail because you’ve signed up to participate in our **${teaching_modality}** Introduction to Docker training on ${day_1} and ${day_2}.
+
+
+**LOCATION:**
+We will meet on the first day at ${location}. We’ll start at ${start_time}, but the room will be available for us before that so please try to arrive in time for us to start promptly.
+${further_loc}
+
+**TIMETABLE:**
+The course will run from ${start_time} - ${end_time} on each day, with short breaks included, and a lunch break.
+
+**COURSE CONTENT:**
+We will be using [this material](${link_to_material}).
+You are not expected to have read the material before the course, we will be covering it together.
+
+**PREPARATION:**
+You must **bring your own laptop with Docker installed**.
+The course's [setup instructions](${installation_guide}) have basic setup steps and useful links.
+
+You must **be familiar with the use of the unix shell**. We will be using `bash` throughout the course.
+If you use mac, make sure you can use a `bash` terminal, as we know `zsh` can cause some issues.
+
+We will also need an active **internet connection** during the course. Make sure your device is able to connect to the university's network.
+
+**TROUBLESHOOTING SESSION:**
+We will be hosting an **optional** session to troubleshoot Docker set-up and installation issues on **${troubleshooting_session}**.
+This will be online only, and you can join using [this link](${troubleshooting_link}).
+
+
+**FEEDBACK:**
+We value your feedback! After each day of the training, please take a moment to fill out our [feedback form](${feedback_form_link}).
+
+
+
+
+Feel free to get in touch if you have any questions or queries about the training.
+
+Looking forward to meeting you next week!
+ 
+
+All the best,
