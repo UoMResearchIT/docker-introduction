@@ -78,7 +78,14 @@ tmux send-keys -t "${SHELL_PANE}" " unalias -a" enter
 tmux send-keys -t "${SHELL_PANE}" " export PS1=\"\[\033${CYAN}\]\! $\[\033[0m\] \"" enter
 
 #A prompt showing `user@host:~/directory$ ` can be achieved with:
-tmux send-keys -t "${SHELL_PANE}" " export PS1=\"\\[\\e]0;\\u@\\h: \\w\\a\\]${debian_chroot:+($debian_chroot)}\\[\\033[01;32m\\]\u\\[\\033[00m\\]:\\[\\033[01;34m\\]\\w\\[\\033[00m\\]\\$ \"" enter
+# tmux send-keys -t "${SHELL_PANE}" " export PS1=\"\\[\\e]0;\\u@\\h: \\w\\a\\]${debian_chroot:+($debian_chroot)}\\[\\033[01;32m\\]\u\\[\\033[00m\\]:\\[\\033[01;34m\\]\\w\\[\\033[00m\\]\\$ \"" enter
+
+# Modified PS1 that uses SCRIPT_HOME as the base directory
+SCRIPT_HOME="$(pwd)"
+tmux send-keys -t "${SHELL_PANE}" " export SCRIPT_HOME='${SCRIPT_HOME}'" enter
+tmux send-keys -t "${SHELL_PANE}" " export PS1=\"\\[\\e]0;\\u@\\h: \\w\\a\\]${debian_chroot:+($debian_chroot)}\\[\\033[01;32m\\]\u\\[\\033[00m\\]:\\[\\033[01;34m\\]\\\${PWD/#\\\$SCRIPT_HOME/\~}\\[\\033[00m\\]\\$ \"" enter
+tmux send-keys -t "${SHELL_PANE}" " cd $SCRIPT_HOME" enter
+
 
 #Set terminal colours
 if [ ! -z "$BGCOLOR" ]; then
