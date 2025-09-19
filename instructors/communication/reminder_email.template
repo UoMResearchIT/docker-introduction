@@ -5,6 +5,7 @@ You’re receiving this e-mail because you’ve signed up to participate in our 
 
 **LOCATION:**
 We will meet on the first day at ${location}. We’ll start at ${start_time}, but the room will be available for us before that so please try to arrive in time for us to start promptly.
+${further_loc}
 
 **TIMETABLE:**
 The course will run from ${start_time} - ${end_time} on each day, with short breaks included, and a lunch break.
