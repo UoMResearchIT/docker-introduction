@@ -24,8 +24,8 @@ If you use mac, make sure you can use a `bash` terminal, as we know `zsh` can ca
 We will also need an active **internet connection** during the course. Make sure your device is able to connect to the university's network.
 
 **TROUBLESHOOTING SESSION:**
-We will be hosting an **optional** session to troubleshoot Docker set-up issues on **${troubleshooting_session}**.
-This will be remote only, and you can join using [this link](${troubleshooting_link}).
+We will be hosting an **optional** session to troubleshoot Docker set-up and installation issues on **${troubleshooting_session}**.
+This will be online only, and you can join using [this link](${troubleshooting_link}).
 
 
 **FEEDBACK:**
