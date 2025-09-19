@@ -16,6 +16,14 @@ SESSION="${SESSION:-swc}"
 #   LOG_FILE=/tmp/my-log ./swc-shell-split-window.sh
 LOG_FILE="${LOG_FILE:-/tmp/$SESSION-split-log-file}"
 
+#erase existing history if passed --clean_history
+for arg in "$@"; do
+  if [ "$arg" == "--clean_history" ] || [ "$arg" == "-c" ]; then
+    echo "" > "${LOG_FILE}"
+    break
+  fi
+done
+
 # The number of lines of history to show.  Defaults to 5, but you can
 # override from the calling process.
 HISTORY_LINES="${HISTORY_LINES:-5}"
