@@ -552,7 +552,26 @@ Let's go back to that.
 
 ## Building containers in Docker Compose
 
-We could use the tag we used when we built the container to use that image.
+We could use the tag we used when we built the container to use that image:
+```yml
+services:
+  spuc:
+    image: spuc-stats   # Use the image we built earlier
+    container_name: spuc_container
+    ports:
+      - 8321:8321
+    volumes:
+      - ./print.config:/spuc/config/print.config
+      - spuc-volume:/spuc/output
+      - ./stats.py:/spuc/plugins/stats.py        # Mounts the stats.py plugin
+    environment:
+      - EXPORT=true
+    command: ["--units", "iulu"]
+
+volumes:
+  spuc-volume:
+```
+
 However, this would mean that if we want to adjust our locally built container, we would have to rebuild it separately.
 
 Instead, we can use the `build` key to tell Docker Compose to build the container if needed.
@@ -561,7 +580,7 @@ To do that, we use the `build` key instead of the `image` key:
 ```yml
 services:
   spuc:
-  # image: spuacv/spuc:latest
+  # image: spuc-stats
     build:                        # Instead of using the 'image' key, we use the 'build' key
       context: .                  # Sets the build context (the directory in which the Dockerfile is located)
       dockerfile: Dockerfile      # Sets the name of the Dockerfile
