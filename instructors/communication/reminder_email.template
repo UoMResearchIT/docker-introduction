@@ -1,30 +1,16 @@
-teaching_modality: in-person
-day_1: 6
-day_2: 7 October 2025
-location: Room 205, Williamson Building
-start_time: 10:00
-end_time: 15:00
-link to material: https://uomresearchit.github.io/docker-introduction/
-installation_guide: https://uomresearchit.github.io/docker-introduction/#installation-of-docker
-troubleshooting_session: 3 October 2025 at 13:00.
-troubleshooting_link:
-feedback_form_link:
-
 Hello,
  
-
 You’re receiving this e-mail because you’ve signed up to participate in our **${teaching_modality}** Introduction to Docker training on ${day_1} and ${day_2}.
 
- 
 
 **LOCATION:**
-We will meet on the first day at ${location}. We’ll start at {start_time}, but the room will be available for us before that so please try to arrive in time for us to start promptly.
+We will meet on the first day at ${location}. We’ll start at ${start_time}, but the room will be available for us before that so please try to arrive in time for us to start promptly.
 
 **TIMETABLE:**
 The course will run from ${start_time} - ${end_time} on each day, with short breaks included, and a lunch break.
 
 **COURSE CONTENT:**
-We will be using [this material](${link to material}). 
+We will be using [this material](${link_to_material}).
 You are not expected to have read the material before the course, we will be covering it together.
 
 **PREPARATION:**

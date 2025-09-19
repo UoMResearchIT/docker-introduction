@@ -5,6 +5,8 @@ site/*
 
 .vscode/*
 
+instructors/communication/*_email.md
+
 # R stuff
 .Rhistory
 .Rapp.history
