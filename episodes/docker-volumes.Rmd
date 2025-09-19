@@ -286,8 +286,8 @@ Not only that, but because we created the file before mounting it to the contain
 Changes to the file will reflect immediately on the container.
 
 For example, let's edit the file to get rid of the date:
-```bash
-echo "::::: Unicorn number {count} spotted at {location}! Brightness: {brightness} {units}" > print.config
+```
+::::: Unicorn number {count} spotted at {location}! Brightness: {brightness} {units}
 ```
 Now let's register a sighting, and look at the logs:
 ```bash
