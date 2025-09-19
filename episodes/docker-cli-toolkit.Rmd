@@ -1,7 +1,7 @@
 ---
 title: Building our Docker CLI toolkit
-teaching: 99
-exercises: 99
+teaching: 40
+exercises: 0
 ---
 
 Before we start to tackle Docker tasks that are only possible in the command line,

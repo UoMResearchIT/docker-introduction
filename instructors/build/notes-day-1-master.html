@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>notes-day-1-master.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="docker-desktop">Docker Desktop</h1>
+<p>Just to get concept right.
+Not available for Linux.
+Freemium.
+<strong>Do not follow!</strong></p>
+<h2 id="dashboard">Dashboard</h2>
+<p>We will look at <strong>Containers</strong> and <strong>Images</strong> only.<br>
+<strong>Search</strong> bar at the top to search for images.</p>
+<h2 id="getting-images">Getting images</h2>
+<p>Search and pull of SPUC container: <strong>spuacv-spuc</strong><br>
+Click on image to see <strong>docs</strong>.<br>
+Show how to select a <strong>tag</strong>.<br>
+Option to <em><strong>run</strong></em> or <em><strong>pull</strong></em>.</p>
+<p>also pull <strong>hello-world</strong> and <strong>alpine</strong> images.</p>
+<h2 id="inspecting-images">Inspecting images</h2>
+<p>Images tab shows list showing spuc, alpine and hello-world.</p>
+<p>Click on image name to inspect.
+Go to <strong>vulnerabilities</strong> and start analysis.</p>
+<p>Important to check, but this is ok, verified image <strong>python:3-slim</strong>.</p>
+<h2 id="running">Running</h2>
+<p>Images are <strong>immutable snapshots</strong> of an environment, to be used as <strong>templates</strong>.</p>
+<p>Containers are <strong>executions of images</strong>, they are running, and become <strong>mutable</strong>.</p>
+<p>Run the <strong>hello-world</strong> image using the button from Images tab - confirm Run on prompt.</p>
+<p>We are on the <strong>Containers tab</strong> now.<br>
+Look at the <strong>random name</strong>.<br>
+Look at Logs, Inspect, Bind mounts, Exec, Files, Stats tabs.<br>
+It seems like the container has <strong>already stopped</strong>.<br>
+Status says &quot;Exited 0&quot;.<br>
+Run again, <strong>from the container</strong>.<br>
+Look at repeated output.</p>
+<p>Run again, but <strong>from the images</strong> tab.
+Look at new random name.</p>
+<p>Nature of containers is usually <strong>ephemeral</strong>.<br>
+Look at container list on Containers tab. They are both stopped.<br>
+Why 2 and not 1 or 3?<br>
+Run another hello-world container form the images tab to see a third.</p>
+<h2 id="interacting-with-containers">Interacting with containers</h2>
+<p>Not all containers are short lived. Run the <strong>spuc</strong> container.<br>
+Docs say we need to <strong>expose 8321</strong>, so do that on <strong>optional settings</strong>.<br>
+Container is still running. Confirm this on Containers tab.<br>
+Click on name of the container to go back to its logs.</p>
+<p>Image: Containers list, spuc still running.</p>
+<h3 id="spot-a-unicorn">Spot a unicorn!</h3>
+<p>From a terminal:</p>
+<pre class="hljs"><code><div>curl -X PUT localhost:8321/unicorn_spotted?location=moon\&amp;brightness=100
+</div></code></pre>
+<p>The docs mention we can configure the print with the <code>print.config</code> file.
+Open the terminal tab in the container.</p>
+<pre class="hljs"><code><div><span class="hljs-built_in">pwd</span>
+ls
+apt update
+apt install nano
+nano config/print.config
+</div></code></pre>
+<p>chango to</p>
+<pre class="hljs"><code><div>::::: {time} Unicorn number {count} spotted at {location}!! Brightness: {brightness} {units}
+</div></code></pre>
+<p>Then try another curl:</p>
+<pre class="hljs"><code><div>curl -X PUT localhost:8321/unicorn_spotted?location=moon\&amp;brightness=200
+</div></code></pre>
+<p>Confirm change in the printed logs.</p>
+<p>The container is <strong>like a VM</strong>... but it is <strong>not meant to</strong>... it is meant to be ephemeral.<br>
+Lets stop the container.<br>
+Confirm the status is exited.</p>
+<p>Run another spuc image <strong>from the images</strong> tab (<strong>no port</strong>).<br>
+Try to cat the <code>config/print.config</code> file.<br>
+Look for nano in the terminal.<br>
+This is a new container, not the same we modified.<br>
+Check container list.</p>
+<h2 id="reviving-containers">Reviving containers</h2>
+<p>Go back to containers list and click on start on the first spuc container.<br>
+It is running again, and we can see the config and we have nano.</p>
+<h2 id="naming-containers">Naming containers</h2>
+<p>Lets try adding a name to the container.<br>
+Run a new spuc container <strong>from the images</strong> tab, and name it <strong>SPUC</strong> (<strong>no port</strong>).</p>
+<p>In the container list, it is easier to find... but we didn't map the port!<br>
+Try to use same name again, it fails.<br>
+We cannot reuse names, we need to clean up.
+Port re-using can also cause issues.</p>
+<h2 id="cleaning-up">Cleaning up</h2>
+<p>From container list, delete container called <strong>SPUC</strong>.</p>
+<p>From image list, try to delete <code>hello-world</code>.<br>
+It says it is <strong>in use</strong>.</p>
+<p>Delete all the containers.<br>
+Make sure it says <strong>unused</strong> now. Try again.</p>
+<h2 id="limitations---why-not-docker-desktop">Limitations - Why not Docker Desktop?</h2>
+<p>Limited in how you can run the containers.</p>
+<p>Run <strong>alpine</strong>. Nothing happens.</p>
+<h2 id="show-keypoints-slide">Show keypoints slide</h2>
+<hr>
+<hr>
+<h1 id="building-our-docker-cli-toolkit">Building our Docker CLI toolkit</h1>
+<h2 id="pulling-and-listing-images">Pulling and Listing Images</h2>
+<pre class="hljs"><code><div>docker pull spuacv/spuc:latest
+</div></code></pre>
+<h2 id="the-structure-of-a-docker-command">The structure of a Docker command</h2>
+<p><strong>Image:</strong> A diagram showing the syntactic structure of a Docker command</p>
+<h2 id="listing-images">Listing Images</h2>
+<pre class="hljs"><code><div>docker image ls
+</div></code></pre>
+<h2 id="inspecting">Inspecting</h2>
+<pre class="hljs"><code><div>docker inspect spuacv/spuc:latest
+</div></code></pre>
+<pre class="hljs"><code><div>docker inspect spuacv/spuc:latest -f <span class="hljs-string">"Command: {{.Config.Cmd}}"</span>
+</div></code></pre>
+<pre class="hljs"><code><div>docker inspect spuacv/spuc:latest -f <span class="hljs-string">"Entrypoint: {{.Config.Entrypoint}}"</span>
+</div></code></pre>
+<pre class="hljs"><code><div>docker inspect spuacv/spuc:latest -f $<span class="hljs-string">'Command: {{.Config.Cmd}}\nEntrypoint: {{.Config.Entrypoint}}'</span>
+</div></code></pre>
+<h2 id="default-command">Default Command</h2>
+<p><strong>Image:</strong> A diagram representing the lifecycle of a container</p>
+<h3 id="further-examples-of-container-lifecycle">Further examples of container lifecycle</h3>
+<p><strong>Image:</strong> Further details and examples of the lifecycle of a container</p>
+<h2 id="running">Running</h2>
+<pre class="hljs"><code><div>docker run spuacv/spuc:latest
+</div></code></pre>
+<p>Use <code>Ctrl+C</code> to stop the container.</p>
+<pre class="hljs"><code><div>docker run -d spuacv/spuc:latest
+</div></code></pre>
+<h2 id="listing-containers">Listing Containers</h2>
+<pre class="hljs"><code><div>docker ps
+</div></code></pre>
+<pre class="hljs"><code><div>docker ps -a
+</div></code></pre>
+<h2 id="logs">Logs</h2>
+<p>Use <em>container name</em>, not image name:</p>
+<pre class="hljs"><code><div>docker logs ecstatic_nightingale
+</div></code></pre>
+<pre class="hljs"><code><div>curl -X PUT localhost:8321/unicorn_spotted?location=moon\&amp;brightness=100
+</div></code></pre>
+<p><em>Error!</em> port was not exposed.</p>
+<h2 id="exposing-ports">Exposing ports</h2>
+<pre class="hljs"><code><div>docker run -d -p 8321:8321 spuacv/spuc:latest
+</div></code></pre>
+<pre class="hljs"><code><div>docker ps
+</div></code></pre>
+<pre class="hljs"><code><div>curl -X PUT localhost:8321/unicorn_spotted?location=moon\&amp;brightness=100
+</div></code></pre>
+<pre class="hljs"><code><div>docker logs unruffled_noyce
+</div></code></pre>
+<h2 id="setting-the-name-of-a-container">Setting the name of a container</h2>
+<pre class="hljs"><code><div>docker run -d --name spuc_container -p 8321:8321 spuacv/spuc:latest
+</div></code></pre>
+<p><em>Error!</em> <strong>port</strong> already in use, we need to <strong>stop and delete</strong>.</p>
+<pre class="hljs"><code><div>docker stop unruffled_noyce
+docker rm unruffled_noyce
+</div></code></pre>
+<h3 id="killing-containers">Killing containers</h3>
+<pre class="hljs"><code><div>docker <span class="hljs-built_in">kill</span> ecstatic_nightingale
+</div></code></pre>
+<p>Now we can re-run with the name:</p>
+<pre class="hljs"><code><div>docker run -d --name spuc_container -p 8321:8321 spuacv/spuc:latest
+</div></code></pre>
+<p>We can also follow the logs:</p>
+<pre class="hljs"><code><div>docker logs -f spuc_container
+</div></code></pre>
+<h2 id="executing-commands-in-a-running-container">Executing commands in a running container</h2>
+<p>We can execute commands in a running container:</p>
+<pre class="hljs"><code><div>docker <span class="hljs-built_in">exec</span> spuc_container cat config/print.config
+</div></code></pre>
+<p>Or run an interactive session:</p>
+<pre class="hljs"><code><div>docker <span class="hljs-built_in">exec</span> -it spuc_container bash
+</div></code></pre>
+<pre class="hljs"><code><div>apt update
+apt install tree
+tree
+</div></code></pre>
+<p>We can get out with <code>Ctrl+D</code> or <code>exit</code>.</p>
+<h2 id="interactive-sessions">Interactive sessions</h2>
+<pre class="hljs"><code><div>docker run -it alpine:latest
+</div></code></pre>
+<h2 id="reviving-containers">Reviving Containers</h2>
+<pre class="hljs"><code><div>docker <span class="hljs-built_in">kill</span> spuc_container
+docker ps
+</div></code></pre>
+<pre class="hljs"><code><div>docker start spuc_container
+</div></code></pre>
+<pre class="hljs"><code><div>docker ps
+docker stats
+</div></code></pre>
+<p>And exit with <code>Ctrl+C</code>.</p>
+<h2 id="cleaning-up">Cleaning up</h2>
+<pre class="hljs"><code><div>docker <span class="hljs-built_in">kill</span> spuc_container
+</div></code></pre>
+<pre class="hljs"><code><div>docker rm spuc_container
+</div></code></pre>
+<pre class="hljs"><code><div>docker image rm alpine:latest
+</div></code></pre>
+<pre class="hljs"><code><div>docker system prune
+</div></code></pre>
+<h3 id="automatic-cleanup">Automatic cleanup</h3>
+<pre class="hljs"><code><div>docker run -d --rm --name spuc_container -p 8321:8321 spuacv/spuc:latest
+</div></code></pre>
+<p>This is a relatively standard command.<br>
+It will get worse.</p>
+<p>Already ahead of Docker Desktop, but lets do more, like persist data.</p>
+<h2 id="show-keypoints-slide">Show keypoints slide</h2>
+<hr>
+<hr>
+<h1 id="sharing-information-with-containers">Sharing information with containers</h1>
+<p>Containers are ephemeral, but we want our unicorn sightings to persist.</p>
+<h2 id="volumes">Volumes</h2>
+<p>Managed by Docker, hidden away in file system.<br>
+They are declared with <code>name:path</code>:
+<strong>-v spuc-volume:/spuc/output</strong></p>
+<pre class="hljs"><code><div>docker <span class="hljs-built_in">kill</span> spuc_container
+docker run -d --rm --name spuc_container -p 8321:8321 -v spuc-volume:/spuc/output spuacv/spuc:latest
+</div></code></pre>
+<pre class="hljs"><code><div>docker volume ls
+</div></code></pre>
+<h3 id="inspecting-the-volume">Inspecting the volume</h3>
+<pre class="hljs"><code><div>docker volume inspect spuc-volume
+</div></code></pre>
+<p>Now let's spot some unicorns!</p>
+<pre class="hljs"><code><div>curl -X PUT localhost:8321/unicorn_spotted?location=moon\&amp;brightness=100
+curl -X PUT localhost:8321/unicorn_spotted?location=earth\&amp;brightness=10
+curl -X PUT localhost:8321/unicorn_spotted?location=mars\&amp;brightness=400
+</div></code></pre>
+<pre class="hljs"><code><div>docker <span class="hljs-built_in">exec</span> spuc_container cat /spuc/output/unicorn_sightings.txt
+</div></code></pre>
+<p>Kill the container and make sure it was removed:</p>
+<pre class="hljs"><code><div>docker <span class="hljs-built_in">kill</span> spuc_container
+docker ps -a
+</div></code></pre>
+<p>And run it again, using <strong>the same volume</strong>, and check for the sightings:</p>
+<pre class="hljs"><code><div>docker run -d --rm --name spuc_container -p 8321:8321 -v spuc-volume:/spuc/output spuacv/spuc:latest
+docker <span class="hljs-built_in">exec</span> spuc_container cat /spuc/output/unicorn_sightings.txt
+</div></code></pre>
+<h2 id="bind-mounts">Bind mounts</h2>
+<p>Managed by the user, can be handy, can be dangerous.<br>
+They are declared with <code>path:path</code>:
+<strong>-v ./spuc/output:/spuc/output</strong></p>
+<pre class="hljs"><code><div>docker <span class="hljs-built_in">kill</span> spuc_container
+docker run -d --rm --name spuc_container -p 8321:8321 -v ./spuc/output:/spuc/output spuacv/spuc:latest
+</div></code></pre>
+<p>Now let's spot some unicorns!</p>
+<pre class="hljs"><code><div>curl -X PUT localhost:8321/unicorn_spotted?location=mercury\&amp;brightness=400
+cat spuc/output/unicorn_sightings.txt
+</div></code></pre>
+<p>Kill the container and make sure it was removed:</p>
+<pre class="hljs"><code><div>docker <span class="hljs-built_in">kill</span> spuc_container
+ls spuc/output
+</div></code></pre>
+<p>The directory is now in our current wd.
+If we use the same bind mount, we can see the sightings:</p>
+<pre class="hljs"><code><div>docker run -d --rm --name spuc_container -p 8321:8321 -v ./spuc/output:/spuc/output spuacv/spuc:latest
+cat spuc/output/unicorn_sightings.txt
+</div></code></pre>
+<pre class="hljs"><code><div>ls -l spuc/unicorn_sightings.txt
+</div></code></pre>
+<p>In some versions of docker, this might be owned by root!</p>
+<h3 id="bind-mount-files">Bind mount files</h3>
+<p>We can bind mount individual files, like the print config.
+First we create the file:</p>
+<pre class="hljs"><code><div><span class="hljs-built_in">echo</span> <span class="hljs-string">"::::: {time} Unicorn number {count} spotted at {location}! Brightness: {brightness} {units}"</span> &gt; print.config
+</div></code></pre>
+<p>Then we kill the running container and mount it in:</p>
+<pre class="hljs"><code><div>docker <span class="hljs-built_in">kill</span> spuc_container
+docker run -d --rm --name spuc_container -p 8321:8321 -v ./print.config:/spuc/config/print.config -v spuc-volume:/spuc/output spuacv/spuc:latest
+</div></code></pre>
+<p>Register a sighting:</p>
+<pre class="hljs"><code><div>curl -X PUT localhost:8321/unicorn_spotted?location=jupyter\&amp;brightness=210
+docker logs spuc_container
+</div></code></pre>
+<p>This file can be edited while the container runs. For example:</p>
+<pre class="hljs"><code><div><span class="hljs-built_in">echo</span> <span class="hljs-string">"::::: Unicorn number {count} spotted at {location}! Brightness: {brightness} {units}"</span> &gt; print.config
+</div></code></pre>
+<pre class="hljs"><code><div>curl -X PUT localhost:8321/unicorn_spotted?location=venus\&amp;brightness=148
+docker logs spuc_container
+</div></code></pre>
+<p><strong>Warning:</strong> We replaced the file in the container with the file from the host filesystem.<br>
+We could do the same with a whole directory, but be careful not to overwrite important files in the container!</p>
+<h2 id="challenge-common-mistakes-with-volumes">! Challenge: Common mistakes with volumes</h2>
+<pre class="hljs"><code><div>docker run -v spuc-vol spuacv/spuc:latest
+</div></code></pre>
+<p><strong>Problem:</strong> Missing path to mount volume. It uses /spuc-vol in the container, but it wont persist!<br>
+<strong>Fix:</strong> You only messed up the container, nothing to worry about. Stop it and try again.</p>
+<pre class="hljs"><code><div>docker run -v ./spucs/output:/spuc/output spuacv/spuc:latest
+</div></code></pre>
+<p><strong>Problem:</strong> You misspelled the path! This will create a new directory called <strong>spucs</strong> and mount it.<br>
+<strong>Fix:</strong> Use sudo rm -rf ./spucs to remove the directory and try again.</p>
+<pre class="hljs"><code><div>ocker run -v ./spuc-vol:/spuc/output spuacv/spuc:latest
+</div></code></pre>
+<p><strong>Problem:</strong> <code>path:path</code> Therefore, bind mount, and will create <strong>spuc-vol</strong>.<br>
+<strong>Fix:</strong> Use sudo rm -rf ./spuc-volume to remove the directory and try again.</p>
+<pre class="hljs"><code><div>docker run -v ./spuc:/spuc spuacv/spuc:latest
+</div></code></pre>
+<p><strong>Problem:</strong> Replaced everything in the container with empty! Could not find /spuc/spuc.py.<br>
+<strong>Fix:</strong> You only messed up the container, nothing to worry about. Try again.</p>
+<pre class="hljs"><code><div>docker run -v print.config:/spuc/config/print.config spuacv/spuc:latest
+</div></code></pre>
+<p><strong>Problem:</strong> <code>name:path</code>, so volume... However, print.config is not a directory.<br>
+<strong>Fix:</strong> Use docker volume rm print.config to remove the volume and try again.</p>
+<h2 id="show-keypoints-slide">Show keypoints slide</h2>
+<hr>
+<hr>
+<h1 id="docker-hub">Docker Hub</h1>
+<p>Is there anything else we could do?
+Let's look at the docs... but where?</p>
+<h2 id="introducing-the-docker-hub">Introducing the Docker Hub</h2>
+<p>Docs live in Dockerhub, a container image repository.<br>
+You do not <em>need</em> dockerhub to be able to docker.</p>
+<p>Open your web browser to https://hub.docker.com<br>
+In the search bar type “spuc” and hit enter.<br>
+Select the spuacv/spuc container image.</p>
+<p><strong>Top:</strong> Name, endorsements, creator, a short description, tags, and popularity</p>
+<p><strong>Top-right:</strong> command to pull.</p>
+<p><strong>Two tabs:</strong></p>
+<ul>
+<li>Overview - contains the documentation.</li>
+<li>Tags - contains the list of versions, indicated by “tags”.</li>
+</ul>
+<p>Name structure:
+<code>OWNER/REPOSITORY:TAG</code></p>
+<p>Click the version tag for latest of this image to &quot;inspect&quot;.</p>
+<p><strong>Note:</strong> The latest tag is not always the most recent version of the software.<br>
+Tags are actually just labels, and the latest tag is just a convention.</p>
+<h2 id="official-images">Official images</h2>
+<p>In the search box, type “python” and hit enter.
+The “official” badge is shown on the top of the repository.</p>
+<h2 id="choosing-container-images-on-docker-hub">Choosing Container Images on Docker Hub</h2>
+<ul>
+<li>Updated regularly.</li>
+<li>Established company, community...</li>
+<li>Dockerfile or other.</li>
+<li>Good documentation.</li>
+<li>Use by the wider community. The graph on the right at the search page can help with this.</li>
+</ul>
+<h2 id="other-sources-of-container-images">Other sources of Container Images</h2>
+<ul>
+<li>GHCR from Github.</li>
+<li>Quay from Red Hat.</li>
+<li>Artifact Registry from Google.</li>
+<li>GLR from GitLab.</li>
+<li>ECR from Amazon.</li>
+<li>ACR from Azure, Microsoft.</li>
+</ul>
+<h2 id="show-keypoints-slide">Show keypoints slide</h2>
+<hr>
+<hr>
+<h1 id="configuring-containers">Configuring containers</h1>
+<p>Explore the docs we found on Docker Hub.
+We can:</p>
+<ul>
+<li>Set an environment variable <strong>EXPORT</strong> to <strong>True</strong> to export the logs to a file.</li>
+<li>Pass a parameter to change the units.</li>
+</ul>
+<h2 id="setting-the-environment">Setting the environment</h2>
+<p>We set environment variables with <code>-e name=value</code>:</p>
+<pre class="hljs"><code><div>docker stop spuc_container
+docker run -d --rm --name spuc_container -p 8321:8321 -v ./print.config:/spuc/config/print.config -v spuc-volume:/spuc/output -e EXPORT=<span class="hljs-literal">true</span> spuacv/spuc:latest
+docker logs spuc_container
+</div></code></pre>
+<p>And we can now try it:</p>
+<pre class="hljs"><code><div>curl localhost:8321/<span class="hljs-built_in">export</span>
+</div></code></pre>
+<p>So we no longer need a bind mount, a volume would work just fine.</p>
+<p>Defaulting to network style connections is very common in Docker containers.</p>
+<p>Environment variables are a very common tool for configuring containers.</p>
+<h2 id="passing-parameters-overriding-the-command">Passing parameters (overriding the command)</h2>
+<p>SPUC is recording the brightness of the unicorns in <strong>Imperial Unicorn Hoove Candles</strong> (iuhc)!<br>
+We must change it to the much more standard <strong>Intergalactic Unicorn Luminosity Units</strong> (iulu).</p>
+<p>Parameters are passed on the command. Remember:</p>
+<pre class="hljs"><code><div>docker inspect spuacv/spuc:latest -f <span class="hljs-string">"Entrypoint: {{.Config.Entrypoint}}\nCommand: {{.Config.Cmd}}"</span>
+</div></code></pre>
+<p>To override it, we write the command we want at the end:</p>
+<pre class="hljs"><code><div>docker stop spuc_container
+docker run -d --rm --name spuc_container -p 8321:8321 -v ./print.config:/spuc/config/print.config -v spuc-volume:/spuc/output -e EXPORT=<span class="hljs-literal">true</span> spuacv/spuc:latest --units iulu
+</div></code></pre>
+<pre class="hljs"><code><div>curl -X PUT localhost:8321/unicorn_spotted?location=pluto\&amp;brightness=66
+curl localhost:8321/<span class="hljs-built_in">export</span>
+</div></code></pre>
+<p>This worked, but now we have a mix of units!
+We have to remove the volume to fix this:</p>
+<pre class="hljs"><code><div>docker stop spuc_container
+docker volume rm spuc-volume
+docker run -d --rm --name spuc_container -p 8321:8321 -v ./print.config:/spuc/config/print.config -v spuc-volume:/spuc/output -e EXPORT=<span class="hljs-literal">true</span> spuacv/spuc:latest --units iulu
+curl -X PUT localhost:8321/unicorn_spotted?location=moon\&amp;brightness=177
+curl -X PUT localhost:8321/unicorn_spotted?location=earth\&amp;brightness=18
+curl -X PUT localhost:8321/unicorn_spotted?location=mars\&amp;brightness=709
+curl -X PUT localhost:8321/unicorn_spotted?location=jupyter\&amp;brightness=372
+curl -X PUT localhost:8321/unicorn_spotted?location=venus\&amp;brightness=262
+curl -X PUT localhost:8321/unicorn_spotted?location=pluto\&amp;brightness=66
+curl localhost:8321/<span class="hljs-built_in">export</span>
+</div></code></pre>
+<p>Overriding the command is a very common way to configure containers.</p>
+<h2 id="overriding-the-entrypoint">Overriding the entrypoint</h2>
+<p>This is less common, but it can also be done:</p>
+<pre class="hljs"><code><div>docker run -it --rm --entrypoint /bin/sh spuacv/spuc:latest
+</div></code></pre>
+<h2 id="challenge-entrypoint--command-combinations">Challenge: Entrypoint + Command combinations</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Entrypoint</th>
+<th>Command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td><code>python /spuc/spuc.py --units iuhc</code></td>
+<td></td>
+</tr>
+<tr>
+<td>B</td>
+<td><code>python /spuc/spuc.py</code></td>
+<td><code>--units iuhc</code></td>
+</tr>
+<tr>
+<td>C</td>
+<td><code>python</code></td>
+<td><code>/spuc/spuc.py --units iuhc</code></td>
+</tr>
+<tr>
+<td>D</td>
+<td></td>
+<td><code>python /spuc/spuc.py --units iuhc</code></td>
+</tr>
+</tbody>
+</table>
+<p>All valid combinations, but with different implications:</p>
+<ul>
+<li><strong>A:</strong> Ok if unlikely to change (although more may be appended).</li>
+<li><strong>B:</strong> program baked in, arguments easily changed -- STANDARD.</li>
+<li><strong>C:</strong> Python script can be changed easily, which is more likely to be bad than good!</li>
+<li><strong>D:</strong> Maximum flexibility, but re-write the whole command to modify even the parameters.</li>
+</ul>
+<h2 id="show-keypoints-slide">Show keypoints slide</h2>
+
+</body>
+</html>

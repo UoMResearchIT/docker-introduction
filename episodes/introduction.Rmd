@@ -74,3 +74,18 @@ and encouraging your local community to join in the count!
 
 </div>
 </div>
+
+You can use the *Space Purple Unicorn Counter* (**SPUC**) container image for your service,
+which you can find on [Docker Hub](https://hub.docker.com/r/spua/spuc).
+
+This image provides an API, which can be hit to add an event to the sightings record.
+The `location` and `brightness` of the unicorn need to be passed as parameters of a put request.
+For example:
+```
+curl -X PUT localhost:8321/unicorn_spotted?location=moon\&brightness=100
+```
+will register a unicorn sighting on the moon with a brightness of 100iuhc.
+
+Remember to **configure a port** on your host machine to forward requests to the container.
+
+You may also want to edit the `print.config` file to change the way the sightings are reported.

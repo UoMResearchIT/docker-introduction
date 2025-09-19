@@ -1,6 +1,6 @@
 ---
 title: Docker Desktop
-teaching: 20
+teaching: 40
 exercises: 0
 ---
 
@@ -494,6 +494,10 @@ There is a very convenient bin icon on the right, which will prompt you for conf
 :::
 
 You should now be able to run the `spuc` image again, and name the container `SPUC`.
+However, if you try to add the port you'll find that you still have a conflict.
+This is because the port is still in use by the old container, even though it is stopped.
+If you delete the randomly named container which had the port map,
+you should be able to run the image with the name and port you want.
 
 Since we are deleting stuff, the `hello-world` image was nice and useful to test docker was working, but it is now rather useless.
 If I want to delete it, the `Images` tab on the left has a convenient bin icon to do so.
@@ -513,7 +517,7 @@ Clicking on it will prompt you for confirmation, but it will fail.
 :::
 
 You'll probably notice that the status of the image is `In use`.
-That seems strange though, given that all the containers from that image excited immediately.
+That seems strange though, given that all the containers from that image exited immediately.
 
 Lets have a look at the `Containers` tab.
 Some of the containers in the list came from the `hello-world` image.
