@@ -10,25 +10,7 @@
     <loc>https://uomresearchit.github.io/docker-introduction/LICENSE.html</loc>
   </url>
   <url>
-    <loc>https://uomresearchit.github.io/docker-introduction/advanced-containers.html</loc>
-  </url>
-  <url>
-    <loc>https://uomresearchit.github.io/docker-introduction/aio.html</loc>
-  </url>
-  <url>
-    <loc>https://uomresearchit.github.io/docker-introduction/creating-container-images.html</loc>
-  </url>
-  <url>
-    <loc>https://uomresearchit.github.io/docker-introduction/discuss.html</loc>
-  </url>
-  <url>
-    <loc>https://uomresearchit.github.io/docker-introduction/docker-cli-advanced.html</loc>
-  </url>
-  <url>
     <loc>https://uomresearchit.github.io/docker-introduction/docker-cli-toolkit.html</loc>
-  </url>
-  <url>
-    <loc>https://uomresearchit.github.io/docker-introduction/docker-cli.html</loc>
   </url>
   <url>
     <loc>https://uomresearchit.github.io/docker-introduction/docker-compose-microservices.html</loc>
@@ -52,9 +34,6 @@
     <loc>https://uomresearchit.github.io/docker-introduction/dockerfiles.html</loc>
   </url>
   <url>
-    <loc>https://uomresearchit.github.io/docker-introduction/images.html</loc>
-  </url>
-  <url>
     <loc>https://uomresearchit.github.io/docker-introduction/index.html</loc>
   </url>
   <url>
@@ -67,25 +46,7 @@
     <loc>https://uomresearchit.github.io/docker-introduction/instructor/LICENSE.html</loc>
   </url>
   <url>
-    <loc>https://uomresearchit.github.io/docker-introduction/instructor/advanced-containers.html</loc>
-  </url>
-  <url>
-    <loc>https://uomresearchit.github.io/docker-introduction/instructor/aio.html</loc>
-  </url>
-  <url>
-    <loc>https://uomresearchit.github.io/docker-introduction/instructor/creating-container-images.html</loc>
-  </url>
-  <url>
-    <loc>https://uomresearchit.github.io/docker-introduction/instructor/discuss.html</loc>
-  </url>
-  <url>
-    <loc>https://uomresearchit.github.io/docker-introduction/instructor/docker-cli-advanced.html</loc>
-  </url>
-  <url>
     <loc>https://uomresearchit.github.io/docker-introduction/instructor/docker-cli-toolkit.html</loc>
-  </url>
-  <url>
-    <loc>https://uomresearchit.github.io/docker-introduction/instructor/docker-cli.html</loc>
   </url>
   <url>
     <loc>https://uomresearchit.github.io/docker-introduction/instructor/docker-compose-microservices.html</loc>
@@ -109,57 +70,18 @@
     <loc>https://uomresearchit.github.io/docker-introduction/instructor/dockerfiles.html</loc>
   </url>
   <url>
-    <loc>https://uomresearchit.github.io/docker-introduction/instructor/images.html</loc>
-  </url>
-  <url>
     <loc>https://uomresearchit.github.io/docker-introduction/instructor/index.html</loc>
-  </url>
-  <url>
-    <loc>https://uomresearchit.github.io/docker-introduction/instructor/instructor-notes.html</loc>
   </url>
   <url>
     <loc>https://uomresearchit.github.io/docker-introduction/instructor/introduction.html</loc>
   </url>
   <url>
-    <loc>https://uomresearchit.github.io/docker-introduction/instructor/key-points.html</loc>
-  </url>
-  <url>
-    <loc>https://uomresearchit.github.io/docker-introduction/instructor/managing-containers.html</loc>
-  </url>
-  <url>
-    <loc>https://uomresearchit.github.io/docker-introduction/instructor/meet-docker.html</loc>
-  </url>
-  <url>
     <loc>https://uomresearchit.github.io/docker-introduction/instructor/profiles.html</loc>
-  </url>
-  <url>
-    <loc>https://uomresearchit.github.io/docker-introduction/instructor/reference.html</loc>
-  </url>
-  <url>
-    <loc>https://uomresearchit.github.io/docker-introduction/instructor/running-containers.html</loc>
-  </url>
-  <url>
-    <loc>https://uomresearchit.github.io/docker-introduction/instructor-notes.html</loc>
   </url>
   <url>
     <loc>https://uomresearchit.github.io/docker-introduction/introduction.html</loc>
   </url>
   <url>
-    <loc>https://uomresearchit.github.io/docker-introduction/key-points.html</loc>
-  </url>
-  <url>
-    <loc>https://uomresearchit.github.io/docker-introduction/managing-containers.html</loc>
-  </url>
-  <url>
-    <loc>https://uomresearchit.github.io/docker-introduction/meet-docker.html</loc>
-  </url>
-  <url>
     <loc>https://uomresearchit.github.io/docker-introduction/profiles.html</loc>
-  </url>
-  <url>
-    <loc>https://uomresearchit.github.io/docker-introduction/reference.html</loc>
-  </url>
-  <url>
-    <loc>https://uomresearchit.github.io/docker-introduction/running-containers.html</loc>
   </url>
 </urlset>

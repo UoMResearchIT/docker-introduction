@@ -60,19 +60,22 @@ contact: 'team@carpentries.org'
 # Order of episodes in your lesson
 episodes: 
 - introduction.Rmd
-- docker-hub.Rmd
 - docker-desktop.Rmd
-- meet-docker.Rmd
-- running-containers.Rmd
-- managing-containers.Rmd
-- creating-container-images.Rmd
-- advanced-containers.Rmd
+- docker-cli-toolkit.Rmd
+- docker-volumes.Rmd
+- docker-hub.Rmd
+- docker-run-configuration.Rmd
+- dockerfiles.Rmd
+- docker-compose.Rmd
+- docker-compose-microservices.Rmd
 
 # Information for Learners
-learners: 
+learners:
+- setup.md
 
 # Information for Instructors
-instructors: 
+instructors:
+- instructor-notes.md
 
 # Learner Profiles
 profiles: 
