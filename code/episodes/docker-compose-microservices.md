@@ -56,7 +56,7 @@ volumes:
 Image: Apperture Services: Showing a user accessing WhoAmI via the web portal, which is protected by Authelia, which authenticates against an LDAP server, which pulls user data from a Postgres database.
 ## Combining Stacks
 ```yml
-# SPUC docker-compose.yml
+# SPUC compose.yml
 
 + networks:
 +   apperture:

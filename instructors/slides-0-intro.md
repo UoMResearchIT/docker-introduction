@@ -91,3 +91,31 @@ If you’d like to join the effort to preserve this keystone species, please hel
 </div>
 
 </div>
+
+---
+
+### Start helping now!
+
+<div style="display: flex; align-items: flex-start; margin-top:40px">
+
+<div style="flex: 2; margin-top:40px">
+
+![w:400](../episodes/fig/SPUA/SPUA_logo_transparent.png)
+
+</div>
+
+<div style="flex: 3; font-size: 1.5rem; text-align: left;">
+
+<p style="text-align: left;">
+You can use the <i>Space Purple Unicorn Counter</i> (<strong>SPUC</strong>) container image for your service,
+which you can find on Docker Hub.
+<p style="text-align: left;">
+This image provides an API, which can be hit to add an event to the sightings record.
+<p style="text-align: left;">
+Remember to <strong>configure a port</strong> on your host machine to forward requests to the container.
+<p style="text-align: left;">
+You may also want to edit the `print.config` file to change the way the sightings are reported.
+
+</div>
+
+</div>

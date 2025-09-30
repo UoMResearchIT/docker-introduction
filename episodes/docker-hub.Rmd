@@ -1,7 +1,7 @@
 ---
 title: The Docker Hub
-teaching: 99
-exercises: 99
+teaching: 5
+exercises: 0
 ---
 
 So we want to look at the docs for a container image, but we don't want Docker Desktop anymore!
