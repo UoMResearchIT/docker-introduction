@@ -1,7 +1,7 @@
 ---
 title: Configuring containers
-teaching: 99
-exercises: 99
+teaching: 30
+exercises: 0
 ---
 
 Well this is interesting!

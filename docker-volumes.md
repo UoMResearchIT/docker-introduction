@@ -1,7 +1,7 @@
 ---
 title: Sharing information with containers
-teaching: 99
-exercises: 99
+teaching: 45
+exercises: 0
 ---
 
 Now that we have learned the basics of the Docker CLI,
@@ -205,10 +205,10 @@ This is great!... but there are downsides.
 
 To illustrate this, let's see what the permissions are on the file we just created.
 ```bash
-ls -l spuc/unicorn_sightings.txt
+ls -l spuc/output/unicorn_sightings.txt
 ```
 ```output
--rw-r--r-- 1 root root 57 Oct 11 14:14 spuc/unicorn_sightings.txt
+-rw-r--r-- 1 root root 57 Oct 11 14:14 spuc/output/unicorn_sightings.txt
 ```
 
 **Note:** This no longer seems to be the case from Docker version 27.3.1 onwards.
@@ -234,10 +234,33 @@ This was a bit difficult, as we had to do it from inside the container, and it d
 We now have the tools to address this!
 We can use a bind mount to share the config file with the container.
 
-First we need to make the config file itself.
-Let's create a file with the following content:
+::::::::::::::::::::::::::::::::::::::: callout
+
+## Docker cp
+
+We can get files in and out of containers using the `docker cp` command.
+
+Let's try this to get the `print.config` file out of the container.
+It works like the `cp` command, but you have to specify the container name and path:
 ```bash
-echo "::::: {time} Unicorn number {count} spotted at {location}! Brightness: {brightness} {units}" > print.config
+docker cp spuc_container:/spuc/config/print.config .
+cat print.config
+```
+```output
+# This file configures the print output to the terminal.
+# Available variables are: count, time, location, brightness, units
+# The values of these variables will be replaced if wrapped in curly braces.
+# Lines beginning with # are ignored.
+::::: Unicorn spotted at {location}!! Brightness: {brightness} {units}
+```
+
+Note that this **will not keep changes in sync** like a bind mount, but it is useful for getting files in and out of containers.
+
+:::::::::::::::::::::::::::::::::::::::
+
+Let's now modify the print.config file to include the time and the unicorn count:
+```
+::::: {time} Unicorn number {count} spotted at {location}! Brightness: {brightness} {units}
 ```
 
 Now, to share it with the container, we need to put it in the path `/spuc/config/print.config`.
@@ -263,8 +286,8 @@ Not only that, but because we created the file before mounting it to the contain
 Changes to the file will reflect immediately on the container.
 
 For example, let's edit the file to get rid of the date:
-```bash
-echo "::::: Unicorn number {count} spotted at {location}! Brightness: {brightness} {units}" > print.config
+```
+::::: Unicorn number {count} spotted at {location}! Brightness: {brightness} {units}
 ```
 Now let's register a sighting, and look at the logs:
 ```bash
