@@ -117,11 +117,11 @@
   Introduction to Docker
 </div>
 
-<aside class="col-md-12 lesson-progress"><div style="width: 1%" class="percentage">
-    1%
+<aside class="col-md-12 lesson-progress"><div style="width: 6%" class="percentage">
+    6%
   </div>
   <div class="progress incubator">
-    <div class="progress-bar incubator" role="progressbar" style="width: 1%" aria-valuenow="1" aria-label="Lesson Progress" aria-valuemin="0" aria-valuemax="100">
+    <div class="progress-bar incubator" role="progressbar" style="width: 6%" aria-valuenow="6" aria-label="Lesson Progress" aria-valuemin="0" aria-valuemax="100">
     </div>
   </div>
 </aside><div class="container">
@@ -364,7 +364,7 @@
 
 
 
-        <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 20 minutes</p>
+        <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 40 minutes</p>
 
         <div class="text-end">
           <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
@@ -1116,7 +1116,11 @@ prompt you for confirmation.</p>
 </div>
 </div>
 <p>You should now be able to run the <code>spuc</code> image again, and
-name the container <code>SPUC</code>.</p>
+name the container <code>SPUC</code>. However, if you try to add the
+port you’ll find that you still have a conflict. This is because the
+port is still in use by the old container, even though it is stopped. If
+you delete the randomly named container which had the port map, you
+should be able to run the image with the name and port you want.</p>
 <p>Since we are deleting stuff, the <code>hello-world</code> image was
 nice and useful to test docker was working, but it is now rather
 useless. If I want to delete it, the <code>Images</code> tab on the left
@@ -1151,7 +1155,7 @@ confirmation, but it will fail.</p>
 </div>
 <p>You’ll probably notice that the status of the image is
 <code>In use</code>. That seems strange though, given that all the
-containers from that image excited immediately.</p>
+containers from that image exited immediately.</p>
 <p>Lets have a look at the <code>Containers</code> tab. Some of the
 containers in the list came from the <code>hello-world</code> image.
 They are now stopped, but the fact that they originated from the

@@ -445,6 +445,20 @@ service, and encouraging your local community to join in the count!</p>
 <div class="column" style="flex: 2; padding: 10px; box-sizing: border-box; min-width: 300px;">
 <figure><img src="../fig/SPUA/SPUA_logo.png" alt="SPUA logo" class="figure mx-auto d-block"></figure></div>
 </div>
+<p>You can use the <em>Space Purple Unicorn Counter</em>
+(<strong>SPUC</strong>) container image for your service, which you can
+find on <a href="https://hub.docker.com/r/spua/spuc" class="external-link">Docker Hub</a>.</p>
+<p>This image provides an API, which can be hit to add an event to the
+sightings record. The <code>location</code> and <code>brightness</code>
+of the unicorn need to be passed as parameters of a put request. For
+example:</p>
+<pre><code>curl -X PUT localhost:8321/unicorn_spotted?location=moon\&amp;brightness=100</code></pre>
+<p>will register a unicorn sighting on the moon with a brightness of
+100iuhc.</p>
+<p>Remember to <strong>configure a port</strong> on your host machine to
+forward requests to the container.</p>
+<p>You may also want to edit the <code>print.config</code> file to
+change the way the sightings are reported.</p>
 </section></div> <!-- / div.lesson-content -->
     </main><!-- / main#main-content.main-content --><nav class="bottom-pagination mx-md-4" aria-label="Previous and Next Chapter"><div class="d-block d-sm-block d-md-none">
         <a class="chapter-link" href="../instructor/index.html"><i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>Previous</a>

@@ -117,11 +117,11 @@
   Introduction to Docker
 </div>
 
-<aside class="col-md-12 lesson-progress"><div style="width: 86%" class="percentage">
-    86%
+<aside class="col-md-12 lesson-progress"><div style="width: 97%" class="percentage">
+    97%
   </div>
   <div class="progress incubator">
-    <div class="progress-bar incubator" role="progressbar" style="width: 86%" aria-valuenow="86" aria-label="Lesson Progress" aria-valuemin="0" aria-valuemax="100">
+    <div class="progress-bar incubator" role="progressbar" style="width: 97%" aria-valuenow="97" aria-label="Lesson Progress" aria-valuemin="0" aria-valuemax="100">
     </div>
   </div>
 </aside><div class="container">
@@ -361,7 +361,7 @@
 
 
 
-        <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 198 minutes</p>
+        <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 10 minutes</p>
 
         <div class="text-end">
           <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
@@ -440,7 +440,7 @@ of Manchester’s Research IT team, and can easily be combined with other
 stacks to provide them with a login portal.</p>
 <p><code>Apperture</code> is comprised primarily of a compose file. Just
 like we have been looking at!</p>
-<p>The full <code>docker-compose.yml</code> file is available <a href="https://raw.githubusercontent.com/UoMResearchIT/apperture/refs/heads/main/docker-compose.yml" class="external-link">on
+<p>The full <code>compose.yml</code> file is available <a href="https://raw.githubusercontent.com/UoMResearchIT/apperture/refs/heads/main/docker-compose.yml" class="external-link">on
 github</a>. It is quite long, so we will reproduce a slimmed down
 version here.</p>
 <div class="codewrapper sourceCode" id="cb1">
@@ -494,19 +494,19 @@ version here.</p>
 <span id="cb1-46"><a href="#cb1-46" tabindex="-1"></a><span class="at">  </span><span class="fu">lldap-data</span><span class="kw">:</span></span>
 <span id="cb1-47"><a href="#cb1-47" tabindex="-1"></a><span class="at">  </span><span class="fu">lldap-postgres-data</span><span class="kw">:</span></span></code></pre>
 </div>
-<p>This <code>docker-compose.yml</code> file is a little more complex
-than the ones we have been looking at so far, but it is still just a
-list of services and their configurations.</p>
+<p>This <code>compose.yml</code> file is a little more complex than the
+ones we have been looking at so far, but it is still just a list of
+services and their configurations.</p>
 <p>You’ll see some familiar things, like <code>image</code>,
 <code>ports</code>, <code>depends_on</code> (and
 <code>healthchecks</code>), <code>volumes</code>, and
 <code>environment</code>.</p>
 <p>Notice the <code>image</code> field in the <code>services</code>
-section of the <code>docker-compose.yml</code> file. Every service is
-using a pre-built Docker image from Docker Hub, straight off the shelf!
-This is the power of Docker Compose and microservices!</p>
+section of the <code>compose.yml</code> file. Every service is using a
+pre-built Docker image from Docker Hub, straight off the shelf! This is
+the power of Docker Compose and microservices!</p>
 <p>To get an idea of what is going on, let’s draw a diagram of the
-services in the <code>docker-compose.yml</code> file.</p>
+services in the <code>compose.yml</code> file.</p>
 <figure><img src="../fig/docker_compose_apperture.png" alt="Apperture Services: Showing a user accessing WhoAmI via the web portal, which is protected by Authelia, which authenticates against an LDAP server, which pulls user data from a Postgres database." class="figure mx-auto d-block"></figure><p>In short: <strong>Without writing a single line of code, we have a
 fully functioning, secure web portal!</strong></p>
 </section><section><h2 class="section-heading" id="combining-stacks">Combining Stacks<a class="anchor" aria-label="anchor" href="#combining-stacks"></a></h2>
@@ -517,7 +517,7 @@ with the SPUC stack we have been working with in previous lessons!</p>
 portal. An important addition! We need to ensure poachers cannot falsely
 record sightings of the rare yet valuable unicorns!</p>
 <p>This can be achieved by making a couple of changes to the SPUC
-<code>docker-compose.yml</code> file.</p>
+<code>compose.yml</code> file.</p>
 <p>In our previous lesson, we learned about networks, which allow
 services to communicate with each other. Now we want join the networks
 of the SPUC and Apperture stacks so that they can communicate with each
@@ -525,7 +525,7 @@ other.</p>
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">YML<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode yml" tabindex="0"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="co"># SPUC docker-compose.yml</span></span>
+<pre class="sourceCode yml" tabindex="0"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="co"># SPUC compose.yml</span></span>
 <span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="fu">+ networks</span><span class="kw">:</span></span>
 <span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="fu">+   apperture</span><span class="kw">:</span></span>
