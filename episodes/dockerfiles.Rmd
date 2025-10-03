@@ -27,6 +27,7 @@ Let's add a new plugin that will return a statistical analysis of the brightness
 
 First lets make a file `stats.py` with the following content:
 ```python
+# stats.py
 from __main__ import app
 from __main__ import file_path
 
@@ -93,6 +94,7 @@ This way we can be sure that our new image will have all the dependencies we nee
 
 Let's create a new file called `Dockerfile` and add the following content:
 ```Dockerfile
+# Dockerfile
 FROM spuacv/spuc:latest
 ```
 
@@ -222,6 +224,9 @@ We do this by adding a `RUN` instruction to the `Dockerfile`.
 This instruction runs a command in the container and then saves the result as a new layer in the image.
 In this case we want to install the `pandas` package so we add the following lines to the `Dockerfile`:
 ```Dockerfile
+# Dockerfile
+FROM spuacv/spuc:latest
+
 RUN pip install pandas
 ```
 
@@ -288,6 +293,11 @@ It takes two arguments: the source file on the host machine and the destination 
 
 Let's add it to the `Dockerfile`:
 ```Dockerfile
+# Dockerfile
+FROM spuacv/spuc:latest
+
+RUN pip install pandas
+
 COPY stats.py /spuc/plugins/stats.py
 ```
 
@@ -344,6 +354,12 @@ The plugin is still loaded!
 And again... why stop there?
 We've already configured the print how we like it, so lets add it to the image as well!
 ```Dockerfile
+# Dockerfile
+FROM spuacv/spuc:latest
+
+RUN pip install pandas
+
+COPY stats.py /spuc/plugins/stats.py
 COPY print.config /spuc/config/print.config
 ```
 
@@ -390,6 +406,14 @@ We can also set environment variables in the `Dockerfile` using the `ENV` instru
 These can always be overridden when running the container, as we have done ourselves, but it is useful to set defaults.
 We like the `EXPORT` variable set to `True`, so let's add that to the `Dockerfile`:
 ```Dockerfile
+# Dockerfile
+FROM spuacv/spuc:latest
+
+RUN pip install pandas
+
+COPY stats.py /spuc/plugins/stats.py
+COPY print.config /spuc/config/print.config
+
 ENV EXPORT=True
 ```
 
@@ -438,6 +462,7 @@ Because of this, moving the `ENV` instruction will *change* the layers, and the 
 
 We can see this by moving the `ENV` instruction in our `Dockerfile` before the RUN command:
 ```Dockerfile
+# Dockerfile
 FROM spuacv/spuc:latest
 
 ENV EXPORT=True
@@ -492,6 +517,16 @@ As you may remember, the default command is composed of an *entrypoint* and a *c
 We can modify either of them in the Dockerfile.
 Just to make clear wheat the full command is directly from our dockerfile, lets write down both:
 ```Dockerfile
+# Dockerfile
+FROM spuacv/spuc:latest
+
+ENV EXPORT=True
+
+RUN pip install pandas
+
+COPY stats.py /spuc/plugins/stats.py
+COPY print.config /spuc/config/print.config
+
 ENTRYPOINT ["python", "/spuc/spuc.py"]
 CMD ["--units", "iulu"]
 ```
