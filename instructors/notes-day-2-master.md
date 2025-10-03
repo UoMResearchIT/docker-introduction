@@ -1,35 +1,45 @@
 # Setup
 
-> [!important]
+> [!CAUTION]
 > run some curls
 
 # Dockerfiles
 
-> [!important]
-> First we need to make the Python file: stats.py   
+> [!NOTE]
+> We are trying to add a plugin to SPUC
+>
+> A stats module so we can monitor the unicorns better
 
-And open a terminal in the location of the file
+> [!CAUTION]
+> First we need to make the Python file: stats.py
+> 
+> And open a terminal in the location of the file
 
 Don't worry about the Python - it should just work and isn't the point of the lesson
 
-Let's remember what we were up to yesterday - we need to load this file
+```
+curl https://raw.githubusercontent.com/UoMResearchIT/docker-introduction/refs/heads/main/code/SPUC-Stats/stats.py > stats.py
+curl -L https://tinyurl.com/spuc-stats > stats.py
+```
+
+Let's remember what we were up to yesterday - we need this file in the container
 
 We know the answer to this! Let's use a bind mount
 
 No `-d` this time as we are debugging
 
 ```
-$ docker kill spuc_container
+docker kill spuc_container
 ```
 
 ```
-$ docker run --rm --name spuc_container -p 8321:8321 -v ./print.config:/spuc/config/print.config -v spuc-volume:/spuc/output -v ./stats.py:/spuc/plugins/stats.py -e EXPORT=true spuacv/spuc:latest --units iulu
+docker run --rm --name spuc_container -p 8321:8321 -v ./print.config:/spuc/config/print.config -v spuc-volume:/spuc/output -v ./stats.py:/spuc/plugins/stats.py -e EXPORT=true spuacv/spuc:latest --units iulu
 ```
 
 Let's try the curl it suggests!
 
-```
-$ curl localhost:8321/export
+```bash
+curl localhost:8321/export
 ```
 
 Oh! No module named pandas! 
@@ -52,7 +62,7 @@ You can use any base image, including official ones (e.g. Ubuntu, Python)
 
 The best fit for us right now though is the SPUC image itself!
 
-> [!important]
+> [!CAUTION]
 > Lets start a file called "Dockerfile"
 
 ```dockerfile
@@ -65,7 +75,7 @@ This is the simplest possible Dockerfile - it is just a recreation of the SPUC i
 But how do we use this? We need ot build it (and tag it)
 
 ```
-$ docker build -t spuc-stats ./
+docker build -t spuc-stats ./
 ```
 
 ./ is current context we didn't need to specify the name of the file because Dockerfile is the default
@@ -73,14 +83,14 @@ $ docker build -t spuc-stats ./
 There we go! We have built our first Docker image ourselves! Let's see it listed and give it a run
 
 ```
-$ docker image ls
-$ docker run --rm spuc-stats
+docker image ls
+docker run --rm spuc-stats
 ```
 
 Of course, we can still use the old options
 
 ```
-$ docker run --rm --name spuc-stats_container -p 8321:8321 -v ./print.config:/spuc/config/print.config -v spuc-volume:/spuc/output -v ./stats.py:/spuc/plugins/stats.py -e EXPORT=true spuc-stats --units iulu
+docker run --rm --name spuc-stats_container -p 8321:8321 -v ./print.config:/spuc/config/print.config -v spuc-volume:/spuc/output -v ./stats.py:/spuc/plugins/stats.py -e EXPORT=true spuc-stats --units iulu
 ```
 
 Ah and yes, we still need to install pandas. 
@@ -92,8 +102,8 @@ RUN pip install pandas
 ```
 
 ```
-$ docker build -t spuc-stats ./
-$ docker run --rm --name spuc-stats_container -p 8321:8321 -v ./print.config:/spuc/config/print.config -v spuc-volume:/spuc/output -v ./stats.py:/spuc/plugins/stats.py -e EXPORT=true spuc-stats --units iulu
+docker build -t spuc-stats ./
+docker run --rm --name spuc-stats_container -p 8321:8321 -v ./print.config:/spuc/config/print.config -v spuc-volume:/spuc/output -v ./stats.py:/spuc/plugins/stats.py -e EXPORT=true spuc-stats --units iulu
 ```
 Success! The plugin is loading. Let's try the endpoint we have created
 
@@ -120,7 +130,7 @@ COPY stats.py /spuc/plugins/stats.py
 ```
 
 ```
-$ docker build -t spuc-stats ./
+docker build -t spuc-stats ./
 ```
 
 ## Layers
@@ -131,11 +141,11 @@ The FROM and RUN were already stored but the new layer has to be built
 
 Now we can run - this time without the bind mount
 
-> [!important]
-> REMOVE STATS BIND
+> [!CAUTION]
+> Remove stats bind
 
 ```
-$ docker run --rm --name spuc-stats_container -p 8321:8321 -v ./print.config:/spuc/config/print.config -v spuc-volume:/spuc/output -e EXPORT=true spuc-stats --units iulu
+docker run --rm --name spuc-stats_container -p 8321:8321 -v ./print.config:/spuc/config/print.config -v spuc-volume:/spuc/output -e EXPORT=true spuc-stats --units iulu
 ```
 
 Still working! And again... why stop there? 
@@ -149,21 +159,21 @@ COPY print.config /spuc/config/print.config
 Build and run and drop the bind mount
 
 ```
-$ docker build -t spuc-stats ./
+docker build -t spuc-stats ./
 ```
 
-> [!important]
-> REMOVE PRINT CONFIG BIND
+> [!CAUTION]
+> Remove print config bind
 
 ```
-$ docker run --rm --name spuc_container -p 8321:8321 -v spuc-volume:/spuc/output -e EXPORT=True spuc-stats --units iulu
+docker run --rm --name spuc_container -p 8321:8321 -v spuc-volume:/spuc/output -e EXPORT=True spuc-stats --units iulu
 ```
 
 OMG a unicorn! Better log it!
 
 ```
-$ curl -X PUT localhost:8321/unicorn_spotted?location=saturn&brightness=87
-$ docker logs spuc_container
+curl -X PUT localhost:8321/unicorn_spotted?location=saturn&brightness=87
+docker logs spuc_container
 ```
 
 ## ENV
@@ -184,11 +194,11 @@ No need for the environment variable when we run now.
 docker build -t spuc-stats ./
 ```
  
-> [!important]
-> REMOVE ENVIRONMENT VARIABLE   
+> [!CAUTION]
+> Remove environment variable
 
 ```
-$ docker run --rm --name spuc-stats_container -p 8321:8321 -v spuc-volume:/spuc/output spuc-stats --units iulu
+docker run --rm --name spuc-stats_container -p 8321:8321 -v spuc-volume:/spuc/output spuc-stats --units iulu
 ```
 
 Another small win!
@@ -211,25 +221,31 @@ CMD ["--units", "iulu"]
 
 Now we can omit the command in the run command
 
+> [!CAUTION]
+> Remove --units iulu
+
 ```
-$ docker build -t spuc-stats ./
-$ docker run --rm --name spuc-stats_container -p 8321:8321 -v spuc-volume:/spuc/output spuc-stats
+docker build -t spuc-stats ./
+docker run --rm --name spuc-stats_container -p 8321:8321 -v spuc-volume:/spuc/output spuc-stats
 ```
 
 What an improvement!
 
-Customising environments for existing images is a valid use of Dockerfiles   
-Not the most common   
+Customising environments for existing images is a valid use of Dockerfiles
+
+Not the most common 
+
 Usually one is making containers from the ground up 
 
-This is how you dockerise your own applications!
+But... This is how you dockerise your own applications!
 
 ## Building containers from the ground up
 
-To have a look at a more standard Dockerfile.  
- Let's do a case study on the SPUC image  
+To have a look at a more standard Dockerfile
 
-> [!important]
+Let's do a case study on the SPUC image
+
+> [!CAUTION]
 > Back to slides
 
 # Docker Compose
@@ -240,8 +256,8 @@ When using Compose, you make a single yaml file that defines your service
 
 ## Running a container
 
-> [!important]
-> First, let's make a file `docker-compose.yml` 
+> [!CAUTION]
+> First, let's make a file `compose.yml` 
 
 And we write the first and most crucial element: service
 
@@ -257,14 +273,21 @@ services:
     image: spuacv/spuc:latest      # The image to use
 ```
 
-We no longer use docker run however Now we use docker compose
+We no longer use docker run
+
+Now we use docker compose
 
 ```
-$ docker compose up
+docker compose up
 ```
 
-We can see the container has been automatically named   
-A network has been created It is runing in the foreground
+We can see the container has been automatically named 
+
+A network has been created
+
+It is runing in the foreground
+
+Ctrl-C to exit
 
 ### Running in the background
 
@@ -275,8 +298,8 @@ Let's set the compose to run in the background
 We can add -d to do this (detach)
 
 ```
-$ docker compose up -d
-$ docker compose logs
+docker compose up -d
+docker compose logs
 ```
 
 And check the logs to see it is running how we imagine
@@ -293,7 +316,9 @@ To make sure you remove the container we use down
 docker compose down
 ```
 
-You don't always need to remove Often you can reconfigure by running up
+You don't always need to remove 
+
+Often you can reconfigure by running up
 
 ### Naming the container
 
@@ -304,7 +329,7 @@ Previously we could name the container, and we can add this to the compose
 ```
 
 ```
-$ docker compose up -d
+docker compose up -d
 ```
 
 #### Updating the compose file
@@ -316,7 +341,7 @@ It updated just fine without a down
 If we try and record a unicorn sighting using curl
 
 ```
-$ curl -X PUT localhost:8321/unicorn_spotted?location=asteroid&brightness=242
+curl -X PUT localhost:8321/unicorn_spotted?location=asteroid&brightness=242
 ```
 
 It fails! Because we haven't exposed the port
@@ -329,8 +354,8 @@ Let's add that to compose (as a list)
 ```
 
 ```
-$ docker compose up -d
-$ curl -X PUT localhost:8321/unicorn_spotted?location=asteroid&brightness=242
+docker compose up -d
+curl -X PUT localhost:8321/unicorn_spotted?location=asteroid&brightness=242
 ```
 
 Much better!
@@ -347,7 +372,7 @@ Confusingly, this is under the volumes tag
 ```
 
 ```
-$ docker compose up -d
+docker compose up -d
 ```
 
 If you record a sighting - you should see the format change
@@ -367,7 +392,7 @@ And speak of the devil let's add our persistence volume
 ```
 
 ```
-$ docker compose up -d
+docker compose up -d
 ```
 
 Ah but this failed! 
@@ -380,15 +405,15 @@ We forgot to add the declaration of the volume (which doesn't happen automatical
 ```
 
 ```
-$ docker compose up -d
+docker compose up -d
 ```
 
 Happier now! And it exposes a cool feature of compose Now we can remove volumes when containers are removed
 
 ```
-$ docker volume ls
-$ docker compose down -v
-$ docker volume ls
+docker volume ls
+docker compose down -v
+docker volume ls
 ```
 
 ### Setting an environment variable
@@ -401,8 +426,8 @@ This is done using environment
 +      - EXPORT=true                   # Sets the EXPORT environment variable to true
 ```
 ```
-$ docker compose up -d     
-$ docker compose logs
+docker compose up -d     
+docker compose logs
 ```
 
 And we can see the endpoint has been activated!
@@ -417,8 +442,8 @@ We can override the command in compose as well
 ```
 
 ```
-$ docker compose up -d
-$ docker compose logs
+docker compose up -d
+docker compose logs
 ```
 
 And we can see the units have changed
@@ -436,8 +461,8 @@ We can add this back in using another bind mount?
 ```
 
 ```
-$ docker compose up -d
-$ docker compose logs
+docker compose up -d
+docker compose logs
 ```
 
 Oh no! That problem again! We still don't have pandas installed.
@@ -462,18 +487,18 @@ services:
 We have to be careful here - we need to instruct compose to rebuild if we have made changes You can do this explicitly or add it to the up command
 
 ```
-$ docker compose up --build -d
-$ docker compose logs
+docker compose up --build -d
+docker compose logs
 ```
 
-> [!important]
+> [!CAUTION]
 > (go to slides)
 
 ### Adding SPUCSVi to our Docker Compose file
 
 ```
-$ docker compose up -d
-$ docker compose logs
+docker compose up -d
+docker compose logs
 ```
 
 Now we're up and running! Let's have a look in the browser!
@@ -496,7 +521,7 @@ services:
 ```
 
 ```
-$ docker compose up -d
+docker compose up -d
 ```
 
 There we go! And if we try curl it will fail.
@@ -565,5 +590,5 @@ Now SPUCSVi won't start until SPUC is ready.
 
 There are simulations in the notes to see this in action.
 
-> [!important]
+> [!CAUTION]
 > (slides for summary)
