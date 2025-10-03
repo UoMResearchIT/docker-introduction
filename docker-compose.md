@@ -43,12 +43,14 @@ The first thing we need to do is create a `compose.yml` file.
 All `compose.yml` files start with `services:`.
 This is the root element under which we define the services we want to run.
 ```yml
+# compose.yml
 services:
 ```
 
 Next, let's add the service for the SPUC container.
 We'll call it `spuc` and we will tell it what `image` to use.
 ```yml
+# compose.yml
 services:
   spuc:                            # The name of the service
     image: spuacv/spuc:latest      # The image to use
@@ -253,6 +255,7 @@ If you just want to stop it, you can use `[Ctrl+C]` like we did before.
 The next item in our list is the name of the container.
 We can name the container using the `container_name` key.
 ```yml
+# compose.yml
 services:
   spuc:
     image: spuacv/spuc:latest
@@ -298,6 +301,7 @@ It's worth noting the `ports` key is a list, so we can map multiple ports if we 
 and that the host and container ports don't have to be the same!
 
 ```yml
+# compose.yml
 services:
   spuc:
     image: spuacv/spuc:latest
@@ -329,6 +333,7 @@ We will use a bind mount for this - mapping a file from the host to the containe
 
 As with the CLI, this is (confusingly) done using the `volumes` key.
 ```yml
+# compose.yml
 services:
   spuc:
     image: spuacv/spuc:latest
@@ -357,6 +362,7 @@ Otherwise, it generates a volume.
 
 Let's add a volume to persist the unicorn sightings between runs of the container.
 ```yml
+# compose.yml
 services:
   spuc:
     image: spuacv/spuc:latest
@@ -382,6 +388,7 @@ The volumes are separate from *services*, so they are declared at the same level
 To declare a named volume, we specify its name and end with a `:`.
 We will do this at the end of the file.
 ```yml
+# compose.yml
 services:
   spuc:
     image: spuacv/spuc:latest
@@ -436,6 +443,7 @@ Next, we need to set the `EXPORT` environment variable to `true`.
 This is done using the `environment` key.
 
 ```yml
+# compose.yml
 services:
   spuc:
     image: spuacv/spuc:latest
@@ -472,6 +480,7 @@ Finally, lets set the units by overriding the command, as we did before.
 For this, we use the `command` key.
 
 ```yml
+# compose.yml
 services:
   spuc:
     image: spuacv/spuc:latest
@@ -507,6 +516,7 @@ The only thing we are missing is enabling the plugin.
 
 We used a bind mount before to put the plugin file in the container, so lets try again:
 ```yml
+# compose.yml
 services:
   spuc:
     image: spuacv/spuc:latest
@@ -554,6 +564,7 @@ Let's go back to that.
 
 We could use the tag we used when we built the container to use that image:
 ```yml
+# compose.yml
 services:
   spuc:
     image: spuc-stats   # Use the image we built earlier
@@ -578,6 +589,7 @@ Instead, we can use the `build` key to tell Docker Compose to build the containe
 
 To do that, we use the `build` key instead of the `image` key:
 ```yml
+# compose.yml
 services:
   spuc:
   # image: spuc-stats
@@ -707,6 +719,7 @@ For our service named `spuc`, the hostname would be `spuc` with the protocol `ht
 
 Knowing this, we are able to add SPUCSVi to our Docker Compose file!
 ```yml
+# compose.yml
 services:
   spuc:
     build:
@@ -821,6 +834,7 @@ This is a good security practice and helps keep things tidy.
 
 To do this we need to stop exposing the ports for SPUC, by removing the `ports` key from the SPUC service:
 ```yml
+# compose.yml
 services:
   spuc:
     build:
@@ -873,6 +887,7 @@ You also need to specify the network name for each service that you want to conn
 For example, to specify the network name as `spuc_network`, you would add the following to the file:
 
 ```yml
+# compose.yml
 services:
   spuc:
     build:
@@ -919,6 +934,7 @@ Docker Compose has a solution to this - the `depends_on` key.
 
 We can use this key to tell Docker Compose that the SPUCSVi service depends on the SPUC service.
 ```yml
+# compose.yml
 services:
   spuc:
     build:
@@ -968,6 +984,7 @@ We need to add the `--fail` flag to `curl` to ensure that it returns a non-zero 
 The other change we need to make is to add a `condition` to the `depends_on` key in the SPUCSVi service.
 This tells Docker Compose to only start the service if the service it depends on is *healthy*, rather than just *started*.
 ```yml
+# compose.yml
 services:
   spuc:
     build:
@@ -1012,6 +1029,7 @@ This is a little hard to see in action as the SPUC service starts so quickly.
 To be able to see it, let's add a `sleep` command to the `entrypoint` of the SPUC service to simulate a slow start.
 
 ```yml
+# compose.yml
 services:
   spuc:
     build:
@@ -1068,6 +1086,7 @@ To simulate a service that does not pass the healthcheck,
 we can set the `EXPORT` environment variable to `false` in the SPUC service.
 This will mean that the export endpoint is not available, so the healthcheck will fail.
 ```yml
+# compose.yml
 services:
   spuc:
     build:
