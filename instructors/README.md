@@ -6,7 +6,7 @@ To serve the slides for this course run
 marp -w -s --allow-local-files ./
 ```
 
-in the `instructors` directory.
+in the top directory.
 
 ## Naming conventions
 
