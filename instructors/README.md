@@ -17,3 +17,5 @@ Reference materials are named `notes-Y.md`
 Files with suffix `*.html` are build outputs from the VSCode exension: MarkdownPDF by yzane
 
 The process is to open the `.md` file, `right-click`, select `Markdown PDF: Export (html)`
+
+Then make sure you fix all the path references.... replace `../` with `../../`, and **then** afterwards `./fig/` with `../fig/`
