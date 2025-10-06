@@ -302,10 +302,10 @@ If you look at the logs again, you'll see that the container has responded to yo
 
 ![](fig/docker-desktop/spuc_unicorn_detected.png){alt='Detecting a unicorn, spuc logs.'}
 
+::::::::::::::::::::::::::::::::::::
+
 The documentation also mentioned that you can configure this print by modifying the `print.config` file.
 How do we do that?
-
-::::::::::::::::::::::::::::::::::::
 
 Let's try and interact with the terminal inside the container.
 

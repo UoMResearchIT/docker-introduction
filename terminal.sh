@@ -16,8 +16,15 @@ SESSION="${SESSION:-swc}"
 #   LOG_FILE=/tmp/my-log ./swc-shell-split-window.sh
 LOG_FILE="${LOG_FILE:-/tmp/$SESSION-split-log-file}"
 
-#erase existing history if passed --clean_history
+# Process command-line arguments
 for arg in "$@"; do
+  # Reset tmux if passed --reset
+  if [ "$arg" == "--reset" ] || [ "$arg" == "-r" ]; then
+    killall tmux 2>/dev/null || true
+    tmux kill-server 2>/dev/null || true
+    break
+  fi
+  # Erase existing history if passed --clean_history
   if [ "$arg" == "--clean_history" ] || [ "$arg" == "-c" ]; then
     echo "" > "${LOG_FILE}"
     break

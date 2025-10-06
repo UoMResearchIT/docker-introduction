@@ -31,7 +31,7 @@ Thankfully this is quite straightforward, we can use the `-e` flag to set an env
 Lets modifying our run command again:
 
 ```bash
-docker stop spuc_container
+docker kill spuc_container
 docker run -d --rm --name spuc_container -p 8321:8321 -v ./print.config:/spuc/config/print.config -v spuc-volume:/spuc/output -e EXPORT=true spuacv/spuc:latest
 docker logs spuc_container
 ```
@@ -95,7 +95,7 @@ What we have to do, then, is to override the *Command* part of the default comma
 This is actually a very common thing to do when running containers.
 It is done by passing a parameter at the end of our `run` command, after the image name:
 ```bash
-docker stop spuc_container
+docker kill spuc_container
 docker run -d --rm --name spuc_container -p 8321:8321 -v ./print.config:/spuc/config/print.config -v spuc-volume:/spuc/output -e EXPORT=true spuacv/spuc:latest --units iulu
 ```
 
@@ -117,7 +117,7 @@ count,time,location,brightness,units
 We can already feel the weight lifting off our shoulders already!
 But we cannot mix iuhcs with iulus, so lets remove the volume and re-register our sightings with the correct units
 ```bash
-docker stop spuc_container
+docker kill spuc_container
 docker volume rm spuc-volume
 docker run -d --rm --name spuc_container -p 8321:8321 -v ./print.config:/spuc/config/print.config -v spuc-volume:/spuc/output -e EXPORT=true spuacv/spuc:latest --units iulu
 curl -X PUT localhost:8321/unicorn_spotted?location=moon\&brightness=177
