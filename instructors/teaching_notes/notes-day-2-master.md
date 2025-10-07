@@ -2,6 +2,8 @@
 
 > [!CAUTION]
 > run some curls
+>
+> clean dir, print.config present
 
 # Dockerfiles
 
