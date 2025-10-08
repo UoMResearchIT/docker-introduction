@@ -144,4 +144,11 @@ tmux resize-pane -t "${LOG_PANE}" -y "${LOG_PANE_HEIGHT}"
 #   seem to cause any harm.
 tmux set-option -t "${WINDOW}" -q -w status off
 
-tmux attach-session -t "${SESSION}"
+# Allow a scaled terminal to be launched
+if [ "$arg" == "--big" ] || [ "$arg" == "-b" ]; then
+    st -f "monospace:size=28" -e tmux attach-session -t "${SESSION}"
+    break
+else
+    tmux attach-session -t "${SESSION}"
+fi
+
