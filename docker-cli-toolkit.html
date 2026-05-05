@@ -359,7 +359,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Building our Docker CLI toolkit</h1>
-        <p>Last updated on 2026-04-28 |
+        <p>Last updated on 2026-05-05 |
 
         <a href="https://github.com/UoMResearchIT/docker-introduction/edit/main/episodes/docker-cli-toolkit.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -617,7 +617,7 @@ script when we run the container.</p>
   Further examples of container lifecycle
   </h3>
 </button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
+<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
 <div class="accordion-body">
 <p>We will give another couple of examples of how entrypoints and
 commands are used and affect the container lifecycle in the following
@@ -951,7 +951,7 @@ follow the logs in real time using the <code>-f</code> flag:</p>
   Logs
   </h3>
 </button>
-<div id="collapseSpoiler2" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler2" aria-labelledby="headingSpoiler2">
+<div id="collapseSpoiler2" class="accordion-collapse collapse" aria-labelledby="headingSpoiler2" data-bs-parent="#accordionSpoiler2">
 <div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1264,69 +1264,69 @@ next episode.</p>
 command, an action command, and the name of the object to act on.</li>
 <li>Everything we did in Docker Desktop (and more!) can be done in the
 Docker CLI with:</li>
-</ul><table class="table"><colgroup><col width="40%"><col width="59%"></colgroup><thead><tr class="header"><th>Command</th>
+</ul><table class="table"><colgroup><col width="40%"><col width="59%"></colgroup><thead><tr><th>Command</th>
 <th>Description</th>
-</tr></thead><tbody><tr class="odd"><td><strong>Images</strong></td>
+</tr></thead><tbody><tr><td><strong>Images</strong></td>
 <td></td>
-</tr><tr class="even"><td><code>docker pull &lt;image&gt;</code></td>
+</tr><tr><td><code>docker pull &lt;image&gt;</code></td>
 <td>Pull an image from a registry</td>
-</tr><tr class="odd"><td><code>docker image ls</code></td>
+</tr><tr><td><code>docker image ls</code></td>
 <td>List all images on the system</td>
-</tr><tr class="even"><td><code>docker inspect &lt;image&gt;</code></td>
+</tr><tr><td><code>docker inspect &lt;image&gt;</code></td>
 <td>Show detailed information about an image</td>
-</tr><tr class="odd"><td><code>docker run &lt;image&gt;</code></td>
+</tr><tr><td><code>docker run &lt;image&gt;</code></td>
 <td>Run a container from an image</td>
-</tr><tr class="even"><td><code>docker image rm &lt;image&gt;</code></td>
+</tr><tr><td><code>docker image rm &lt;image&gt;</code></td>
 <td>Remove an image</td>
-</tr><tr class="odd"><td><strong>Containers</strong></td>
+</tr><tr><td><strong>Containers</strong></td>
 <td></td>
-</tr><tr class="even"><td><code>docker logs &lt;container&gt;</code></td>
+</tr><tr><td><code>docker logs &lt;container&gt;</code></td>
 <td>Show the logs of a container</td>
-</tr><tr class="odd"><td><code>docker exec &lt;container&gt; &lt;cmd&gt;</code></td>
+</tr><tr><td><code>docker exec &lt;container&gt; &lt;cmd&gt;</code></td>
 <td>Run a command in a running container</td>
-</tr><tr class="even"><td><code>docker stop &lt;container&gt;</code></td>
+</tr><tr><td><code>docker stop &lt;container&gt;</code></td>
 <td>Stop a running container</td>
-</tr><tr class="odd"><td><code>docker kill &lt;container&gt;</code></td>
+</tr><tr><td><code>docker kill &lt;container&gt;</code></td>
 <td>Immediately stop a running container</td>
-</tr><tr class="even"><td><code>docker start &lt;container&gt;</code></td>
+</tr><tr><td><code>docker start &lt;container&gt;</code></td>
 <td>Start a stopped container</td>
-</tr><tr class="odd"><td><code>docker rm &lt;container&gt;</code></td>
+</tr><tr><td><code>docker rm &lt;container&gt;</code></td>
 <td>Remove a container</td>
-</tr><tr class="even"><td><strong>System</strong></td>
+</tr><tr><td><strong>System</strong></td>
 <td></td>
-</tr><tr class="odd"><td><code>docker ps</code></td>
+</tr><tr><td><code>docker ps</code></td>
 <td>List all running containers</td>
-</tr><tr class="even"><td><code>docker stats</code></td>
+</tr><tr><td><code>docker stats</code></td>
 <td>Show live resource usage of containers</td>
-</tr><tr class="odd"><td><code>docker system prune</code></td>
+</tr><tr><td><code>docker system prune</code></td>
 <td>Remove all stopped containers and unused images</td>
-</tr></tbody></table><table class="table"><colgroup><col width="12%"><col width="19%"><col width="67%"></colgroup><thead><tr class="header"><th>Flag</th>
+</tr></tbody></table><table class="table"><colgroup><col width="12%"><col width="19%"><col width="67%"></colgroup><thead><tr><th>Flag</th>
 <th>Used on</th>
 <th>Description</th>
-</tr></thead><tbody><tr class="odd"><td><code>-f</code></td>
+</tr></thead><tbody><tr><td><code>-f</code></td>
 <td><code>inspect</code></td>
 <td>Specify the output format</td>
-</tr><tr class="even"><td><code>-f</code></td>
+</tr><tr><td><code>-f</code></td>
 <td><code>logs</code></td>
 <td>Follow the logs in real time</td>
-</tr><tr class="odd"><td><code>-a</code></td>
+</tr><tr><td><code>-a</code></td>
 <td><code>ps</code></td>
 <td>List all containers, including stopped ones</td>
-</tr><tr class="even"><td><code>-it</code></td>
+</tr><tr><td><code>-it</code></td>
 <td>
 <code>run</code>, <code>exec</code>
 </td>
 <td>Interactively run a command in a running container</td>
-</tr><tr class="odd"><td><code>-d</code></td>
+</tr><tr><td><code>-d</code></td>
 <td><code>run</code></td>
 <td>Run a container in the background</td>
-</tr><tr class="even"><td><code>-p</code></td>
+</tr><tr><td><code>-p</code></td>
 <td><code>run</code></td>
 <td>Expose a port from the container to the host</td>
-</tr><tr class="odd"><td><code>--name</code></td>
+</tr><tr><td><code>--name</code></td>
 <td><code>run</code></td>
 <td>Name a container</td>
-</tr><tr class="even"><td><code>--rm</code></td>
+</tr><tr><td><code>--rm</code></td>
 <td><code>run</code></td>
 <td>Remove the container when it is stopped</td>
 </tr></tbody></table></div>
@@ -1393,8 +1393,8 @@ Docker CLI with:</li>
   "url": "https://uomresearchit.github.io/docker-introduction/docker-cli-toolkit.html",
   "identifier": "https://uomresearchit.github.io/docker-introduction/docker-cli-toolkit.html",
   "dateCreated": "2015-04-18",
-  "dateModified": "2026-04-28",
-  "datePublished": "2026-04-28"
+  "dateModified": "2026-05-05",
+  "datePublished": "2026-05-05"
 }
 
   </script><script>
