@@ -1,0 +1,175 @@
+---
+title: And they lived happily ever after
+teaching: 10
+exercises: 0
+---
+
+::::::::::::::::::::::::::::::::::::::::::::::::::: objectives
+- Learn how combinations of microservices can achieve complex tasks with no or low code.
+- Dissect a real world example of a microservices architecture.
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::::::::::::::::::::: questions
+- How do I get the most out of Docker Compose?
+- What is a microservices architecture?
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+So far, in our exploration of Docker Compose, we have focused on making our run commands more robust and on the orchestration of a stack.
+Much of the power of Docker, however, is not just the ability to package your own tools, but to use *off the shelf* tools to create powerful solutions.
+
+## Microservices
+
+To be able to use Docker in this way, we need to use Docker Compose to create a *microservices architecture*.
+
+The philosophy of microservices is to break down applications into small, manageable services.
+This is in contrast to the traditional monolithic approach, where all parts of an application are contained in a single codebase.
+
+For example, an application might have a database, a web server, front and back ends, an API, a file store, a message queue etc.
+A monolithic approach would be to package all of these in the same codebase. This is conceptually simple, but can rapidly become unwieldy and difficult to maintain.
+
+Using a tool like Docker Compose we can take a different approach.
+We can divide the application into smaller services, each of which is responsible for a single task.
+By breaking down the application into smaller services, we can take advantage of the best tools available for each part of the application.
+
+In a microservices architecture, each tool runs as its own service, and communicates with other services over a network.
+The database, web server, front and back ends, and all the other services can be genuinely separate.
+This can enhance the security in the application, as each service can be isolated from the others.
+
+Furthermore, since each of the tools can be best in their class, and maintained by an enthusiastic and expert community, there can be gains in performance.
+Docker Desktop helps in orchestrating these services, making it easy to start, stop, and manage them, which ends up being at least as simple as in a monolithic application (if not more).
+
+For individual developers, it means less time writing code which has already been written, and more time focusing on the unique, and fun, parts of your application.
+
+## Microservices in Docker Compose
+
+Docker Compose is the perfect tool for managing a microservices architecture.
+
+To demonstrate the power of Docker Compose and microservices, let's take a look at a more applied example.
+
+The [Apperture](https://github.com/UoMResearchIT/apperture) project is a stack of microservices.
+They combine to provide a log-in secure web portal with built in user-management.
+It is maintained by the University of Manchester's Research IT team, and can easily be combined with other stacks to provide them with a login portal.
+
+`Apperture` is comprised primarily of a compose file.
+Just like we have been looking at!
+
+The full `compose.yml` file is available [on github](https://raw.githubusercontent.com/UoMResearchIT/apperture/refs/heads/main/docker-compose.yml).
+It is quite long, so we will reproduce a slimmed down version here.
+
+```yml
+services:
+  proxy:
+    image: 'jc21/nginx-proxy-manager:latest'
+    ports:
+      - '80:80'
+      - '443:443'
+    depends_on:
+      - authelia
+    healthcheck:
+      test: ["CMD", "/bin/check-health"]
+        
+  whoami:
+    image: docker.io/traefik/whoami
+      
+  authelia:
+    image: authelia/authelia
+    depends_on:
+      lldap:
+        condition: service_healthy
+    volumes:
+      - ${PWD}/config/authelia/config:/config
+    environment:
+      AUTHELIA_DEFAULT_REDIRECTION_URL: https://whoami.${URL}
+      AUTHELIA_STORAGE_POSTGRES_HOST: authelia-postgres
+      AUTHELIA_AUTHENTICATION_BACKEND_LDAP_URL: ldap://apperture-ldap:3890
+
+  lldap:
+    image: nitnelave/lldap:stable
+    depends_on:
+      lldap-postgres:
+        condition: service_healthy
+    environment:
+      LLDAP_LDAP_BASE_DN: dc=example,dc=com
+      LLDAP_DATABASE_URL: postgres://user:pass@lldap-postgres/dbname
+    volumes:
+      - lldap-data:/data
+
+  lldap-postgres:
+    image: postgres
+    volumes:
+      - lldap-postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U lldap"]
+
+volumes:
+  lldap-data:
+  lldap-postgres-data:
+```
+
+This `compose.yml` file is a little more complex than the ones we have been looking at so far, but it is still just a list of services and their configurations.
+
+You'll see some familiar things, like `image`, `ports`, `depends_on` (and `healthchecks`), `volumes`, and `environment`.
+
+Notice the `image` field in the `services` section of the `compose.yml` file.
+Every service is using a pre-built Docker image from Docker Hub, straight off the shelf!
+This is the power of Docker Compose and microservices!
+
+To get an idea of what is going on, let's draw a diagram of the services in the `compose.yml` file.
+
+![](fig/docker_compose_apperture.png){alt='Apperture Services: Showing a user accessing WhoAmI via the web portal, which is protected by Authelia, which authenticates against an LDAP server, which pulls user data from a Postgres database.'}
+
+In short:
+**Without writing a single line of code, we have a fully functioning, secure web portal!**
+
+## Combining Stacks
+
+One of the most powerful features of Docker Compose is the ability to combine stacks.
+There is no reason we cannot combine the Apperture stack with the SPUC stack we have been working with in previous lessons!
+
+This would allow us to protect our SPUC interface with the Apperture portal.
+An important addition! We need to ensure poachers cannot falsely record sightings of the rare yet valuable unicorns!
+
+This can be achieved by making a couple of changes to the SPUC `compose.yml` file.
+
+In our previous lesson, we learned about networks, which allow services to communicate with each other.
+Now we want join the networks of the SPUC and Apperture stacks so that they can communicate with each other.
+
+```yml
+# SPUC compose.yml
+
++ networks:
++   apperture:
++     external: true
++     name: apperture_default
+```
+
+Couple this change with appropriate configuration of the proxy service, and you have a secure SPUC portal!
+
+![](fig/docker_compose_spuc.png){alt='SPUC and Apperture Services: Showing a user accessing the SPUC interface via the web portal.'}
+
+By combining the SPUC and Apperture stacks, we have created a powerful, secure web portal with no added code!
+But why stop there?
+
+## Rapid extension
+
+There are some improvements we can make very quickly!
+
+We can:
+
+* Add a proper database to SPUC using `Postgres`
+* Add support for unicorn-detecting sensors using `RabbitMQ` and `Telegraf`
+* Allow users to upload images of unicorns using `MinIO`
+
+![](fig/docker_compose_full.png){alt='SPUC and Apperture Services: Showing a user accessing the SPUC interface via the web portal, which is protected by Authelia, which authenticates against an LDAP server, which pulls user data from a Postgres database. The SPUC interface communicates with a Postgres database, a RabbitMQ message queue, a Telegraf sensor, and a MinIO object store.'}
+
+This is the true strength of Docker Compose and microservices.
+By combining off the shelf tools, we can create powerful solutions with no or low code,
+and in a fraction of the time it would take to write everything from scratch.
+
+## They Lived Happily Ever After
+
+We hope you now feel prepared to start your mission detecting unicorns,
+and that you use Docker for the good of our intergalactic community.
+
+In behalf of the SPUA, we thank you for your commitment and support for the cause!
+
+![](fig/SPUA/spua_thanks_you.png){alt='Thank you for supporting the SPUA!'}

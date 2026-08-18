@@ -1,0 +1,374 @@
+---
+title: Sharing information with containers
+teaching: 45
+exercises: 0
+---
+
+Now that we have learned the basics of the Docker CLI,
+getting set up with all the tools we came across in Docker Desktop,
+we can start to explore the full power of Docker!
+
+::::::::::::::::::::::::::::::::::::::: objectives
+- Learn how to persist and share data with containers using mounts and volumes
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+:::::::::::::::::::::::::::::::::::::::: questions
+- How can I save my data?
+- How do I get information in and out of containers?
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+## Making our data persist
+
+In the earlier sections we interacted with the SPUC container and made changes to the `print.config` file.
+We also registered some unicorn sightings using the API, which were recorded in the `unicorn_sightings.txt` file.
+However, we lost all those changes when we stopped the container.
+
+Docker containers are naturally isolated from the host system,
+meaning that they have their own filesystem, and cannot access the host filesystem.
+They are also designed to be temporary, and are destroyed when they are stopped.
+
+This is mostly a good thing, as it means that containers are lightweight and can be easily recreated,
+but we can't be throwing our unicorn sightings away like this!
+
+Also, with the file being in the container, we can't (easily) do much with it.
+Luckily, Docker has methods for allowing containers to persist data.
+
+## Volumes
+
+One way to allow a container to access the host filesystem is by using a `volume`.
+A volume is a specially designated directory hidden away deep in the host filesystem.
+This directory is shared with the container.
+
+Volumes are very tightly controlled by Docker.
+They are designed to be used for sharing data between containers,
+or for persisting data between runs of a container.
+
+Let's have a look at how we can use a volume to persist the `unicorn_sightings.txt` file between runs of the container.
+We do this by modifying our `run` command to include a `-v` (for volume) flag, a volume name and a path inside the container.
+```bash
+docker kill spuc_container
+docker run -d --rm --name spuc_container -p 8321:8321 -v spuc-volume:/spuc/output spuacv/spuc:latest
+```
+```output
+spuc_container
+f1bd2bb9062348b6a1815f5076fcd1b79e603020c2d58436408c6c60da7e73d2
+```
+
+Ok! But what is happening?
+We can see what containers we have created using:
+```bash
+docker volume ls
+```
+```output
+local     spuc-volume
+```
+
+::::: spoiler
+
+### Inspecting the volume
+
+We can see more information about the volume using:
+```bash
+docker volume inspect spuc-volume
+```
+```output
+[
+    {
+        "CreatedAt": "2024-10-11T11:15:09+01:00",
+        "Driver": "local",
+        "Labels": null,
+        "Mountpoint": "/var/lib/docker/volumes/spuc-volume/_data",
+        "Name": "spuc-volume",
+        "Options": null,
+        "Scope": "local"
+    }
+]
+```
+
+Which shows us that the volume is stored in `/var/lib/docker/volumes/spuc-volume/_data` on the host filesystem.
+You can visit and edit files there if you have superuser permissions (sudo).
+
+:::::::::::::
+
+But what about the container? Has this actually worked?
+
+First... what's that over there?? A unicorn! No... three unicorns! Let's record these sightings.
+```bash
+curl -X PUT localhost:8321/unicorn_spotted?location=moon\&brightness=100
+curl -X PUT localhost:8321/unicorn_spotted?location=earth\&brightness=10
+curl -X PUT localhost:8321/unicorn_spotted?location=mars\&brightness=400
+```
+```output
+{"message":"Unicorn sighting recorded!"}
+{"message":"Unicorn sighting recorded!"}
+{"message":"Unicorn sighting recorded!"}
+```
+
+Ok, let's check the sightings file.
+```bash
+docker exec spuc_container cat /spuc/output/unicorn_sightings.txt
+```
+```output
+count,time,location,brightness,units
+1,2024-10-16 09:14:17.719447,moon,100,iuhc
+2,2024-10-16 09:14:17.726706,earth,10,iuhc
+3,2024-10-16 09:14:17.732191,mars,400,iuhc
+```
+
+Now, for our test, we will stop the container.
+Since we used the `-rm` flag, the container will also be deleted.
+```bash
+docker kill spuc_container
+docker ps -a
+```
+```output
+spuc_container
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+```
+
+This would have been game over, but we used a volume.
+Let's run it again and check the sightings file.
+```bash
+docker run -d --rm --name spuc_container -p 8321:8321 -v spuc-volume:/spuc/output spuacv/spuc:latest
+docker exec spuc_container cat /spuc/output/unicorn_sightings.txt
+```
+```output
+536a6d2f73061aa94729df3536ee86b60dcd68f4652bfbdc9e4cfa9c6cfda168
+count,time,location,brightness,units
+1,2024-10-16 09:14:17.719447,moon,100,iuhc
+2,2024-10-16 09:14:17.726706,earth,10,iuhc
+3,2024-10-16 09:14:17.732191,mars,400,iuhc
+```
+
+It's worked! The unicorn sightings are still there!
+The only problem is that the file is still in the container,
+and we can't easily access it from the host filesystem.
+
+## Bind mounts
+
+Another way to allow a container to access the host filesystem is by using a `bind mount`.
+A bind mount is a direct mapping of a specified directory on the host filesystem to a directory in the container filesystem.
+This allows you to directly access files on the host filesystem from the container, but it has its own challenges.
+
+Let's have a look at how we can use a bind mount to persist the `unicorn_sightings.txt` file between runs of the container.
+Confusingly, bind mounting is also done using the `-v` flag.
+However, instead of a name for the volume, we have to specify a path on the host filesystem.
+
+**Note:** In older versions of Docker the path had to be *absolute*; *relative* paths are now supported.
+```bash
+docker kill spuc_container
+docker run -d --rm --name spuc_container -p 8321:8321 -v ./spuc/output:/spuc/output spuacv/spuc:latest
+```
+```output
+spuc_container
+79620ff93fdd8135dcc7f595223144c075a9df53fc32f2ce799ee8e338b9df41
+```
+
+
+The directory `spuc/output` likely did not exist in your current working directory, so Docker created one.
+It is currently empty, as you can see by listing the contents with `ls spuc/output`.
+If we now record a unicorn sighting, we can see the records file in the directory.
+```bash
+curl -X PUT localhost:8321/unicorn_spotted?location=mercury\&brightness=400
+cat spuc/output/unicorn_sightings.txt
+```
+```output
+{message:"Unicorn sighting recorded!"}
+count,time,location,brightness,units
+1,2024-10-16 10:31:22.222542,mercury,400,iuhc
+```
+
+and the file is still there even after stopping the container
+```bash
+docker kill spuc_container
+ls spuc/output
+```
+```output
+spuc_container
+unicorn_sightings.txt
+```
+
+If we run the container again, we can see the file is still there.
+```bash
+docker run -d --rm --name spuc_container -p 8321:8321 -v ./spuc/output:/spuc/output spuacv/spuc:latest
+cat spuc/output/unicorn_sightings.txt
+```
+```output
+3dd079c21845fc36ddc3b20fd525790a1e194c198c4b98337f4ed82bfc7a9755
+count,time,location,brightness,units
+1,2024-10-16 10:31:22.222542,mars,400,iuhc
+```
+
+So we not only managed to persist the data between runs of the container,
+but we can also access the file when the container is not running.
+This is great!... but there are downsides.
+
+To illustrate this, let's see what the permissions are on the file we just created.
+```bash
+ls -l spuc/output/unicorn_sightings.txt
+```
+```output
+-rw-r--r-- 1 root root 57 Oct 11 14:14 spuc/output/unicorn_sightings.txt
+```
+
+**Note:** This no longer seems to be the case from Docker version 27.3.1 onwards.
+
+Argh, the file is owned by root!
+This is because the container runs as root, and so any files created by the container are owned by root.
+This can be a problem, as you will not have permission to access the file without using `sudo`.
+
+This is a common problem with bind mounts, and can be a bit of a pain to deal with.
+You can change the ownership of the file using `sudo chown`, but this can be a bit of a hassle.
+
+Additionally, it is hard for Docker to clean up bind mounts, as they are not managed by Docker.
+The management of bind mounts is left to the user.
+
+Really, neither volumes nor bind mounts are perfect,
+but they are both useful tools for persisting data between runs of a container.
+
+### Bind mount files
+
+Earlier, we looked at how to change the print.config file in SPUC to format the logs.
+This was a bit difficult, as we had to do it from inside the container, and it did not persist between runs of the container.
+
+We now have the tools to address this!
+We can use a bind mount to share the config file with the container.
+
+::::::::::::::::::::::::::::::::::::::: callout
+
+## Docker cp
+
+We can get files in and out of containers using the `docker cp` command.
+
+Let's try this to get the `print.config` file out of the container.
+It works like the `cp` command, but you have to specify the container name and path:
+```bash
+docker cp spuc_container:/spuc/config/print.config .
+cat print.config
+```
+```output
+# This file configures the print output to the terminal.
+# Available variables are: count, time, location, brightness, units
+# The values of these variables will be replaced if wrapped in curly braces.
+# Lines beginning with # are ignored.
+::::: Unicorn spotted at {location}!! Brightness: {brightness} {units}
+```
+
+Note that this **will not keep changes in sync** like a bind mount, but it is useful for getting files in and out of containers.
+
+:::::::::::::::::::::::::::::::::::::::
+
+Let's now modify the print.config file to include the time and the unicorn count:
+```
+::::: {time} Unicorn number {count} spotted at {location}! Brightness: {brightness} {units}
+```
+
+Now, to share it with the container, we need to put it in the path `/spuc/config/print.config`.
+Again we will use `-v`, but we will specify the path to the file, instead of a directory.
+```bash
+docker kill spuc_container
+docker run -d --rm --name spuc_container -p 8321:8321 -v ./print.config:/spuc/config/print.config -v spuc-volume:/spuc/output spuacv/spuc:latest
+```
+
+Now let's check if this worked. For that, we need to record another sighting and then check the logs.
+```bash
+curl -X PUT localhost:8321/unicorn_spotted?location=jupyter\&brightness=210
+docker logs spuc_container
+```
+```output
+{"message":"Unicorn sighting recorded!"}
+[...]
+::::: 2024-10-16 10:53:13.449393 Unicorn number 4 spotted at jupyter! Brightness: 210 iuhc
+```
+
+Fantastic! We have now managed to share a file with the container.
+Not only that, but because we created the file before mounting it to the container, we are the owners, and can modify it.
+Changes to the file will reflect immediately on the container.
+
+For example, let's edit the file to get rid of the date:
+```
+::::: Unicorn number {count} spotted at {location}! Brightness: {brightness} {units}
+```
+Now let's register a sighting, and look at the logs:
+```bash
+curl -X PUT localhost:8321/unicorn_spotted?location=venus\&brightness=148
+docker logs spuc_container
+```
+```output
+{"message":"Unicorn sighting recorded!"}
+[...]
+::::: Unicorn number 5 spotted at venus! Brightness: 148 iuhc
+```
+
+It almost seems too easy!
+
+**Warning**: We *replaced* the file in the container with the file from the host filesystem.
+We could do the same with a whole directory, but be careful not to overwrite important files in the container!
+
+
+::::::::::::::::::::::::::::: challenge
+
+## Common mistakes with volumes
+
+You have to be *really* careful with the syntax for volumes and mounts.
+
+Let's imagine you are in a path containing a directory `spuc`, with an empty sub-directory `output` and a `print.config` file.
+What do you think will happen when you run the following commands?
+
+A) `docker run -v spuc-vol spuacv/spuc:latest`
+B) `docker run -v ./spucs/output:/spuc/output spuacv/spuc:latest`
+C) `docker run -v ./spuc-vol:/spuc/output spuacv/spuc:latest`
+D) `docker run -v ./spuc:/spuc spuacv/spuc:latest`
+E) `docker run -v print.config:/spuc/config/print.config spuacv/spuc:latest`
+
+::::::::::::::::::::::: solution
+
+A) **Problem:** We provided a volume name, but not a path to mount it to.
+   If the volume already existed, this will mount it on `/spuc-vol`.
+   If the volume did not exist, it will create a directory `/spuc-vol` in the container, but it wont persist!  
+   **Fix:** You only messed up the container, nothing to worry about. Stop it and try again.
+
+B) **Problem:** You misspelled the path! This will create a new directory called spuc**s** and mount it.  
+   **Fix:** Use `sudo rm -rf ./spucs` to remove the directory and try again.
+
+C) **Problem:** At first, it seems like we will create a volume.
+   However, we have provided a path, not a name for the volume.
+   Therefore, Docker thinks you want a bind mount, and will create a (root owned) directory called `spuc-vol`.  
+   **Fix:** Use `sudo rm -rf ./spuc-volume` to remove the directory and try again.
+
+D) **Problem:** This is valid syntax for a bind mount.
+   It will take the almost empty `spuc` directory in your filesystem and mount it to `/spuc` in the container.
+   However, it replaced everything in there in the process!
+   Your command most likely failed because it could not find `/spuc/spuc.py`.  
+   **Fix:** You only messed up the container, nothing to worry about. Try again.
+
+E) **Problem:** We forgot to use a path for the file!
+   This will try to create a new volume called `print.config` and mount it to `/spuc/config/print.config`.
+   However, it will most likely fail because `print.config` is not a directory.  
+   **Fix:** Use `docker volume rm print.config` to remove the volume and try again.
+
+::::::::::::::::::::::::::::::::
+
+:::::::::::::::::::::::::::::::::::::::
+
+We now have a print configuration and unicorn sighting record that persists between runs of the container.
+
+It seems like we have everything we need to run the Space Purple Unicorn Counter!
+Or is there anything else we should do?
+Lets have a look at the docs!
+
+::::::::::::::::::::::::::::::::::::::: keypoints
+- Volumes and bind mounts help us persist and share data with containers.
+- The syntax for both is very similar, but they have different use cases:
+  - **Volumes** are managed by Docker.
+      They are best for persisting data you do not need to access.
+      ```
+      docker run -v <volume_name>:<path_in_container> image
+      ```
+   - **Bind mounts** are managed by the user.
+      They are best for passing data to the container.
+      ```
+      docker run -v <path_on_host>:<path_in_container> image
+      ```
+- They both overwrite files in the container, and have their own challenges.
+::::::::::::::::::::::::::::::::::::::::::::::::::
