@@ -76,7 +76,7 @@ and encouraging your local community to join in the count!
 </div>
 
 You can use the *Space Purple Unicorn Counter* (**SPUC**) container image for your service,
-which you can find on [Docker Hub](https://hub.docker.com/r/spua/spuc).
+which you can find on [Docker Hub](https://hub.docker.com/r/spuacv/spuc).
 
 This image provides an API, which can be hit to add an event to the sightings record.
 The `location` and `brightness` of the unicorn need to be passed as parameters of a put request.
