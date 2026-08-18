@@ -390,7 +390,7 @@ If you look at the contents of the file, for example with `cat config/print.conf
 :::
 
 When we re-ran the *image*, we created a **new** *container*.
-The new container is created from the template saved in the image, and so our changes have banished.
+The new container is created from the template saved in the image, and so our changes appear to have vanished.
 This becomes very clear when we go back to the `Containers` tab on the left.
 We can see that the first container we created from the `spuc` image is there,
 next to the new container (which is still running, by the way).
