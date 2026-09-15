@@ -472,7 +472,8 @@ This time we'll map the port, and use the name we wanted.
 :::
 
 This time we got an error! This is because the name `SPUC` is already "in use" by another container.
-If we want the same name, we'll have to delete the old container first.
+If we want the same name, we’ll have to completely delete the old container first. 
+Only stopping a container with the same name is not enough.
 
 
 ## Cleaning up
