@@ -6,7 +6,8 @@ exercises: 0
 
 Well this is interesting!
 The documentation for the SPUC container tells us that we can set an environment variable to enable an API endpoint for exporting the unicorn sightings.
-It also mentions that we can pass a parameter to change the units of the brightness of the unicorns.
+In other words, we could return a list of all of our unicorn sightings with one command, without needing to use a bind mount or run commands inside the container to extract it.
+The documention also mentions that we can pass a parameter to change the units of the brightness of the unicorns.
 But how can we do this?
 
 ::::::::::::::::::::::::::::::::::::::: objectives
@@ -22,7 +23,7 @@ But how can we do this?
 
 ## Setting the environment
 
-We know we have to modify the environment variable `EXPORT` and set it to `True`.
+So, the documentation tells us we can modify the environment variable `EXPORT` and set it to `True`.
 This should enable an API endpoint for exporting the unicorn sightings.
 
 This sounds like a useful feature, but how can we set an environment variable in a container?
@@ -65,7 +66,8 @@ count,time,location,brightness,units
 5,2024-10-16 12:53:51.726902,venus,148,iuhc
 ```
 
-This is great! No need to bind mount or exec to get the data out of the container, we can just use the API endpoint.
+This is great! As mentioned, there was no need to bind mount or exec to get the data out of the container. 
+This way, we can just use the API endpoint.
 
 Defaulting to network style connections is very common in Docker containers and saves a lot of hassle.
 
