@@ -60,12 +60,11 @@ The Space Purple Unicorn Association is a community effort to count the number o
 We are a friendly group of developers, data scientists, and unicorn enthusiasts,
 who are passionate about surveying and conserving the purple unicorn population.
 
-To help you join the effort, we have created a set of tools and resources to help your community count the number of purple unicorns in space.
-These tools are distributed via Docker containers and should be easy to use.
+We're delighted to have you join us! To support the community's efforts, 
+we've created a set of tools and resources that will both help count purple unicorns and introduce you to fundamental Docker concepts.
 
-If you'd like to join the effort to preserve this keystone species,
-please help us by running your own Space Purple Unicorn Counting service,
-and encouraging your local community to join in the count!
+Over this course, you'll run your own Space Purple Unicorn Counting service, 
+and encourage your local community to join in the count!
 
 </div>
 <div class="column" style="flex: 2; padding: 10px; box-sizing: border-box; min-width: 300px;">
@@ -75,17 +74,18 @@ and encouraging your local community to join in the count!
 </div>
 </div>
 
-You can use the *Space Purple Unicorn Counter* (**SPUC**) container image for your service,
-which you can find on [Docker Hub](https://hub.docker.com/r/spuacv/spuc).
+We will use the *Space Purple Unicorn Counter* (**SPUC**) container image for our service.
+This can be found in more detail on [Docker Hub](https://hub.docker.com/r/spuacv/spuc).
 
 This image provides an API, which can be hit to add an event to the sightings record.
-The `location` and `brightness` of the unicorn need to be passed as parameters of a put request.
+To register a sighting, we'll need to send a `PUT` request with the unicorn's `location` and `brightness` as parameters.
+
 For example:
 ```
 curl -X PUT localhost:8321/unicorn_spotted?location=moon\&brightness=100
 ```
-will register a unicorn sighting on the moon with a brightness of 100iuhc.
+This will register a unicorn sighting on the moon with a brightness of **100iuhc**.
 
-Remember to **configure a port** on your host machine to forward requests to the container.
+Before we start counting unicorns, we'll need to complete a few setup steps. 
 
-You may also want to edit the `print.config` file to change the way the sightings are reported.
+Let's get started!

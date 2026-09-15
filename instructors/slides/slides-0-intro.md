@@ -84,9 +84,11 @@ The Space Purple Unicorn Association is a community effort to count the number o
 <p style="text-align: left;">
 We are a friendly group of developers, data scientists, and unicorn enthusiasts, who are passionate about surveying and conserving the purple unicorn population.
 <p style="text-align: left;">
-To help you join the effort, we have created a set of tools and resources to help your community count the number of purple unicorns in space. These tools are distributed via Docker containers and should be easy to use.
+We're delighted to have you join us! To support the community's efforts, 
+we've created a set of tools and resources that will both help count purple unicorns and introduce you to fundamental Docker concepts.
 <p style="text-align: left;">
-If you’d like to join the effort to preserve this keystone species, please help us by running your own Space Purple Unicorn Counting service, and encouraging your local community to join in the count!
+Over this course, you'll run your own Space Purple Unicorn Counting service, 
+and encourage your local community to join in the count!
 
 </div>
 
@@ -107,15 +109,16 @@ If you’d like to join the effort to preserve this keystone species, please hel
 <div style="flex: 3; font-size: 1.5rem; text-align: left;">
 
 <p style="text-align: left;">
-You can use the <i>Space Purple Unicorn Counter</i> (<strong>SPUC</strong>) container image for your service,
-which you can find on Docker Hub.
+We will use the <i>Space Purple Unicorn Counter</i> (<strong>SPUC</strong>) container image for our service,
+which can found on Docker Hub.
 <p style="text-align: left;">
 This image provides an API, which can be hit to add an event to the sightings record.
 <p style="text-align: left;">
-Remember to <strong>configure a port</strong> on your host machine to forward requests to the container.
+To register a sighting, we'll send a PUT request to the API,
+with the unicorn's location and brightness.
 <p style="text-align: left;">
-You may also want to edit the `print.config` file to change the way the sightings are reported.
-
+Before we start counting unicorns, we'll need to complete a few setup steps.
+Let's get started!
 </div>
 
 </div>
