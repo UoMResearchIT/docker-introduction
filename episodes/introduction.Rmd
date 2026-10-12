@@ -75,11 +75,13 @@ and encourage your local community to join in the count!
 </div>
 </div>
 
+In Docker, an **image** is a read-only template used to create containers.
+
 We will use the *Space Purple Unicorn Counter* (**SPUC**) container image for our service.
 This can be found in more detail on [Docker Hub](https://hub.docker.com/r/spuacv/spuc).
 
 This image provides an API, which can be hit to add an event to the sightings record.
-To register a sighting, we'll need to send a `PUT` request with the unicorn's `location` and `brightness` as parameters.
+To register any sightings, we'll need to send a `PUT` request with the unicorn's `location` and `brightness` as parameters.
 
 For example:
 ```
