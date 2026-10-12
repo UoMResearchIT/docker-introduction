@@ -39,6 +39,7 @@ There are two major motivations for using containers:
   Containers make it very easy to use *microservices*.
   These are small, independent programs that work together, and provide similar advantages to using libraries in your code:
   they make your *software stack* more modular, more powerful, and easier to understand.
+  We will cover more on microservices in the last chapter.
 
 ### Why Docker?
 
