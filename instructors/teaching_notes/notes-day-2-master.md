@@ -166,14 +166,18 @@ docker build -t spuc-stats ./
 > Remove print config bind
 
 ```
-docker run --rm --name spuc_container -p 8321:8321 -v spuc-volume:/spuc/output -e EXPORT=True spuc-stats --units iulu
+docker run -d --rm --name spuc_container -p 8321:8321 -v spuc-volume:/spuc/output -e EXPORT=True spuc-stats --units iulu
 ```
 
 OMG a unicorn! Better log it!
 
 ```
-curl -X PUT localhost:8321/unicorn_spotted?location=saturn&brightness=87
+curl -X PUT localhost:8321/unicorn_spotted?location=saturn\&brightness=87
 docker logs spuc_container
+```
+
+```
+docker stop spuc_container
 ```
 
 ## ENV

@@ -79,13 +79,16 @@ COPY print.config /spuc/config/print.config
 ```
 ```bash
 docker build -t spuc-stats ./
-docker run --rm --name spuc_container -p 8321:8321 -v spuc-volume:/spuc/output -e EXPORT=True spuc-stats --units iulu
+docker run -d --rm --name spuc_container -p 8321:8321 -v spuc-volume:/spuc/output -e EXPORT=True spuc-stats --units iulu
 ```
 ```bash
 curl -X PUT localhost:8321/unicorn_spotted?location=saturn\&brightness=87
 ```
 ```bash
 docker logs spuc_container
+```
+```bash
+docker stop spuc_container
 ```
 ## ENV
 ```Dockerfile
