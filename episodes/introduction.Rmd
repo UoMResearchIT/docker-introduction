@@ -39,6 +39,7 @@ There are two major motivations for using containers:
   Containers make it very easy to use *microservices*.
   These are small, independent programs that work together, and provide similar advantages to using libraries in your code:
   they make your *software stack* more modular, more powerful, and easier to understand.
+  We will cover more on microservices in the last chapter.
 
 ### Why Docker?
 
@@ -60,11 +61,11 @@ The Space Purple Unicorn Association is a community effort to count the number o
 We are a friendly group of developers, data scientists, and unicorn enthusiasts,
 who are passionate about surveying and conserving the purple unicorn population.
 
-To help you join the effort, we have created a set of tools and resources to help your community count the number of purple unicorns in space.
-These tools are distributed via Docker containers and should be easy to use.
+We're delighted to have you join us!
+To support the community's efforts, we have created a set of tools and resources to help count the number of purple unicorns in space.
+These tools are distributed via Docker.
 
-If you'd like to join the effort to preserve this keystone species,
-please help us by running your own Space Purple Unicorn Counting service,
+Please help us preserve this keystone species by running your own Space Purple Unicorn Counting service,
 and encouraging your local community to join in the count!
 
 </div>
@@ -78,14 +79,14 @@ and encouraging your local community to join in the count!
 You can use the *Space Purple Unicorn Counter* (**SPUC**) container image for your service,
 which you can find on [Docker Hub](https://hub.docker.com/r/spuacv/spuc).
 
-This image provides an API, which can be hit to add an event to the sightings record.
-The `location` and `brightness` of the unicorn need to be passed as parameters of a put request.
+This image runs a web app that can be used to record sightings using `curl`.
+The `location` and `brightness` of the unicorn need to be specified.
 For example:
 ```
 curl -X PUT localhost:8321/unicorn_spotted?location=moon\&brightness=100
 ```
-will register a unicorn sighting on the moon with a brightness of 100iuhc.
+will register a unicorn sighting on the moon with a brightness of 100 iuhc.
 
-Remember to **configure a port** on your host machine to forward requests to the container.
+Remember to allow access to the container from the host machine by **configuring a port** to forward requests to the container.
 
-You may also want to edit the `print.config` file to change the way the sightings are reported.
+To change the format of the sightings report, you may edit the `print.config` file.

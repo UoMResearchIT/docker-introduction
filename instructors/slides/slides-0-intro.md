@@ -84,9 +84,12 @@ The Space Purple Unicorn Association is a community effort to count the number o
 <p style="text-align: left;">
 We are a friendly group of developers, data scientists, and unicorn enthusiasts, who are passionate about surveying and conserving the purple unicorn population.
 <p style="text-align: left;">
-To help you join the effort, we have created a set of tools and resources to help your community count the number of purple unicorns in space. These tools are distributed via Docker containers and should be easy to use.
+We're delighted to have you join us!
+To support the community's efforts, we have created a set of tools and resources to help count the number of purple unicorns in space.
+These tools are distributed via Docker.
 <p style="text-align: left;">
-If you’d like to join the effort to preserve this keystone species, please help us by running your own Space Purple Unicorn Counting service, and encouraging your local community to join in the count!
+Please help us preserve this keystone species by running your own Space Purple Unicorn Counting service,
+and encouraging your local community to join in the count!
 
 </div>
 
@@ -110,11 +113,11 @@ If you’d like to join the effort to preserve this keystone species, please hel
 You can use the <i>Space Purple Unicorn Counter</i> (<strong>SPUC</strong>) container image for your service,
 which you can find on Docker Hub.
 <p style="text-align: left;">
-This image provides an API, which can be hit to add an event to the sightings record.
+This image runs a web app that can be used to record sightings.
 <p style="text-align: left;">
-Remember to <strong>configure a port</strong> on your host machine to forward requests to the container.
+Remember to allow access to the container from the host machine by <strong>configuring a port</strong> to forward requests to the container.
 <p style="text-align: left;">
-You may also want to edit the `print.config` file to change the way the sightings are reported.
+To change the format of the sightings report, you may edit the `print.config` file.
 
 </div>
 

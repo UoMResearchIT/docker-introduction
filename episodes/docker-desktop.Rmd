@@ -204,7 +204,7 @@ We get the "Hello from Docker!", and the container (with a new random name) exit
 
 :::
 
-The nature of most containers is *ephemeral*.
+The nature of most containers is *ephemeral*, meaning they only last for a short time.
 
 They are meant to execute a process, and when the process is completed, they exit.
 We can confirm this by clicking on the `Containers` tab on the left.
@@ -287,6 +287,8 @@ You'll see the green icon of the container indicating that it is still live, and
 ![](fig/docker-desktop/containers_list_spuc_running.png){alt='Containers list, spuc still running.'}
 
 Clicking on the container name again will take us back to the `Logs` tab in the container.
+
+Now we can try the terminal command mentioned in the previous episode to report any unicorn sightings...
 
 :::::::::::::::::::::::::::: callout
 
@@ -472,7 +474,8 @@ This time we'll map the port, and use the name we wanted.
 :::
 
 This time we got an error! This is because the name `SPUC` is already "in use" by another container.
-If we want the same name, we'll have to delete the old container first.
+If we want the same name, we’ll have to completely delete the old container first. 
+Only stopping a container with the same name is not enough.
 
 
 ## Cleaning up
