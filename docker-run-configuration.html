@@ -383,9 +383,12 @@
 
 <p>Well this is interesting! The documentation for the SPUC container
 tells us that we can set an environment variable to enable an API
-endpoint for exporting the unicorn sightings. It also mentions that we
-can pass a parameter to change the units of the brightness of the
-unicorns. But how can we do this?</p>
+endpoint for exporting the unicorn sightings. In other words, we could
+return a list of all of our unicorn sightings with one command, without
+needing to use a bind mount or run commands inside the container to
+extract it. The documention also mentions that we can pass a parameter
+to change the units of the brightness of the unicorns. But how can we do
+this?</p>
 <div class="overview card">
 <h2 class="card-header">Overview</h2>
 <div class="row g-0">
@@ -414,7 +417,7 @@ container</li>
 </div>
 </div>
 <section><h2 class="section-heading" id="setting-the-environment">Setting the environment<a class="anchor" aria-label="anchor" href="#setting-the-environment"></a></h2>
-<hr class="half-width"><p>We know we have to modify the environment variable
+<hr class="half-width"><p>So, the documentation tells us we can modify the environment variable
 <code>EXPORT</code> and set it to <code>True</code>. This should enable
 an API endpoint for exporting the unicorn sightings.</p>
 <p>This sounds like a useful feature, but how can we set an environment
@@ -463,8 +466,9 @@ out!</p>
 4,2024-10-16 10:53:13.449393,jupyter,210,iuhc
 5,2024-10-16 12:53:51.726902,venus,148,iuhc</code></pre>
 </div>
-<p>This is great! No need to bind mount or exec to get the data out of
-the container, we can just use the API endpoint.</p>
+<p>This is great! As mentioned, there was no need to bind mount or exec
+to get the data out of the container. This way, we can just use the API
+endpoint.</p>
 <p>Defaulting to network style connections is very common in Docker
 containers and saves a lot of hassle.</p>
 <p>Environment variables are a very common tool for configuring
@@ -599,7 +603,7 @@ SPUC container? What are the advantages and disadvantages of each?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>These are all valid combinations! The best choice depends on the use
 case.</p>

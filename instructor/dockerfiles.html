@@ -496,8 +496,8 @@ for a lightweight Linux distribution, and many more.</p>
 <p>But of course, the most natural fit for us right now is to use the
 SPUC image as a base image. This way we can be sure that our new image
 will have all the dependencies we need.</p>
-<p>Let’s create a new file called <code>Dockerfile</code> and add the
-following content:</p>
+<p>Let’s create a new file called <code>Dockerfile</code> in our current
+directory, and add the following content:</p>
 <div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">DOCKERFILE<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -804,7 +804,8 @@ work for the <code>COPY</code> layer.</p>
 <div class="codewrapper sourceCode" id="cb24">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" tabindex="-1" aria-label="code-block-24-1"></a><span class="ex">docker</span> run <span class="at">--rm</span> <span class="at">--name</span> spuc-stats_container <span class="at">-p</span> 8321:8321 <span class="at">-v</span> ./print.config:/spuc/config/print.config <span class="at">-v</span> spuc-volume:/spuc/output <span class="at">-e</span> EXPORT=true spuc-stats <span class="at">--units</span> iulu</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" tabindex="-1" aria-label="code-block-24-1"></a><span class="ex">docker</span> kill spuc-stats_container</span>
+<span id="cb24-2"><a href="#cb24-2" tabindex="-1" aria-label="code-block-24-2"></a><span class="ex">docker</span> run <span class="at">--rm</span> <span class="at">--name</span> spuc-stats_container <span class="at">-p</span> 8321:8321 <span class="at">-v</span> ./print.config:/spuc/config/print.config <span class="at">-v</span> spuc-volume:/spuc/output <span class="at">-e</span> EXPORT=true spuc-stats <span class="at">--units</span> iulu</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -837,7 +838,7 @@ like it, so lets add it to the image as well!</p>
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" tabindex="-1" aria-label="code-block-27-1"></a><span class="ex">docker</span> build <span class="at">-t</span> spuc-stats ./</span>
-<span id="cb27-2"><a href="#cb27-2" tabindex="-1" aria-label="code-block-27-2"></a><span class="ex">docker</span> run <span class="at">--rm</span> <span class="at">--name</span> spuc_container <span class="at">-p</span> 8321:8321 <span class="at">-v</span> spuc-volume:/spuc/output <span class="at">-e</span> EXPORT=True spuc-stats <span class="at">--units</span> iulu</span></code></pre>
+<span id="cb27-2"><a href="#cb27-2" tabindex="-1" aria-label="code-block-27-2"></a><span class="ex">docker</span> run <span class="at">-d</span> <span class="at">--rm</span> <span class="at">--name</span> spuc_container <span class="at">-p</span> 8321:8321 <span class="at">-v</span> spuc-volume:/spuc/output <span class="at">-e</span> EXPORT=True spuc-stats <span class="at">--units</span> iulu</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -879,32 +880,38 @@ Welcome to the Space Purple Unicorn Counter!
 </div>
 <p>The <code>run</code> command is definitely improving! Is there
 anything else we can do to make it even better?</p>
+<p>Remember to stop your container:</p>
+<div class="codewrapper sourceCode" id="cb33">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb33-1"><a href="#cb33-1" tabindex="-1" aria-label="code-block-33-1"></a><span class="ex">docker</span> stop spuc_container</span></code></pre>
+</div>
 </section><section><h2 class="section-heading" id="env">ENV<a class="anchor" aria-label="anchor" href="#env"></a></h2>
 <hr class="half-width"><p>We can also set environment variables in the <code>Dockerfile</code>
 using the <code>ENV</code> instruction. These can always be overridden
 when running the container, as we have done ourselves, but it is useful
 to set defaults. We like the <code>EXPORT</code> variable set to
 <code>True</code>, so let’s add that to the <code>Dockerfile</code>:</p>
-<div class="codewrapper sourceCode" id="cb33">
+<div class="codewrapper sourceCode" id="cb34">
 <h3 class="code-label">DOCKERFILE<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode dockerfile" tabindex="0"><code class="sourceCode dockerfile"><span id="cb33-1"><a href="#cb33-1" tabindex="-1" aria-label="code-block-33-1"></a><span class="co"># Dockerfile</span></span>
-<span id="cb33-2"><a href="#cb33-2" tabindex="-1" aria-label="code-block-33-2"></a><span class="kw">FROM</span> spuacv/spuc:latest</span>
-<span id="cb33-3"><a href="#cb33-3" tabindex="-1" aria-label="code-block-33-3"></a></span>
-<span id="cb33-4"><a href="#cb33-4" tabindex="-1" aria-label="code-block-33-4"></a><span class="kw">RUN</span> <span class="ex">pip</span> install pandas</span>
-<span id="cb33-5"><a href="#cb33-5" tabindex="-1" aria-label="code-block-33-5"></a></span>
-<span id="cb33-6"><a href="#cb33-6" tabindex="-1" aria-label="code-block-33-6"></a><span class="kw">COPY</span> stats.py /spuc/plugins/stats.py</span>
-<span id="cb33-7"><a href="#cb33-7" tabindex="-1" aria-label="code-block-33-7"></a><span class="kw">COPY</span> print.config /spuc/config/print.config</span>
-<span id="cb33-8"><a href="#cb33-8" tabindex="-1" aria-label="code-block-33-8"></a></span>
-<span id="cb33-9"><a href="#cb33-9" tabindex="-1" aria-label="code-block-33-9"></a><span class="kw">ENV</span> EXPORT=True</span></code></pre>
+<pre class="sourceCode dockerfile" tabindex="0"><code class="sourceCode dockerfile"><span id="cb34-1"><a href="#cb34-1" tabindex="-1" aria-label="code-block-34-1"></a><span class="co"># Dockerfile</span></span>
+<span id="cb34-2"><a href="#cb34-2" tabindex="-1" aria-label="code-block-34-2"></a><span class="kw">FROM</span> spuacv/spuc:latest</span>
+<span id="cb34-3"><a href="#cb34-3" tabindex="-1" aria-label="code-block-34-3"></a></span>
+<span id="cb34-4"><a href="#cb34-4" tabindex="-1" aria-label="code-block-34-4"></a><span class="kw">RUN</span> <span class="ex">pip</span> install pandas</span>
+<span id="cb34-5"><a href="#cb34-5" tabindex="-1" aria-label="code-block-34-5"></a></span>
+<span id="cb34-6"><a href="#cb34-6" tabindex="-1" aria-label="code-block-34-6"></a><span class="kw">COPY</span> stats.py /spuc/plugins/stats.py</span>
+<span id="cb34-7"><a href="#cb34-7" tabindex="-1" aria-label="code-block-34-7"></a><span class="kw">COPY</span> print.config /spuc/config/print.config</span>
+<span id="cb34-8"><a href="#cb34-8" tabindex="-1" aria-label="code-block-34-8"></a></span>
+<span id="cb34-9"><a href="#cb34-9" tabindex="-1" aria-label="code-block-34-9"></a><span class="kw">ENV</span> EXPORT=True</span></code></pre>
 </div>
 <p>Rebuilding and running (without the <code>-e EXPORT=True</code> flag)
 results in:</p>
-<div class="codewrapper sourceCode" id="cb34">
+<div class="codewrapper sourceCode" id="cb35">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb34-1"><a href="#cb34-1" tabindex="-1" aria-label="code-block-34-1"></a><span class="ex">docker</span> build <span class="at">-t</span> spuc-stats ./</span>
-<span id="cb34-2"><a href="#cb34-2" tabindex="-1" aria-label="code-block-34-2"></a><span class="ex">docker</span> run <span class="at">--rm</span> <span class="at">--name</span> spuc-stats_container <span class="at">-p</span> 8321:8321 <span class="at">-v</span> spuc-volume:/spuc/output spuc-stats <span class="at">--units</span> iulu</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb35-1"><a href="#cb35-1" tabindex="-1" aria-label="code-block-35-1"></a><span class="ex">docker</span> build <span class="at">-t</span> spuc-stats ./</span>
+<span id="cb35-2"><a href="#cb35-2" tabindex="-1" aria-label="code-block-35-2"></a><span class="ex">docker</span> run <span class="at">--rm</span> <span class="at">--name</span> spuc-stats_container <span class="at">-p</span> 8321:8321 <span class="at">-v</span> spuc-volume:/spuc/output spuc-stats <span class="at">--units</span> iulu</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -961,24 +968,24 @@ instruction will <em>change</em> the layers, and the cache is no longer
 valid.</p>
 <p>We can see this by moving the <code>ENV</code> instruction in our
 <code>Dockerfile</code> before the RUN command:</p>
-<div class="codewrapper sourceCode" id="cb36">
+<div class="codewrapper sourceCode" id="cb37">
 <h3 class="code-label">DOCKERFILE<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode dockerfile" tabindex="0"><code class="sourceCode dockerfile"><span id="cb36-1"><a href="#cb36-1" tabindex="-1" aria-label="code-block-36-1"></a><span class="co"># Dockerfile</span></span>
-<span id="cb36-2"><a href="#cb36-2" tabindex="-1" aria-label="code-block-36-2"></a><span class="kw">FROM</span> spuacv/spuc:latest</span>
-<span id="cb36-3"><a href="#cb36-3" tabindex="-1" aria-label="code-block-36-3"></a></span>
-<span id="cb36-4"><a href="#cb36-4" tabindex="-1" aria-label="code-block-36-4"></a><span class="kw">ENV</span> EXPORT=True</span>
-<span id="cb36-5"><a href="#cb36-5" tabindex="-1" aria-label="code-block-36-5"></a></span>
-<span id="cb36-6"><a href="#cb36-6" tabindex="-1" aria-label="code-block-36-6"></a><span class="kw">RUN</span> <span class="ex">pip</span> install pandas</span>
-<span id="cb36-7"><a href="#cb36-7" tabindex="-1" aria-label="code-block-36-7"></a></span>
-<span id="cb36-8"><a href="#cb36-8" tabindex="-1" aria-label="code-block-36-8"></a><span class="kw">COPY</span> stats.py /spuc/plugins/stats.py</span>
-<span id="cb36-9"><a href="#cb36-9" tabindex="-1" aria-label="code-block-36-9"></a><span class="kw">COPY</span> print.config /spuc/config/print.config</span></code></pre>
+<pre class="sourceCode dockerfile" tabindex="0"><code class="sourceCode dockerfile"><span id="cb37-1"><a href="#cb37-1" tabindex="-1" aria-label="code-block-37-1"></a><span class="co"># Dockerfile</span></span>
+<span id="cb37-2"><a href="#cb37-2" tabindex="-1" aria-label="code-block-37-2"></a><span class="kw">FROM</span> spuacv/spuc:latest</span>
+<span id="cb37-3"><a href="#cb37-3" tabindex="-1" aria-label="code-block-37-3"></a></span>
+<span id="cb37-4"><a href="#cb37-4" tabindex="-1" aria-label="code-block-37-4"></a><span class="kw">ENV</span> EXPORT=True</span>
+<span id="cb37-5"><a href="#cb37-5" tabindex="-1" aria-label="code-block-37-5"></a></span>
+<span id="cb37-6"><a href="#cb37-6" tabindex="-1" aria-label="code-block-37-6"></a><span class="kw">RUN</span> <span class="ex">pip</span> install pandas</span>
+<span id="cb37-7"><a href="#cb37-7" tabindex="-1" aria-label="code-block-37-7"></a></span>
+<span id="cb37-8"><a href="#cb37-8" tabindex="-1" aria-label="code-block-37-8"></a><span class="kw">COPY</span> stats.py /spuc/plugins/stats.py</span>
+<span id="cb37-9"><a href="#cb37-9" tabindex="-1" aria-label="code-block-37-9"></a><span class="kw">COPY</span> print.config /spuc/config/print.config</span></code></pre>
 </div>
 <p>If we now try to build again, we will get this output:</p>
-<div class="codewrapper sourceCode" id="cb37">
+<div class="codewrapper sourceCode" id="cb38">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb37-1"><a href="#cb37-1" tabindex="-1" aria-label="code-block-37-1"></a><span class="ex">docker</span> build <span class="at">-t</span> spuc-stats ./</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb38-1"><a href="#cb38-1" tabindex="-1" aria-label="code-block-38-1"></a><span class="ex">docker</span> build <span class="at">-t</span> spuc-stats ./</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1023,32 +1030,32 @@ image. Let’s change away from those imperial units by default.</p>
 composed of an <em>entrypoint</em> and a <em>command</em>. We can modify
 either of them in the Dockerfile. Just to make clear wheat the full
 command is directly from our dockerfile, lets write down both:</p>
-<div class="codewrapper sourceCode" id="cb39">
+<div class="codewrapper sourceCode" id="cb40">
 <h3 class="code-label">DOCKERFILE<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode dockerfile" tabindex="0"><code class="sourceCode dockerfile"><span id="cb39-1"><a href="#cb39-1" tabindex="-1" aria-label="code-block-39-1"></a><span class="co"># Dockerfile</span></span>
-<span id="cb39-2"><a href="#cb39-2" tabindex="-1" aria-label="code-block-39-2"></a><span class="kw">FROM</span> spuacv/spuc:latest</span>
-<span id="cb39-3"><a href="#cb39-3" tabindex="-1" aria-label="code-block-39-3"></a></span>
-<span id="cb39-4"><a href="#cb39-4" tabindex="-1" aria-label="code-block-39-4"></a><span class="kw">ENV</span> EXPORT=True</span>
-<span id="cb39-5"><a href="#cb39-5" tabindex="-1" aria-label="code-block-39-5"></a></span>
-<span id="cb39-6"><a href="#cb39-6" tabindex="-1" aria-label="code-block-39-6"></a><span class="kw">RUN</span> <span class="ex">pip</span> install pandas</span>
-<span id="cb39-7"><a href="#cb39-7" tabindex="-1" aria-label="code-block-39-7"></a></span>
-<span id="cb39-8"><a href="#cb39-8" tabindex="-1" aria-label="code-block-39-8"></a><span class="kw">COPY</span> stats.py /spuc/plugins/stats.py</span>
-<span id="cb39-9"><a href="#cb39-9" tabindex="-1" aria-label="code-block-39-9"></a><span class="kw">COPY</span> print.config /spuc/config/print.config</span>
-<span id="cb39-10"><a href="#cb39-10" tabindex="-1" aria-label="code-block-39-10"></a></span>
-<span id="cb39-11"><a href="#cb39-11" tabindex="-1" aria-label="code-block-39-11"></a><span class="kw">ENTRYPOINT</span> [<span class="st">"python"</span>, <span class="st">"/spuc/spuc.py"</span>]</span>
-<span id="cb39-12"><a href="#cb39-12" tabindex="-1" aria-label="code-block-39-12"></a><span class="kw">CMD</span> [<span class="st">"--units"</span>, <span class="st">"iulu"</span>]</span></code></pre>
+<pre class="sourceCode dockerfile" tabindex="0"><code class="sourceCode dockerfile"><span id="cb40-1"><a href="#cb40-1" tabindex="-1" aria-label="code-block-40-1"></a><span class="co"># Dockerfile</span></span>
+<span id="cb40-2"><a href="#cb40-2" tabindex="-1" aria-label="code-block-40-2"></a><span class="kw">FROM</span> spuacv/spuc:latest</span>
+<span id="cb40-3"><a href="#cb40-3" tabindex="-1" aria-label="code-block-40-3"></a></span>
+<span id="cb40-4"><a href="#cb40-4" tabindex="-1" aria-label="code-block-40-4"></a><span class="kw">ENV</span> EXPORT=True</span>
+<span id="cb40-5"><a href="#cb40-5" tabindex="-1" aria-label="code-block-40-5"></a></span>
+<span id="cb40-6"><a href="#cb40-6" tabindex="-1" aria-label="code-block-40-6"></a><span class="kw">RUN</span> <span class="ex">pip</span> install pandas</span>
+<span id="cb40-7"><a href="#cb40-7" tabindex="-1" aria-label="code-block-40-7"></a></span>
+<span id="cb40-8"><a href="#cb40-8" tabindex="-1" aria-label="code-block-40-8"></a><span class="kw">COPY</span> stats.py /spuc/plugins/stats.py</span>
+<span id="cb40-9"><a href="#cb40-9" tabindex="-1" aria-label="code-block-40-9"></a><span class="kw">COPY</span> print.config /spuc/config/print.config</span>
+<span id="cb40-10"><a href="#cb40-10" tabindex="-1" aria-label="code-block-40-10"></a></span>
+<span id="cb40-11"><a href="#cb40-11" tabindex="-1" aria-label="code-block-40-11"></a><span class="kw">ENTRYPOINT</span> [<span class="st">"python"</span>, <span class="st">"/spuc/spuc.py"</span>]</span>
+<span id="cb40-12"><a href="#cb40-12" tabindex="-1" aria-label="code-block-40-12"></a><span class="kw">CMD</span> [<span class="st">"--units"</span>, <span class="st">"iulu"</span>]</span></code></pre>
 </div>
 <p>Notice that we used an array syntax. Both the <code>ENTRYPOINT</code>
 and <code>CMD</code> instructions can take a list of arguments, and the
 array syntax ensures that the arguments are passed correctly.</p>
 <p>Let’s give this a try, dropping the now unnecessary
 <code>--units iulu</code> from the <code>docker run</code> command:</p>
-<div class="codewrapper sourceCode" id="cb40">
+<div class="codewrapper sourceCode" id="cb41">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb40-1"><a href="#cb40-1" tabindex="-1" aria-label="code-block-40-1"></a><span class="ex">docker</span> build <span class="at">-t</span> spuc-stats ./</span>
-<span id="cb40-2"><a href="#cb40-2" tabindex="-1" aria-label="code-block-40-2"></a><span class="ex">docker</span> run <span class="at">--rm</span> <span class="at">--name</span> spuc-stats_container <span class="at">-p</span> 8321:8321 <span class="at">-v</span> spuc-volume:/spuc/output spuc-stats</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb41-1"><a href="#cb41-1" tabindex="-1" aria-label="code-block-41-1"></a><span class="ex">docker</span> build <span class="at">-t</span> spuc-stats ./</span>
+<span id="cb41-2"><a href="#cb41-2" tabindex="-1" aria-label="code-block-41-2"></a><span class="ex">docker</span> run <span class="at">--rm</span> <span class="at">--name</span> spuc-stats_container <span class="at">-p</span> 8321:8321 <span class="at">-v</span> spuc-volume:/spuc/output spuc-stats</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1077,28 +1084,28 @@ up’.</p>
 and configuration files. An example of this is how the developers of the
 SPUC service created their image. The Dockerfile is reproduced
 below:</p>
-<div class="codewrapper sourceCode" id="cb42">
+<div class="codewrapper sourceCode" id="cb43">
 <h3 class="code-label">DOCKERFILE<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode dockerfile" tabindex="0"><code class="sourceCode dockerfile"><span id="cb42-1"><a href="#cb42-1" tabindex="-1" aria-label="code-block-42-1"></a><span class="kw">FROM</span> python:3.12-slim</span>
-<span id="cb42-2"><a href="#cb42-2" tabindex="-1" aria-label="code-block-42-2"></a></span>
-<span id="cb42-3"><a href="#cb42-3" tabindex="-1" aria-label="code-block-42-3"></a><span class="kw">RUN</span> <span class="ex">apt</span> update</span>
-<span id="cb42-4"><a href="#cb42-4" tabindex="-1" aria-label="code-block-42-4"></a><span class="kw">RUN</span> <span class="ex">apt</span> install <span class="at">-y</span> curl</span>
-<span id="cb42-5"><a href="#cb42-5" tabindex="-1" aria-label="code-block-42-5"></a></span>
-<span id="cb42-6"><a href="#cb42-6" tabindex="-1" aria-label="code-block-42-6"></a><span class="kw">WORKDIR</span> /spuc</span>
-<span id="cb42-7"><a href="#cb42-7" tabindex="-1" aria-label="code-block-42-7"></a></span>
-<span id="cb42-8"><a href="#cb42-8" tabindex="-1" aria-label="code-block-42-8"></a><span class="kw">COPY</span> ./requirements.txt /spuc/requirements.txt</span>
-<span id="cb42-9"><a href="#cb42-9" tabindex="-1" aria-label="code-block-42-9"></a></span>
-<span id="cb42-10"><a href="#cb42-10" tabindex="-1" aria-label="code-block-42-10"></a><span class="kw">RUN</span> <span class="ex">pip</span> install <span class="at">--no-cache-dir</span> <span class="at">--upgrade</span> <span class="at">-r</span> /spuc/requirements.txt</span>
-<span id="cb42-11"><a href="#cb42-11" tabindex="-1" aria-label="code-block-42-11"></a></span>
-<span id="cb42-12"><a href="#cb42-12" tabindex="-1" aria-label="code-block-42-12"></a><span class="kw">COPY</span> ./*.py /spuc/</span>
-<span id="cb42-13"><a href="#cb42-13" tabindex="-1" aria-label="code-block-42-13"></a><span class="kw">COPY</span> ./config/*.config /spuc/config/</span>
-<span id="cb42-14"><a href="#cb42-14" tabindex="-1" aria-label="code-block-42-14"></a><span class="kw">RUN</span> <span class="fu">mkdir</span> /spuc/output</span>
-<span id="cb42-15"><a href="#cb42-15" tabindex="-1" aria-label="code-block-42-15"></a></span>
-<span id="cb42-16"><a href="#cb42-16" tabindex="-1" aria-label="code-block-42-16"></a><span class="kw">EXPOSE</span> 8321</span>
-<span id="cb42-17"><a href="#cb42-17" tabindex="-1" aria-label="code-block-42-17"></a></span>
-<span id="cb42-18"><a href="#cb42-18" tabindex="-1" aria-label="code-block-42-18"></a><span class="kw">ENTRYPOINT</span> [<span class="st">"python"</span>, <span class="st">"/spuc/spuc.py"</span>]</span>
-<span id="cb42-19"><a href="#cb42-19" tabindex="-1" aria-label="code-block-42-19"></a><span class="kw">CMD</span> [<span class="st">"--units"</span>, <span class="st">"iuhc"</span>]</span></code></pre>
+<pre class="sourceCode dockerfile" tabindex="0"><code class="sourceCode dockerfile"><span id="cb43-1"><a href="#cb43-1" tabindex="-1" aria-label="code-block-43-1"></a><span class="kw">FROM</span> python:3.12-slim</span>
+<span id="cb43-2"><a href="#cb43-2" tabindex="-1" aria-label="code-block-43-2"></a></span>
+<span id="cb43-3"><a href="#cb43-3" tabindex="-1" aria-label="code-block-43-3"></a><span class="kw">RUN</span> <span class="ex">apt</span> update</span>
+<span id="cb43-4"><a href="#cb43-4" tabindex="-1" aria-label="code-block-43-4"></a><span class="kw">RUN</span> <span class="ex">apt</span> install <span class="at">-y</span> curl</span>
+<span id="cb43-5"><a href="#cb43-5" tabindex="-1" aria-label="code-block-43-5"></a></span>
+<span id="cb43-6"><a href="#cb43-6" tabindex="-1" aria-label="code-block-43-6"></a><span class="kw">WORKDIR</span> /spuc</span>
+<span id="cb43-7"><a href="#cb43-7" tabindex="-1" aria-label="code-block-43-7"></a></span>
+<span id="cb43-8"><a href="#cb43-8" tabindex="-1" aria-label="code-block-43-8"></a><span class="kw">COPY</span> ./requirements.txt /spuc/requirements.txt</span>
+<span id="cb43-9"><a href="#cb43-9" tabindex="-1" aria-label="code-block-43-9"></a></span>
+<span id="cb43-10"><a href="#cb43-10" tabindex="-1" aria-label="code-block-43-10"></a><span class="kw">RUN</span> <span class="ex">pip</span> install <span class="at">--no-cache-dir</span> <span class="at">--upgrade</span> <span class="at">-r</span> /spuc/requirements.txt</span>
+<span id="cb43-11"><a href="#cb43-11" tabindex="-1" aria-label="code-block-43-11"></a></span>
+<span id="cb43-12"><a href="#cb43-12" tabindex="-1" aria-label="code-block-43-12"></a><span class="kw">COPY</span> ./*.py /spuc/</span>
+<span id="cb43-13"><a href="#cb43-13" tabindex="-1" aria-label="code-block-43-13"></a><span class="kw">COPY</span> ./config/*.config /spuc/config/</span>
+<span id="cb43-14"><a href="#cb43-14" tabindex="-1" aria-label="code-block-43-14"></a><span class="kw">RUN</span> <span class="fu">mkdir</span> /spuc/output</span>
+<span id="cb43-15"><a href="#cb43-15" tabindex="-1" aria-label="code-block-43-15"></a></span>
+<span id="cb43-16"><a href="#cb43-16" tabindex="-1" aria-label="code-block-43-16"></a><span class="kw">EXPOSE</span> 8321</span>
+<span id="cb43-17"><a href="#cb43-17" tabindex="-1" aria-label="code-block-43-17"></a></span>
+<span id="cb43-18"><a href="#cb43-18" tabindex="-1" aria-label="code-block-43-18"></a><span class="kw">ENTRYPOINT</span> [<span class="st">"python"</span>, <span class="st">"/spuc/spuc.py"</span>]</span>
+<span id="cb43-19"><a href="#cb43-19" tabindex="-1" aria-label="code-block-43-19"></a><span class="kw">CMD</span> [<span class="st">"--units"</span>, <span class="st">"iuhc"</span>]</span></code></pre>
 </div>
 <p>From this we can see the developers:</p>
 <ul><li>Started <code>FROM</code> a <code>python:3.12-slim</code> image</li>

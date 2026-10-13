@@ -427,7 +427,8 @@ Essentially, containers allow you to ship your machine!</p></li>
 use <em>microservices</em>. These are small, independent programs that
 work together, and provide similar advantages to using libraries in your
 code: they make your <em>software stack</em> more modular, more
-powerful, and easier to understand.</p></li>
+powerful, and easier to understand. We will cover more on microservices
+in the last chapter.</p></li>
 </ul></div>
 <div class="section level3">
 <h3 id="why-docker">Why Docker?<a class="anchor" aria-label="anchor" href="#why-docker"></a></h3>
@@ -448,13 +449,13 @@ the number of purple unicorns in space.</p>
 <p>We are a friendly group of developers, data scientists, and unicorn
 enthusiasts, who are passionate about surveying and conserving the
 purple unicorn population.</p>
-<p>To help you join the effort, we have created a set of tools and
-resources to help your community count the number of purple unicorns in
-space. These tools are distributed via Docker containers and should be
-easy to use.</p>
-<p>If you’d like to join the effort to preserve this keystone species,
-please help us by running your own Space Purple Unicorn Counting
-service, and encouraging your local community to join in the count!</p>
+<p>We’re delighted to have you join us! To support the community’s
+efforts, we have created a set of tools and resources to help count the
+number of purple unicorns in space. These tools are distributed via
+Docker.</p>
+<p>Please help us preserve this keystone species by running your own
+Space Purple Unicorn Counting service, and encouraging your local
+community to join in the count!</p>
 </div>
 <div class="column" style="flex: 2; padding: 10px; box-sizing: border-box; min-width: 300px;">
 <figure><img src="fig/SPUA/SPUA_logo.png" alt="SPUA logo" class="figure mx-auto d-block"></figure></div>
@@ -463,17 +464,17 @@ service, and encouraging your local community to join in the count!</p>
 (<strong>SPUC</strong>) container image for your service, which you can
 find on <a href="https://hub.docker.com/r/spuacv/spuc" class="external-link">Docker
 Hub</a>.</p>
-<p>This image provides an API, which can be hit to add an event to the
-sightings record. The <code>location</code> and <code>brightness</code>
-of the unicorn need to be passed as parameters of a put request. For
-example:</p>
+<p>This image runs a web app that can be used to record sightings using
+<code>curl</code>. The <code>location</code> and <code>brightness</code>
+of the unicorn need to be specified. For example:</p>
 <pre><code>curl -X PUT localhost:8321/unicorn_spotted?location=moon\&amp;brightness=100</code></pre>
-<p>will register a unicorn sighting on the moon with a brightness of
-100iuhc.</p>
-<p>Remember to <strong>configure a port</strong> on your host machine to
-forward requests to the container.</p>
-<p>You may also want to edit the <code>print.config</code> file to
-change the way the sightings are reported.</p>
+<p>will register a unicorn sighting on the moon with a brightness of 100
+iuhc.</p>
+<p>Remember to allow access to the container from the host machine by
+<strong>configuring a port</strong> to forward requests to the
+container.</p>
+<p>To change the format of the sightings report, you may edit the
+<code>print.config</code> file.</p>
 </section></div> <!-- / div.lesson-content -->
     </main><!-- / main#main-content.main-content --><nav class="bottom-pagination mx-md-4" aria-label="Previous and Next Chapter Bottom"><div class="d-block d-sm-block d-md-none">
         <a class="chapter-link" href="index.html"><i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>Previous</a>

@@ -648,7 +648,8 @@ just created.</p>
 <pre class="output" tabindex="0"><code>-rw-r--r-- 1 root root 57 Oct 11 14:14 spuc/output/unicorn_sightings.txt</code></pre>
 </div>
 <p><strong>Note:</strong> This no longer seems to be the case from
-Docker version 27.3.1 onwards.</p>
+Docker version 27.3.1 onwards. Feel free to check your version with
+<code>docker --version</code>.</p>
 <p>Argh, the file is owned by root! This is because the container runs
 as root, and so any files created by the container are owned by root.
 This can be a problem, as you will not have permission to access the
@@ -663,10 +664,10 @@ user.</p>
 both useful tools for persisting data between runs of a container.</p>
 <div class="section level3">
 <h3 id="bind-mount-files">Bind mount files<a class="anchor" aria-label="anchor" href="#bind-mount-files"></a></h3>
-<p>Earlier, we looked at how to change the print.config file in SPUC to
-format the logs. This was a bit difficult, as we had to do it from
-inside the container, and it did not persist between runs of the
-container.</p>
+<p>Earlier, we looked at how to change the <code>print.config</code>
+file in SPUC to format the logs. This was a bit difficult, as we had to
+do it from inside the container, and it did not persist between runs of
+the container.</p>
 <p>We now have the tools to address this! We can use a bind mount to
 share the config file with the container.</p>
 <div id="docker-cp" class="callout">
