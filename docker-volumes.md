@@ -212,6 +212,7 @@ ls -l spuc/output/unicorn_sightings.txt
 ```
 
 **Note:** This no longer seems to be the case from Docker version 27.3.1 onwards.
+Feel free to check your version with `docker --version`.
 
 Argh, the file is owned by root!
 This is because the container runs as root, and so any files created by the container are owned by root.
@@ -228,7 +229,7 @@ but they are both useful tools for persisting data between runs of a container.
 
 ### Bind mount files
 
-Earlier, we looked at how to change the print.config file in SPUC to format the logs.
+Earlier, we looked at how to change the `print.config` file in SPUC to format the logs.
 This was a bit difficult, as we had to do it from inside the container, and it did not persist between runs of the container.
 
 We now have the tools to address this!

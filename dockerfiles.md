@@ -92,7 +92,7 @@ For example, `ubuntu` for general purpose Linux, `python` for Python development
 But of course, the most natural fit for us right now is to use the SPUC image as a base image.
 This way we can be sure that our new image will have all the dependencies we need.
 
-Let's create a new file called `Dockerfile` and add the following content:
+Let's create a new file called `Dockerfile` in our current directory, and add the following content:
 ```Dockerfile
 # Dockerfile
 FROM spuacv/spuc:latest
@@ -337,6 +337,7 @@ and only had to do some work for the `COPY` layer.
 
 And run the image again, but this time without the bind mount for the `stats.py` file:
 ```bash
+docker kill spuc-stats_container
 docker run --rm --name spuc-stats_container -p 8321:8321 -v ./print.config:/spuc/config/print.config -v spuc-volume:/spuc/output -e EXPORT=true spuc-stats --units iulu
 ```
 ```output
@@ -366,7 +367,7 @@ COPY print.config /spuc/config/print.config
 Now we rebuild and re-run (without the bind mount for `print.config`):
 ```bash
 docker build -t spuc-stats ./
-docker run --rm --name spuc_container -p 8321:8321 -v spuc-volume:/spuc/output -e EXPORT=True spuc-stats --units iulu
+docker run -d --rm --name spuc_container -p 8321:8321 -v spuc-volume:/spuc/output -e EXPORT=True spuc-stats --units iulu
 ```
 ```output
 [...]
@@ -399,6 +400,11 @@ docker logs spuc_container
 ```
 
 The `run` command is definitely improving! Is there anything else we can do to make it even better?
+
+Remember to stop your container:
+```bash
+docker stop spuc_container
+```
 
 ## ENV
 
