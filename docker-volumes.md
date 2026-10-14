@@ -259,7 +259,9 @@ Note that this **will not keep changes in sync** like a bind mount, but it is us
 
 :::::::::::::::::::::::::::::::::::::::
 
-Let's now modify the print.config file to include the time and the unicorn count:
+Let's now modify the print.config file to include the time and the unicorn count.
+Run `nano config/print.config` and you'll see the contents of the file.
+Update the print config line to look like this:
 ```
 ::::: {time} Unicorn number {count} spotted at {location}! Brightness: {brightness} {units}
 ```
