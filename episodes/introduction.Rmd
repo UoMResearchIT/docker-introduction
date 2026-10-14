@@ -23,7 +23,9 @@ exercises: 0
 
 Once upon a time this was just a joke, but now it's a reality!
 
-Docker is a tool that allows you to create, deploy, and run applications using containers.
+Docker is a tool that allows you to create, deploy, and run applications using *"containers"*.
+
+Containers are a way to package software so others can use it more easily.
 
 ### Why Containers?
 
