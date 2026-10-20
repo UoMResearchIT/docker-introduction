@@ -27,25 +27,24 @@ Space Purple Unicorn Association
 
 <div style="flex: 1; padding: 10px;">
 
-* Day 1
+* Morning
     - Introduction
     - Docker Desktop
     - Building our Docker CLI toolkit
     - --- Break ---
     - Sharing information with containers
-    - --- Lunch Break ---
     - The Docker Hub
     - Configuring containers
+    - --- Lunch Break ---
 
 </div>
 
 <div style="flex: 1; padding: 10px;">
 
-* Day 2
+* Afternoon
   - Creating your own container images
   - --- Break ---
   - Using Docker Compose
-  - --- Lunch Break ---
   - Conclusion
 
 </div>
