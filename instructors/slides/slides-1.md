@@ -71,8 +71,4 @@ backgroundColor: rgba(0,0,0,0.5)
 
 ---
 
-# Feedback
-
-![width:400](../fig/feedback_qr.png)
-
-https://forms.gle/cCt5UDus4HwytZda6
+<h1> Lunch! </h1>

@@ -122,3 +122,13 @@ To change the format of the sightings report, you may edit the `print.config` fi
 </div>
 
 </div>
+
+---
+<span style="font-size: 1.2rem;"  >
+
+### Docker Desktop
+
+The next ~20 minutes will be demonstrative, but are a useful introduction to the concepts.
+
+If you have Docker Desktop, we encourage you to <span style="font-size: 1.5rem;"> **not** </span> try to follow along, and instead focus on absorbing ideas.
+</span>

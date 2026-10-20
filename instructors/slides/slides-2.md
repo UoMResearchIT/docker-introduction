@@ -532,4 +532,22 @@ For example maybe SPUC would benefit from :
 This is *fun*! You get to spend more time in the interesting parts of your project!
 
 ---
-![height:600](../../episodes/fig/SPUA/spua_thanks_you.png)
+# Feedback
+
+<div style="display: flex; font-size: 1.8rem;">
+
+<div style="flex: 1; ">
+
+![height:430](../../episodes/fig/SPUA/spua_thanks_you.png)
+
+</div>
+
+<div style="flex: 1;">
+
+![height:430](../fig/feedback_qr.png)
+
+</div>
+
+</div>
+
+https://forms.gle/cCt5UDus4HwytZda6
