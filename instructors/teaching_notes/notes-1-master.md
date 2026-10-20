@@ -384,7 +384,7 @@ docker run -d --rm --name spuc_container -p 8321:8321 -v ./spuc/output:/spuc/out
 cat spuc/output/unicorn_sightings.txt
 ```
 ```bash
-ls -l spuc/unicorn_sightings.txt
+ls -l spuc/output/unicorn_sightings.txt
 ```
 In some versions of docker, this might be owned by root!
 

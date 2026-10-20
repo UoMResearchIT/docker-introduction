@@ -51,12 +51,17 @@ docker run -d --rm --name spuc_container -p 8321:8321 -v ./spuc/output:/spuc/out
 cat spuc/output/unicorn_sightings.txt
 ```
 ```bash
-ls -l spuc/unicorn_sightings.txt
+ls -l spuc/output/unicorn_sightings.txt
 ```
 ### Bind mount files
+
+## Docker cp
 ```bash
-echo "::::: {time} Unicorn number {count} spotted at {location}! Brightness: {brightness} {units}" > print.config
+docker cp spuc_container:/spuc/config/print.config .
+cat print.config
 ```
+
+
 ```bash
 docker kill spuc_container
 docker run -d --rm --name spuc_container -p 8321:8321 -v ./print.config:/spuc/config/print.config -v spuc-volume:/spuc/output spuacv/spuc:latest
@@ -65,9 +70,7 @@ docker run -d --rm --name spuc_container -p 8321:8321 -v ./print.config:/spuc/co
 curl -X PUT localhost:8321/unicorn_spotted?location=jupyter\&brightness=210
 docker logs spuc_container
 ```
-```bash
-echo "::::: Unicorn number {count} spotted at {location}! Brightness: {brightness} {units}" > print.config
-```
+
 ```bash
 curl -X PUT localhost:8321/unicorn_spotted?location=venus\&brightness=148
 docker logs spuc_container
