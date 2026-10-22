@@ -27,25 +27,25 @@ Space Purple Unicorn Association
 
 <div style="flex: 1; padding: 10px;">
 
-* Day 1
+* Morning
     - Introduction
     - Docker Desktop
     - Building our Docker CLI toolkit
     - --- Break ---
     - Sharing information with containers
-    - --- Lunch Break ---
     - The Docker Hub
     - Configuring containers
+    - --- Lunch Break ---
 
 </div>
 
 <div style="flex: 1; padding: 10px;">
 
-* Day 2
+* Afternoon
   - Creating your own container images
   - --- Break ---
   - Using Docker Compose
-  - --- Lunch Break ---
+  - Microservices
   - Conclusion
 
 </div>
@@ -122,3 +122,79 @@ To change the format of the sightings report, you may edit the `print.config` fi
 </div>
 
 </div>
+
+---
+<span style="font-size: 1.2rem;"  >
+
+### Docker Desktop
+
+The next ~20 minutes will be demonstrative, but are a useful introduction to the concepts.
+
+If you have Docker Desktop, we encourage you to <span style="font-size: 1.5rem;"> **not** </span> try to follow along, and instead focus on absorbing ideas.
+</span>
+
+---
+
+![width:1000](../fig/Docker_Desktop_keypoints.png)
+
+---
+
+<div style="background-color: white; padding: 10px;">
+
+  ![width:1000](../../episodes/fig/docker_cmd.png)
+
+</div>
+
+---
+
+![width:1000](../../episodes/fig/docker_life_0.png)
+
+---
+
+![width:1000](../../episodes/fig/docker_life_1.png)
+
+---
+
+![width:1000](../../episodes/fig/docker_life_2.png)
+
+---
+
+<div style="display: flex; font-size: 1.8rem;">
+
+<div style="flex: 1; padding: 10px;">
+
+![width:600](../fig/docker_cli_keypoints_1.png)
+
+</div>
+
+<div style="flex: 1; padding: 10px; margin-top:145px;">
+
+![width:550](../fig/docker_cli_keypoints_2.png)
+
+</div>
+
+</div>
+
+---
+
+![width:1000](../fig/common_mistakes_with_volumes.png)
+
+---
+
+![width:1000](../fig/docker_volumes_keypoints.png)
+
+---
+
+![width:1000](../fig/docker_hub_keypoints.png)
+
+---
+
+![width:1000](../fig/entrypoint_command_combination.png)
+
+---
+
+![width:1000](../fig/docker_run_configuration_keypoints.png)
+
+---
+
+<h1> Lunch! </h1>
