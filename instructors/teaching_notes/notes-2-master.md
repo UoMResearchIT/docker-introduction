@@ -478,9 +478,20 @@ Not to worry - we can make our own images using compose too!
 
 ## Building containers in Docker Compose
 
-We still have the Dockerfile from earlier!
+We still have the image from earlier!
 
-Let's tell compose to use that using build
+We can configure our compose to use it 
+
+```
+services:
+  spuc:
+-  # image: spuacv/spuc:latest  
++  image: spuc-stats
+```
+
+But... if we want to build this, we need to do it manually!
+
+Instead, let's tell compose to use that using build
 
 ```diff
 services:
@@ -494,6 +505,7 @@ services:
 We have to be careful here - we need to instruct compose to rebuild if we have made changes You can do this explicitly or add it to the up command
 
 ```
+docker compose build
 docker compose up --build -d
 docker compose logs
 ```
