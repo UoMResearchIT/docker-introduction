@@ -170,7 +170,7 @@ docker inspect spuacv/spuc:latest -f "Command: {{.Config.Cmd}}"
 docker inspect spuacv/spuc:latest -f "Entrypoint: {{.Config.Entrypoint}}"
 ```
 ```bash
-docker inspect spuacv/spuc:latest -f $'Command: {{.Config.Cmd}}\nEntrypoint: {{.Config.Entrypoint}}'
+docker inspect spuacv/spuc:latest -f $'Entrypoint: {{.Config.Entrypoint}}\nCommand: {{.Config.Cmd}}'
 ```
 
 ## Default Command
@@ -563,7 +563,7 @@ We must change it to the much more standard **Intergalactic Unicorn Luminosity U
 
 Parameters are passed on the command. Remember:
 ```bash
-docker inspect spuacv/spuc:latest -f "Entrypoint: {{.Config.Entrypoint}}\nCommand: {{.Config.Cmd}}"
+docker inspect spuacv/spuc:latest -f $'Entrypoint: {{.Config.Entrypoint}}\nCommand: {{.Config.Cmd}}'
 ```
 To override it, we write the command we want at the end:
 ```bash
