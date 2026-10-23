@@ -22,7 +22,7 @@ curl https://raw.githubusercontent.com/UoMResearchIT/docker-introduction/refs/he
 curl -L https://tinyurl.com/spuc-stats > stats.py
 ```
 
-Let's remember what we were up to yesterday - we need this file in the container
+Let's remember what we were up to previously - we need this file in the container
 
 We know the answer to this! Let's use a bind mount
 
