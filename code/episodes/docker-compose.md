@@ -4,9 +4,11 @@
 
 ## Running a container
 ```yml
+# compose.yml
 services:
 ```
 ```yml
+# compose.yml
 services:
   spuc:                            # The name of the service
     image: spuacv/spuc:latest      # The image to use
@@ -31,6 +33,7 @@ docker compose down
 ```
 ### Naming the container
 ```yml
+# compose.yml
 services:
   spuc:
     image: spuacv/spuc:latest
@@ -47,6 +50,7 @@ docker compose up -d
 curl -X PUT localhost:8321/unicorn_spotted?location=asteroid\&brightness=242
 ```
 ```yml
+# compose.yml
 services:
   spuc:
     image: spuacv/spuc:latest
@@ -62,6 +66,7 @@ curl -X PUT localhost:8321/unicorn_spotted?location=asteroid\&brightness=242
 ```
 ### Bind mounts
 ```yml
+# compose.yml
 services:
   spuc:
     image: spuacv/spuc:latest
@@ -76,6 +81,7 @@ docker compose up -d
 ```
 ### Volumes
 ```yml
+# compose.yml
 services:
   spuc:
     image: spuacv/spuc:latest
@@ -90,6 +96,7 @@ services:
 docker compose up -d
 ```
 ```yml
+# compose.yml
 services:
   spuc:
     image: spuacv/spuc:latest
@@ -113,6 +120,7 @@ $ docker volume ls
 ```
 ### Setting an environment variable
 ```yml
+# compose.yml
 services:
   spuc:
     image: spuacv/spuc:latest
@@ -134,6 +142,7 @@ docker compose logs
 ```
 ### Overriding the default command
 ```yml
+# compose.yml
 services:
   spuc:
     image: spuacv/spuc:latest
@@ -156,6 +165,7 @@ docker compose logs
 ```
 ### Enabling the plugin
 ```yml
+# compose.yml
 services:
   spuc:
     image: spuacv/spuc:latest
@@ -181,9 +191,29 @@ docker compose logs
 ```
 ## Building containers in Docker Compose
 ```yml
+# compose.yml
 services:
   spuc:
-  # image: spuacv/spuc:latest
+    image: spuc-stats   # Use the image we built earlier
+    container_name: spuc_container
+    ports:
+      - 8321:8321
+    volumes:
+      - ./print.config:/spuc/config/print.config
+      - spuc-volume:/spuc/output
+      - ./stats.py:/spuc/plugins/stats.py        # Mounts the stats.py plugin
+    environment:
+      - EXPORT=true
+    command: ["--units", "iulu"]
+
+volumes:
+  spuc-volume:
+```
+```yml
+# compose.yml
+services:
+  spuc:
+  # image: spuc-stats
     build:                        # Instead of using the 'image' key, we use the 'build' key
       context: .                  # Sets the build context (the directory in which the Dockerfile is located)
       dockerfile: Dockerfile      # Sets the name of the Dockerfile
@@ -197,6 +227,9 @@ services:
     environment:
       - EXPORT=true
     command: ["--units", "iulu"]
+
+volumes:
+  spuc-volume:
 ```
 ```bash
 docker compose up --build -d
@@ -212,6 +245,7 @@ RUN pip install pandas
 ## Connecting multiple services
 ### Adding SPUCSVi to our Docker Compose file
 ```yml
+# compose.yml
 services:
   spuc:
     build:
@@ -245,6 +279,7 @@ docker compose logs
 ```
 ### Networks
 ```yml
+# compose.yml
 services:
   spuc:
     build:
@@ -278,6 +313,7 @@ docker compose up -d
 
 #### Network names
 ```yml
+# compose.yml
 services:
   spuc:
     build:
@@ -314,6 +350,7 @@ networks:                             # Starts section for declaring networks
 
 ### Depends on
 ```yml
+# compose.yml
 services:
   spuc:
     build:
@@ -342,6 +379,7 @@ volumes:
   spuc-volume:
 ```
 ```yml
+# compose.yml
 services:
   spuc:
     build:
@@ -378,6 +416,7 @@ volumes:
 
 #### Simulating a slow start
 ```yml
+# compose.yml
 services:
   spuc:
     build:
@@ -419,6 +458,7 @@ docker compose up -d
 
 #### Simulating an unhealthy service
 ```yml
+# compose.yml
 services:
   spuc:
     build:

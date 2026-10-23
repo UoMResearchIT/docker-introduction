@@ -22,7 +22,7 @@ curl https://raw.githubusercontent.com/UoMResearchIT/docker-introduction/refs/he
 curl -L https://tinyurl.com/spuc-stats > stats.py
 ```
 
-Let's remember what we were up to yesterday - we need this file in the container
+Let's remember what we were up to previously - we need this file in the container
 
 We know the answer to this! Let's use a bind mount
 
@@ -65,6 +65,9 @@ The best fit for us right now though is the SPUC image itself!
 > [!CAUTION]
 > Lets start a file called "Dockerfile"
 
+> [!CAUTION]
+> Open a terminal alongside the editor
+
 ```dockerfile
 # Dockerfile
 FROM spuacv/spuc:latest
@@ -98,6 +101,7 @@ Ah and yes, we still need to install pandas.
 Let's do that but adding a line to the Dockerfile using RUN
 
 ```dockerfile
+# Dockerfile
 RUN pip install pandas
 ```
 
@@ -126,6 +130,7 @@ Let's add the plugin file to the Dockerfile
 For this we use COPY - which copies from the host to the image
 
 ```dockerfile
+# Dockerfile
 COPY stats.py /spuc/plugins/stats.py
 ```
 
@@ -153,6 +158,7 @@ Still working! And again... why stop there?
 Let's copy the print config
 
 ```dockerfile
+# Dockerfile
 COPY print.config /spuc/config/print.config
 ```
 
@@ -189,6 +195,7 @@ Well... we have environment variables there
 They are set in Dockerfiles using ENV  
 
 ```dockerfile
+# Dockerfile
 ENV EXPORT=True
 ```
 
@@ -219,6 +226,7 @@ Remember the idea of ENTRYPOINT and COMMAND?
 Let's set the ENTRYPOINT to be the run command and CMD to be the units
 
 ```dockerfile
+# Dockerfile
 ENTRYPOINT ["python", "/spuc/spuc.py"]
 CMD ["--units", "iulu"]
 ```
@@ -266,12 +274,14 @@ When using Compose, you make a single yaml file that defines your service
 And we write the first and most crucial element: service
 
 ```yaml
+# docker-compose.yaml
 + services:
 ```
 
 And under this we add our first service (named spuc)
 
 ```yaml
+# docker-compose.yaml
 services:
   spuc:                            # The name of the service  
     image: spuacv/spuc:latest      # The image to use
@@ -329,6 +339,7 @@ Often you can reconfigure by running up
 Previously we could name the container, and we can add this to the compose
 
 ```diff
+# docker-compose.yaml
 +    container_name: spuc_container            # The name of the container
 ```
 
@@ -353,6 +364,7 @@ It fails! Because we haven't exposed the port
 Let's add that to compose (as a list)
 
 ```diff
+# docker-compose.yaml
 +    ports:                          # Starts the list of ports to map  
 +      - 8321:8321                   # Maps port 8321 on the host to port 8321 in the container
 ```
@@ -371,6 +383,7 @@ Now to more complex matters - let's bring in our old config files using bind mou
 Confusingly, this is under the volumes tag
 
 ```diff
+# docker-compose.yaml
 +    volumes:                                        # Starts the list of volumes/bind mounts  
 +      - ./print.config:/spuc/config/print.config    # Bind mounts the print.config file
 ```
@@ -391,6 +404,7 @@ As with the CLI, the volume command controls if bind or volume
 And speak of the devil let's add our persistence volume
 
 ```diff
+# docker-compose.yaml
     volumes:  
 +      - spuc-volume:/spuc/output                  # Mounts the volume named spuc-volume
 ```
@@ -404,6 +418,7 @@ Ah but this failed!
 We forgot to add the declaration of the volume (which doesn't happen automatically)
 
 ```diff
+# docker-compose.yaml
 + volumes:                                      # Starts section for declaring   
 +  spuc-volume:                                # Declares a volume named 
 ```
@@ -426,6 +441,7 @@ The next job is adding our export environment variable
 This is done using environment
 
 ```diff
+# docker-compose.yaml
 +    environment:                      # Starts list of environment variables to set  
 +      - EXPORT=true                   # Sets the EXPORT environment variable to true
 ```
@@ -442,6 +458,7 @@ Finally, and most seriously, we need to address the units issue
 We can override the command in compose as well
 
 ```diff
+# docker-compose.yaml
 +    command: ["--units", "iulu"]          # Overrides the default command
 ```
 
@@ -461,6 +478,7 @@ But we are missing our plugin
 We can add this back in using another bind mount?
 
 ```diff
+# docker-compose.yaml
 +      - ./stats.py:/spuc/plugins/stats.py        # Mounts the stats.py plugin
 ```
 
@@ -475,14 +493,27 @@ Not to worry - we can make our own images using compose too!
 
 ## Building containers in Docker Compose
 
-We still have the Dockerfile from earlier!
+We still have the image from earlier!
 
-Let's tell compose to use that using build
+We can configure our compose to use it 
 
-```diff
+```
+# docker-compose.yaml
 services:
   spuc:
-  # image: spuacv/spuc:latest  
+-  # image: spuacv/spuc:latest  
++  image: spuc-stats
+```
+
+But... if we want to build this, we need to do it manually!
+
+Instead, let's tell compose to use that using build
+
+```diff
+# docker-compose.yaml
+services:
+  spuc:
+  # image: spuc-stats
     build:                        # Instead of using the 'image' key, we u  
       context: .                  # Sets the build context (the directory in w  
       dockerfile: Dockerfile      # Sets the name of the Dockerfile
@@ -491,6 +522,7 @@ services:
 We have to be careful here - we need to instruct compose to rebuild if we have made changes You can do this explicitly or add it to the up command
 
 ```
+docker compose build
 docker compose up --build -d
 docker compose logs
 ```
@@ -518,6 +550,7 @@ Since we are only using the browser we don't need the ports on SPUC any more
 Good for security
 
 ```diff
+# compose.yaml
 services:
   spuc:
     # ports:                            # We can remove these two lines  
@@ -539,6 +572,7 @@ This lets you isolate some services from others which can be good for security
 Let's name a network explicitly
 
 ```
+# compose.yaml
 services:
   spuc:
     networks:                         # Starts list of networks to connect this service to  
@@ -564,6 +598,7 @@ Problems! But, we can control the startup sequence with compose
 Let's tell compose that spusvi depends on spuc
 
 ```
+# compose.yaml
     depends_on:                     # Starts section for declaring dependencies  
       - spuc                        # Declares that the spucsvi service depends on the spuc service
 ```
@@ -577,6 +612,7 @@ To be sure SPUC is ready to answer we need to add a condition.
 Called a healthcheck And also add condition to the depends_on
 
 ```
+# compose.yaml
 services:  
   spuc:  
     healthcheck:                                                  # Starts section for declaring healthchecks  
