@@ -300,6 +300,10 @@ docker system prune
 ### Automatic cleanup
 ```bash
 docker run -d --rm --name spuc_container -p 8321:8321 spuacv/spuc:latest
+
+docker kill spuc_container
+
+docker ps -a
 ```
 This is a relatively standard command.  
 It will get worse.
@@ -325,7 +329,6 @@ They are declared with `name:path`:
 **-v spuc-volume:/spuc/output**
 
 ```bash
-docker kill spuc_container
 docker run -d --rm --name spuc_container -p 8321:8321 -v spuc-volume:/spuc/output spuacv/spuc:latest
 ```
 ```bash

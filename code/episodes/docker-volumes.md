@@ -5,7 +5,6 @@
 ## Making our data persist
 ## Volumes
 ```bash
-docker kill spuc_container
 docker run -d --rm --name spuc_container -p 8321:8321 -v spuc-volume:/spuc/output spuacv/spuc:latest
 ```
 ```bash

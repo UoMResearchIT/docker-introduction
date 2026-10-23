@@ -137,5 +137,9 @@ docker system prune
 ```bash
 docker run -d --rm --name spuc_container -p 8321:8321 spuacv/spuc:latest
 ```
+```bash
+docker kill spuc_container
+docker ps -a
+```
 
 

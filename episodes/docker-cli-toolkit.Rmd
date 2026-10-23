@@ -708,6 +708,11 @@ docker run -d --rm --name spuc_container -p 8321:8321 spuacv/spuc:latest
 
 We can verify that the container exists using `docker ps`.
 When the container is stopped, however, the container is automatically removed.
+```bash
+docker kill spuc_container
+docker ps -a
+```
+
 We don't have to worry about cleaning up afterwards, but it comes at a price.
 Since we've deleted the container, there is no way to bring it back.
 
