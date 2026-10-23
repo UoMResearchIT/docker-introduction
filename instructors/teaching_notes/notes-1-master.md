@@ -28,6 +28,8 @@ Go to **vulnerabilities** and start analysis.
 
 Important to check, but this is ok, verified image **python:3-slim**.
 
+Look at the **command** and **entrypoint**.
+
 ## Running 
 
 Images are **immutable snapshots** of an environment, to be used as **templates**.
@@ -77,7 +79,7 @@ apt update
 apt install nano
 nano config/print.config
 ```
-chango to
+Add `{time} ` at the beginning, so you get in the end:
 ```
 ::::: {time} Unicorn number {count} spotted at {location}!! Brightness: {brightness} {units}
 ```
@@ -145,18 +147,21 @@ Delete all containers and images.
 
 # Building our Docker CLI toolkit
 
+## The structure of a Docker command
+**Image:** A diagram showing the syntactic structure of a Docker command
 
 ## Pulling and Listing Images
 ```bash
 docker pull spuacv/spuc:latest
 ```
 
-## The structure of a Docker command
-**Image:** A diagram showing the syntactic structure of a Docker command
-
-## Listing Images
 ```bash
 docker image ls
+```
+
+If you run something you don't have, it will pull it for you automatically.
+```bash
+docker run hello-world
 ```
 
 ## Inspecting
@@ -317,6 +322,11 @@ Already ahead of Docker Desktop, but lets do more, like persist data.
 --------------------------------------------------
 --------------------------------------------------
 
+Break!
+
+--------------------------------------------------
+--------------------------------------------------
+
 
 # Sharing information with containers
 
@@ -402,6 +412,10 @@ Note that this **will not keep changes in sync** like a bind mount
 ### Bind mount files
 We can bind mount individual files, like the print config.
 First we modify the file to our liking:
+```
+nano print.config
+```
+Add `{time} ` and ` number {count} ` at the beginning, so you get in the end:
 ```
 ::::: {time} Unicorn number {count} spotted at {location}! Brightness: {brightness} {units}
 ```
