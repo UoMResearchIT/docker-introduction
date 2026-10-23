@@ -12,7 +12,7 @@ We will look at **Containers** and **Images** only.
 
 
 ## Getting images
-Search and pull of SPUC container: **spuacv-spuc**  
+Search and pull of SPUC container: **spuacv/spuc**
 Click on image to see **docs**.  
 Show how to select a **tag**.  
 Option to ***run*** or ***pull***.
