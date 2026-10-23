@@ -496,7 +496,7 @@ Instead, let's tell compose to use that using build
 ```diff
 services:
   spuc:
-  # image: spuacv/spuc:latest  
+  # image: spuc-stats
     build:                        # Instead of using the 'image' key, we u  
       context: .                  # Sets the build context (the directory in w  
       dockerfile: Dockerfile      # Sets the name of the Dockerfile
