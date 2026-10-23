@@ -3,6 +3,7 @@
 
 
 ```python
+# stats.py
 from __main__ import app
 from __main__ import file_path
 
@@ -26,6 +27,7 @@ docker run --rm --name spuc_container -p 8321:8321 -v ./print.config:/spuc/confi
 ```
 ## Creating Docker Images
 ```Dockerfile
+# Dockerfile
 FROM spuacv/spuc:latest
 ```
 ```bash
@@ -50,6 +52,9 @@ docker run --rm spuc-stats
 docker run --rm --name spuc-stats_container -p 8321:8321 -v ./print.config:/spuc/config/print.config -v spuc-volume:/spuc/output -v ./stats.py:/spuc/plugins/stats.py -e EXPORT=true spuc-stats --units iulu
 ```
 ```Dockerfile
+# Dockerfile
+FROM spuacv/spuc:latest
+
 RUN pip install pandas
 ```
 ```bash
@@ -63,6 +68,11 @@ curl localhost:8321/stats
 ```
 ## COPY
 ```Dockerfile
+# Dockerfile
+FROM spuacv/spuc:latest
+
+RUN pip install pandas
+
 COPY stats.py /spuc/plugins/stats.py
 ```
 ```bash
@@ -72,9 +82,16 @@ docker build -t spuc-stats ./
 ## Layers
 
 ```bash
+docker kill spuc-stats_container
 docker run --rm --name spuc-stats_container -p 8321:8321 -v ./print.config:/spuc/config/print.config -v spuc-volume:/spuc/output -e EXPORT=true spuc-stats --units iulu
 ```
 ```Dockerfile
+# Dockerfile
+FROM spuacv/spuc:latest
+
+RUN pip install pandas
+
+COPY stats.py /spuc/plugins/stats.py
 COPY print.config /spuc/config/print.config
 ```
 ```bash
@@ -92,6 +109,14 @@ docker stop spuc_container
 ```
 ## ENV
 ```Dockerfile
+# Dockerfile
+FROM spuacv/spuc:latest
+
+RUN pip install pandas
+
+COPY stats.py /spuc/plugins/stats.py
+COPY print.config /spuc/config/print.config
+
 ENV EXPORT=True
 ```
 ```bash
@@ -104,6 +129,7 @@ docker run --rm --name spuc-stats_container -p 8321:8321 -v spuc-volume:/spuc/ou
 
 ## Layers - continued
 ```Dockerfile
+# Dockerfile
 FROM spuacv/spuc:latest
 
 ENV EXPORT=True
@@ -119,6 +145,16 @@ docker build -t spuc-stats ./
 
 ## ENTRYPOINT and CMD
 ```Dockerfile
+# Dockerfile
+FROM spuacv/spuc:latest
+
+ENV EXPORT=True
+
+RUN pip install pandas
+
+COPY stats.py /spuc/plugins/stats.py
+COPY print.config /spuc/config/print.config
+
 ENTRYPOINT ["python", "/spuc/spuc.py"]
 CMD ["--units", "iulu"]
 ```
