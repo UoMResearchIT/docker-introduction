@@ -65,6 +65,9 @@ The best fit for us right now though is the SPUC image itself!
 > [!CAUTION]
 > Lets start a file called "Dockerfile"
 
+> [!CAUTION]
+> Open a terminal alongside the editor
+
 ```dockerfile
 # Dockerfile
 FROM spuacv/spuc:latest
