@@ -128,7 +128,7 @@ docker kill spuc_container
 docker rm spuc_container
 ```
 ```bash
-docker image rm spuacv/spuc:latest
+docker image rm alpine:latest
 ```
 ```bash
 docker system prune
