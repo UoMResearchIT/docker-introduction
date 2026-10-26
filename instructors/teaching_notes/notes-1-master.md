@@ -187,10 +187,14 @@ docker inspect spuacv/spuc:latest -f $'Entrypoint: {{.Config.Entrypoint}}\nComma
 
 
 ## Running
+**Image:** building run command: run
+
 ```bash
 docker run spuacv/spuc:latest
 ```
 Use `Ctrl+C` to stop the container.
+
+**Image:** building run command: detach
 ```bash
 docker run -d spuacv/spuc:latest
 ```
@@ -214,6 +218,8 @@ curl -X PUT localhost:8321/unicorn_spotted?location=moon\&brightness=100
 *Error!* port was not exposed.
 
 ## Exposing ports
+**Image:** building run command: ports
+
 ```bash
 docker run -d -p 8321:8321 spuacv/spuc:latest
 ```
@@ -228,6 +234,8 @@ docker logs unruffled_noyce
 ```
 
 ## Setting the name of a container
+**Image:** building run command: --name
+
 ```bash
 docker run -d --name spuc_container -p 8321:8321 spuacv/spuc:latest
 ```
@@ -303,6 +311,8 @@ docker system prune
 ```
 
 ### Automatic cleanup
+**Image:** building run command: --rm
+
 ```bash
 docker run -d --rm --name spuc_container -p 8321:8321 spuacv/spuc:latest
 
@@ -335,6 +345,9 @@ Containers are ephemeral, but we want our unicorn sightings to persist.
 
 ## Volumes
 Managed by Docker, hidden away in file system.  
+
+**Image:** building run command: volumes
+
 They are declared with `name:path`:
 **-v spuc-volume:/spuc/output**
 
@@ -372,7 +385,10 @@ docker exec spuc_container cat /spuc/output/unicorn_sightings.txt
 
 
 ## Bind mounts
-Managed by the user, can be handy, can be dangerous.  
+Managed by the user, can be handy, can be dangerous.
+
+**Image:** building run command: bind-mounts
+
 They are declared with `path:path`:
 **-v ./spuc/output:/spuc/output**
 
@@ -411,6 +427,9 @@ Note that this **will not keep changes in sync** like a bind mount
 
 ### Bind mount files
 We can bind mount individual files, like the print config.
+
+**Image:** building run command: bind-files
+
 First we modify the file to our liking:
 ```
 nano print.config
@@ -554,6 +573,9 @@ We can:
 
 ## Setting the environment
 We set environment variables with `-e name=value`:
+
+**Image:** building run command: env
+
 ```bash
 docker kill spuc_container
 docker run -d --rm --name spuc_container -p 8321:8321 -v ./print.config:/spuc/config/print.config -v spuc-volume:/spuc/output -e EXPORT=true spuacv/spuc:latest
@@ -580,6 +602,9 @@ Parameters are passed on the command. Remember:
 docker inspect spuacv/spuc:latest -f $'Entrypoint: {{.Config.Entrypoint}}\nCommand: {{.Config.Cmd}}'
 ```
 To override it, we write the command we want at the end:
+
+**Image:** building run command: command
+
 ```bash
 docker kill spuc_container
 docker run -d --rm --name spuc_container -p 8321:8321 -v ./print.config:/spuc/config/print.config -v spuc-volume:/spuc/output -e EXPORT=true spuacv/spuc:latest --units iulu
@@ -608,6 +633,9 @@ Overriding the command is a very common way to configure containers.
 ## Overriding the entrypoint
 
 This is less common, but it can also be done:
+
+**Image:** building run command: entrypoint
+
 ```bash
 docker run -it --rm --entrypoint /bin/sh spuacv/spuc:latest
 ```
