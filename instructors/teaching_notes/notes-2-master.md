@@ -174,18 +174,18 @@ docker build -t spuc-stats ./
 Let's see that it's still working
 
 ```
-docker run -d --rm --name spuc_container -p 8321:8321 -v spuc-volume:/spuc/output -e EXPORT=True spuc-stats --units iulu
+docker run -d --rm --name spuc-stats_container -p 8321:8321 -v spuc-volume:/spuc/output -e EXPORT=True spuc-stats --units iulu
 ```
 
 OMG a unicorn! Better log it!
 
 ```
 curl -X PUT localhost:8321/unicorn_spotted?location=saturn\&brightness=87
-docker logs spuc_container
+docker logs spuc-stats_container
 ```
 
 ```
-docker stop spuc_container
+docker stop spuc-stats_container
 ```
 
 ## ENV
@@ -276,14 +276,14 @@ When using Compose, you make a single yaml file that defines your service
 And we write the first and most crucial element: service
 
 ```yaml
-# docker-compose.yaml
+# compose,yml
 + services:
 ```
 
 And under this we add our first service (named spuc)
 
 ```yaml
-# docker-compose.yaml
+# compose,yml
 services:
   spuc:                            # The name of the service  
     image: spuacv/spuc:latest      # The image to use
@@ -341,7 +341,7 @@ Often you can reconfigure by running up
 Previously we could name the container, and we can add this to the compose
 
 ```diff
-# docker-compose.yaml
+# compose.yml
 +    container_name: spuc_container            # The name of the container
 ```
 
@@ -366,7 +366,7 @@ It fails! Because we haven't exposed the port
 Let's add that to compose (as a list)
 
 ```diff
-# docker-compose.yaml
+# compose.yml
 +    ports:                          # Starts the list of ports to map  
 +      - 8321:8321                   # Maps port 8321 on the host to port 8321 in the container
 ```
@@ -385,7 +385,7 @@ Now to more complex matters - let's bring in our old config files using bind mou
 Confusingly, this is under the volumes tag
 
 ```diff
-# docker-compose.yaml
+# compose.yml
 +    volumes:                                        # Starts the list of volumes/bind mounts  
 +      - ./print.config:/spuc/config/print.config    # Bind mounts the print.config file
 ```
@@ -406,7 +406,7 @@ As with the CLI, the volume command controls if bind or volume
 And speak of the devil let's add our persistence volume
 
 ```diff
-# docker-compose.yaml
+# compose.yml
     volumes:  
 +      - spuc-volume:/spuc/output                  # Mounts the volume named spuc-volume
 ```
@@ -420,7 +420,7 @@ Ah but this failed!
 We forgot to add the declaration of the volume (which doesn't happen automatically)
 
 ```diff
-# docker-compose.yaml
+# compose.yml
 + volumes:                                      # Starts section for declaring   
 +  spuc-volume:                                # Declares a volume named 
 ```
@@ -443,7 +443,7 @@ The next job is adding our export environment variable
 This is done using environment
 
 ```diff
-# docker-compose.yaml
+# compose.yml
 +    environment:                      # Starts list of environment variables to set  
 +      - EXPORT=true                   # Sets the EXPORT environment variable to true
 ```
@@ -460,7 +460,7 @@ Finally, and most seriously, we need to address the units issue
 We can override the command in compose as well
 
 ```diff
-# docker-compose.yaml
+# compose.yml
 +    command: ["--units", "iulu"]          # Overrides the default command
 ```
 
@@ -480,7 +480,7 @@ But we are missing our plugin
 We can add this back in using another bind mount?
 
 ```diff
-# docker-compose.yaml
+# compose.yml
 +      - ./stats.py:/spuc/plugins/stats.py        # Mounts the stats.py plugin
 ```
 
@@ -500,7 +500,7 @@ We still have the image from earlier!
 We can configure our compose to use it 
 
 ```
-# docker-compose.yaml
+# compose.yml
 services:
   spuc:
 -  # image: spuacv/spuc:latest  
@@ -512,7 +512,7 @@ But... if we want to build this, we need to do it manually!
 Instead, let's tell compose to use that using build
 
 ```diff
-# docker-compose.yaml
+# compose.yml
 services:
   spuc:
   # image: spuc-stats
@@ -552,7 +552,7 @@ Since we are only using the browser we don't need the ports on SPUC any more
 Good for security
 
 ```diff
-# compose.yaml
+# compose.yml
 services:
   spuc:
     # ports:                            # We can remove these two lines  
@@ -574,7 +574,7 @@ This lets you isolate some services from others which can be good for security
 Let's name a network explicitly
 
 ```
-# compose.yaml
+# compose.yml
 services:
   spuc:
     networks:                         # Starts list of networks to connect this service to  
@@ -600,7 +600,7 @@ Problems! But, we can control the startup sequence with compose
 Let's tell compose that spusvi depends on spuc
 
 ```
-# compose.yaml
+# compose.yml
     depends_on:                     # Starts section for declaring dependencies  
       - spuc                        # Declares that the spucsvi service depends on the spuc service
 ```
@@ -614,7 +614,7 @@ To be sure SPUC is ready to answer we need to add a condition.
 Called a healthcheck And also add condition to the depends_on
 
 ```
-# compose.yaml
+# compose.yml
 services:  
   spuc:  
     healthcheck:                                                  # Starts section for declaring healthchecks  
