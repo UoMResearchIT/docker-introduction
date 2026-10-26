@@ -109,7 +109,9 @@ docker run --rm --name spuc-stats_container -p 8321:8321 -v ./print.config:/spuc
 Success! The plugin is loading. Let's try the endpoint we have created
 
 ```
+docker run -d --rm --name spuc-stats_container -p 8321:8321 -v ./print.config:/spuc/config/print.config -v spuc-volume:/spuc/output -v ./stats.py:/spuc/plugins/stats.py -e EXPORT=true spuc-stats --units iulu
 curl localhost:8321/stats
+docker kill spuc-stats_container
 ```
 
 Great progress! We've tailored the SPUC image to our needs and added a feature
