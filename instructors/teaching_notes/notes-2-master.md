@@ -169,6 +169,9 @@ docker build -t spuc-stats ./
 
 > [!CAUTION]
 > Remove print config bind
+> run with -d
+
+Let's see that it's still working
 
 ```
 docker run -d --rm --name spuc_container -p 8321:8321 -v spuc-volume:/spuc/output -e EXPORT=True spuc-stats --units iulu
