@@ -494,9 +494,11 @@ nano config/print.config
 		<strong>Image:</strong> Example 2 - sleep forever
 	</p>
 	<h2 id="running-1">Running</h2>
+	<p><strong>Image:</strong> building run command: run</p>
 	<pre class="hljs"><code><div>docker run spuacv/spuc:latest
 </div></code></pre>
 	<p>Use <code>Ctrl+C</code> to stop the container.</p>
+	<p><strong>Image:</strong> building run command: detach</p>
 	<pre class="hljs"><code><div>docker run -d spuacv/spuc:latest
 </div></code></pre>
 	<h2 id="listing-containers">Listing Containers</h2>
@@ -512,6 +514,7 @@ nano config/print.config
 </div></code></pre>
 	<p><em>Error!</em> port was not exposed.</p>
 	<h2 id="exposing-ports">Exposing ports</h2>
+	<p><strong>Image:</strong> building run command: ports</p>
 	<pre class="hljs"><code><div>docker run -d -p 8321:8321 spuacv/spuc:latest
 </div></code></pre>
 	<pre class="hljs"><code><div>docker ps
@@ -521,6 +524,7 @@ nano config/print.config
 	<pre class="hljs"><code><div>docker logs unruffled_noyce
 </div></code></pre>
 	<h2 id="setting-the-name-of-a-container">Setting the name of a container</h2>
+	<p><strong>Image:</strong> building run command: --name</p>
 	<pre class="hljs"><code><div>docker run -d --name spuc_container -p 8321:8321 spuacv/spuc:latest
 </div></code></pre>
 	<p><em>Error!</em> <strong>port</strong> already in use, we need to <strong>stop and delete</strong>.</p>
@@ -572,6 +576,7 @@ docker stats
 	<pre class="hljs"><code><div>docker system prune
 </div></code></pre>
 	<h3 id="automatic-cleanup">Automatic cleanup</h3>
+	<p><strong>Image:</strong> building run command: --rm</p>
 	<pre class="hljs"><code><div>docker run -d --<span class="hljs-built_in">rm</span> --name spuc_container -p 8321:8321 spuacv/spuc:latest
 
 docker <span class="hljs-built_in">kill</span> spuc_container
@@ -590,8 +595,9 @@ docker ps -a
 	<h1 id="sharing-information-with-containers">Sharing information with containers</h1>
 	<p>Containers are ephemeral, but we want our unicorn sightings to persist.</p>
 	<h2 id="volumes">Volumes</h2>
-	<p>Managed by Docker, hidden away in file system.<br>
-		They are declared with <code>name:path</code>:
+	<p>Managed by Docker, hidden away in file system.</p>
+	<p><strong>Image:</strong> building run command: volumes</p>
+	<p>They are declared with <code>name:path</code>:
 		<strong>-v spuc-volume:/spuc/output</strong>
 	</p>
 	<pre class="hljs"><code><div>docker run -d --<span class="hljs-built_in">rm</span> --name spuc_container -p 8321:8321 -v spuc-volume:/spuc/output spuacv/spuc:latest
@@ -617,8 +623,9 @@ docker ps -a
 docker <span class="hljs-built_in">exec</span> spuc_container <span class="hljs-built_in">cat</span> /spuc/output/unicorn_sightings.txt
 </div></code></pre>
 	<h2 id="bind-mounts">Bind mounts</h2>
-	<p>Managed by the user, can be handy, can be dangerous.<br>
-		They are declared with <code>path:path</code>:
+	<p>Managed by the user, can be handy, can be dangerous.</p>
+	<p><strong>Image:</strong> building run command: bind-mounts</p>
+	<p>They are declared with <code>path:path</code>:
 		<strong>-v ./spuc/output:/spuc/output</strong>
 	</p>
 	<pre class="hljs"><code><div>docker <span class="hljs-built_in">kill</span> spuc_container
@@ -648,8 +655,9 @@ docker run -d --<span class="hljs-built_in">rm</span> --name spuc_container -p 8
 </div></code></pre>
 	<p>Note that this <strong>will not keep changes in sync</strong> like a bind mount</p>
 	<h3 id="bind-mount-files">Bind mount files</h3>
-	<p>We can bind mount individual files, like the print config.
-		First we modify the file to our liking:</p>
+	<p>We can bind mount individual files, like the print config.</p>
+	<p><strong>Image:</strong> building run command: bind-files</p>
+	<p>First we modify the file to our liking:</p>
 	<pre class="hljs"><code><div>nano print.config
 </div></code></pre>
 	<p>Add <code>{time} </code> and <code>number {count}</code> at the beginning, so you get in the end:</p>
@@ -760,6 +768,7 @@ docker logs spuc_container
 	</ul>
 	<h2 id="setting-the-environment">Setting the environment</h2>
 	<p>We set environment variables with <code>-e name=value</code>:</p>
+	<p><strong>Image:</strong> building run command: env</p>
 	<pre class="hljs"><code><div>docker <span class="hljs-built_in">kill</span> spuc_container
 docker run -d --<span class="hljs-built_in">rm</span> --name spuc_container -p 8321:8321 -v ./print.config:/spuc/config/print.config -v spuc-volume:/spuc/output -e EXPORT=<span class="hljs-literal">true</span> spuacv/spuc:latest
 docker logs spuc_container
@@ -777,6 +786,7 @@ docker logs spuc_container
 	<pre class="hljs"><code><div>docker inspect spuacv/spuc:latest -f $<span class="hljs-string">&#x27;Entrypoint: {{.Config.Entrypoint}}\nCommand: {{.Config.Cmd}}&#x27;</span>
 </div></code></pre>
 	<p>To override it, we write the command we want at the end:</p>
+	<p><strong>Image:</strong> building run command: command</p>
 	<pre class="hljs"><code><div>docker <span class="hljs-built_in">kill</span> spuc_container
 docker run -d --<span class="hljs-built_in">rm</span> --name spuc_container -p 8321:8321 -v ./print.config:/spuc/config/print.config -v spuc-volume:/spuc/output -e EXPORT=<span class="hljs-literal">true</span> spuacv/spuc:latest --units iulu
 </div></code></pre>
@@ -799,6 +809,7 @@ curl localhost:8321/export
 	<p>Overriding the command is a very common way to configure containers.</p>
 	<h2 id="overriding-the-entrypoint">Overriding the entrypoint</h2>
 	<p>This is less common, but it can also be done:</p>
+	<p><strong>Image:</strong> building run command: entrypoint</p>
 	<pre class="hljs"><code><div>docker run -it --<span class="hljs-built_in">rm</span> --entrypoint /bin/sh spuacv/spuc:latest
 </div></code></pre>
 	<h2 id="challenge-entrypoint--command-combinations">Challenge: Entrypoint + Command combinations</h2>
