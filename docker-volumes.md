@@ -46,7 +46,6 @@ or for persisting data between runs of a container.
 Let's have a look at how we can use a volume to persist the `unicorn_sightings.txt` file between runs of the container.
 We do this by modifying our `run` command to include a `-v` (for volume) flag, a volume name and a path inside the container.
 ```bash
-docker kill spuc_container
 docker run -d --rm --name spuc_container -p 8321:8321 -v spuc-volume:/spuc/output spuacv/spuc:latest
 ```
 ```output
