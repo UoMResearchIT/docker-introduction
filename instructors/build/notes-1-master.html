@@ -464,12 +464,13 @@ nano config/print.config
 	<p>Limited in how you can run the containers.</p>
 	<p>Run <strong>alpine</strong>. Nothing happens.</p>
 	<p>Delete all containers and images.</p>
-	<h2 id="show-keypoints-slide-image">Show keypoints slide <strong>Image</strong></h2>
+	<p><mark><strong>x6 Images:</strong> Stamp analogy</mark></p>
+	<p><mark><strong>Image:</strong> keypoints slide</mark></p>
 	<hr>
 	<hr>
 	<h1 id="building-our-docker-cli-toolkit">Building our Docker CLI toolkit</h1>
 	<h2 id="the-structure-of-a-docker-command">The structure of a Docker command</h2>
-	<p><strong>Image:</strong> A diagram showing the syntactic structure of a Docker command</p>
+	<p><mark><strong>Image:</strong> A diagram showing the syntactic structure of a Docker command</mark></p>
 	<h2 id="pulling-and-listing-images">Pulling and Listing Images</h2>
 	<pre class="hljs"><code><div>docker pull spuacv/spuc:latest
 </div></code></pre>
@@ -488,17 +489,16 @@ nano config/print.config
 	<pre class="hljs"><code><div>docker inspect spuacv/spuc:latest -f $<span class="hljs-string">&#x27;Entrypoint: {{.Config.Entrypoint}}\nCommand: {{.Config.Cmd}}&#x27;</span>
 </div></code></pre>
 	<h2 id="default-command">Default Command</h2>
-	<p><strong>Image:</strong> A diagram representing the lifecycle of a container</p>
+	<p><mark><strong>Image:</strong> A diagram representing the lifecycle of a container</mark></p>
 	<h3 id="further-examples-of-container-lifecycle">Further examples of container lifecycle</h3>
-	<p><strong>Image:</strong> Example 1 - hello-world
-		<strong>Image:</strong> Example 2 - sleep forever
-	</p>
+	<p><mark><strong>Image:</strong> Example 1 - hello-world</mark></p>
+	<p><mark><strong>Image:</strong> Example 2 - sleep forever</mark></p>
 	<h2 id="running-1">Running</h2>
-	<p><strong>Image:</strong> building run command: run</p>
+	<p><mark><strong>Image:</strong> building run command: run</mark></p>
 	<pre class="hljs"><code><div>docker run spuacv/spuc:latest
 </div></code></pre>
 	<p>Use <code>Ctrl+C</code> to stop the container.</p>
-	<p><strong>Image:</strong> building run command: detach</p>
+	<p><mark><strong>Image:</strong> building run command: detach</mark></p>
 	<pre class="hljs"><code><div>docker run -d spuacv/spuc:latest
 </div></code></pre>
 	<h2 id="listing-containers">Listing Containers</h2>
@@ -514,7 +514,7 @@ nano config/print.config
 </div></code></pre>
 	<p><em>Error!</em> port was not exposed.</p>
 	<h2 id="exposing-ports">Exposing ports</h2>
-	<p><strong>Image:</strong> building run command: ports</p>
+	<p><mark><strong>Image:</strong> building run command: ports</mark></p>
 	<pre class="hljs"><code><div>docker run -d -p 8321:8321 spuacv/spuc:latest
 </div></code></pre>
 	<pre class="hljs"><code><div>docker ps
@@ -524,7 +524,7 @@ nano config/print.config
 	<pre class="hljs"><code><div>docker logs unruffled_noyce
 </div></code></pre>
 	<h2 id="setting-the-name-of-a-container">Setting the name of a container</h2>
-	<p><strong>Image:</strong> building run command: --name</p>
+	<p><mark><strong>Image:</strong> building run command: --name</mark></p>
 	<pre class="hljs"><code><div>docker run -d --name spuc_container -p 8321:8321 spuacv/spuc:latest
 </div></code></pre>
 	<p><em>Error!</em> <strong>port</strong> already in use, we need to <strong>stop and delete</strong>.</p>
@@ -576,7 +576,7 @@ docker stats
 	<pre class="hljs"><code><div>docker system prune
 </div></code></pre>
 	<h3 id="automatic-cleanup">Automatic cleanup</h3>
-	<p><strong>Image:</strong> building run command: --rm</p>
+	<p><mark><strong>Image:</strong> building run command: --rm</mark></p>
 	<pre class="hljs"><code><div>docker run -d --<span class="hljs-built_in">rm</span> --name spuc_container -p 8321:8321 spuacv/spuc:latest
 
 docker <span class="hljs-built_in">kill</span> spuc_container
@@ -586,7 +586,7 @@ docker ps -a
 	<p>This is a relatively standard command.<br>
 		It will get worse.</p>
 	<p>Already ahead of Docker Desktop, but lets do more, like persist data.</p>
-	<h2 id="show-keypoints-slide-image-1">Show keypoints slide <strong>Image</strong></h2>
+	<p><mark><strong>Image:</strong> keypoints slide</mark></p>
 	<hr>
 	<hr>
 	<p>Break!</p>
@@ -596,7 +596,7 @@ docker ps -a
 	<p>Containers are ephemeral, but we want our unicorn sightings to persist.</p>
 	<h2 id="volumes">Volumes</h2>
 	<p>Managed by Docker, hidden away in file system.</p>
-	<p><strong>Image:</strong> building run command: volumes</p>
+	<p><mark><strong>Image:</strong> building run command: volumes</mark></p>
 	<p>They are declared with <code>name:path</code>:
 		<strong>-v spuc-volume:/spuc/output</strong>
 	</p>
@@ -624,7 +624,7 @@ docker <span class="hljs-built_in">exec</span> spuc_container <span class="hljs-
 </div></code></pre>
 	<h2 id="bind-mounts">Bind mounts</h2>
 	<p>Managed by the user, can be handy, can be dangerous.</p>
-	<p><strong>Image:</strong> building run command: bind-mounts</p>
+	<p><mark><strong>Image:</strong> building run command: bind-mounts</mark></p>
 	<p>They are declared with <code>path:path</code>:
 		<strong>-v ./spuc/output:/spuc/output</strong>
 	</p>
@@ -656,7 +656,7 @@ docker run -d --<span class="hljs-built_in">rm</span> --name spuc_container -p 8
 	<p>Note that this <strong>will not keep changes in sync</strong> like a bind mount</p>
 	<h3 id="bind-mount-files">Bind mount files</h3>
 	<p>We can bind mount individual files, like the print config.</p>
-	<p><strong>Image:</strong> building run command: bind-files</p>
+	<p><mark><strong>Image:</strong> building run command: bind-files</mark></p>
 	<p>First we modify the file to our liking:</p>
 	<pre class="hljs"><code><div>nano print.config
 </div></code></pre>
@@ -681,7 +681,7 @@ docker logs spuc_container
 		We could do the same with a whole directory, but be careful not to overwrite important files in the container!
 	</p>
 	<h2 id="-challenge-common-mistakes-with-volumes">! Challenge: Common mistakes with volumes</h2>
-	<p><strong>Image:</strong> Common mistakes with volumes</p>
+	<p><mark><strong>Image:</strong> Common mistakes with volumes</mark></p>
 	<pre class="hljs"><code><div>docker run -v spuc-vol spuacv/spuc:latest
 </div></code></pre>
 	<p><strong>Problem:</strong> Missing path to mount volume. It uses /spuc-vol in the container, but it wont
@@ -710,7 +710,7 @@ docker logs spuc_container
 	<p><strong>Problem:</strong> <code>name:path</code>, so volume... However, print.config is not a directory.<br>
 		<strong>Fix:</strong> Use docker volume rm print.config to remove the volume and try again.
 	</p>
-	<h2 id="show-keypoints-slide-image-2">Show keypoints slide <strong>Image</strong></h2>
+	<p><mark><strong>Image:</strong> keypoints slide</mark></p>
 	<hr>
 	<hr>
 	<h1 id="docker-hub">Docker Hub</h1>
@@ -755,7 +755,7 @@ docker logs spuc_container
 		<li>ECR from Amazon.</li>
 		<li>ACR from Azure, Microsoft.</li>
 	</ul>
-	<h2 id="show-keypoints-slide-image-3">Show keypoints slide <strong>Image</strong></h2>
+	<p><mark><strong>Image:</strong> keypoints slide</mark></p>
 	<hr>
 	<hr>
 	<h1 id="configuring-containers">Configuring containers</h1>
@@ -768,7 +768,7 @@ docker logs spuc_container
 	</ul>
 	<h2 id="setting-the-environment">Setting the environment</h2>
 	<p>We set environment variables with <code>-e name=value</code>:</p>
-	<p><strong>Image:</strong> building run command: env</p>
+	<p><mark><strong>Image:</strong> building run command: env</mark></p>
 	<pre class="hljs"><code><div>docker <span class="hljs-built_in">kill</span> spuc_container
 docker run -d --<span class="hljs-built_in">rm</span> --name spuc_container -p 8321:8321 -v ./print.config:/spuc/config/print.config -v spuc-volume:/spuc/output -e EXPORT=<span class="hljs-literal">true</span> spuacv/spuc:latest
 docker logs spuc_container
@@ -786,7 +786,7 @@ docker logs spuc_container
 	<pre class="hljs"><code><div>docker inspect spuacv/spuc:latest -f $<span class="hljs-string">&#x27;Entrypoint: {{.Config.Entrypoint}}\nCommand: {{.Config.Cmd}}&#x27;</span>
 </div></code></pre>
 	<p>To override it, we write the command we want at the end:</p>
-	<p><strong>Image:</strong> building run command: command</p>
+	<p><mark><strong>Image:</strong> building run command: command</mark></p>
 	<pre class="hljs"><code><div>docker <span class="hljs-built_in">kill</span> spuc_container
 docker run -d --<span class="hljs-built_in">rm</span> --name spuc_container -p 8321:8321 -v ./print.config:/spuc/config/print.config -v spuc-volume:/spuc/output -e EXPORT=<span class="hljs-literal">true</span> spuacv/spuc:latest --units iulu
 </div></code></pre>
@@ -809,7 +809,7 @@ curl localhost:8321/export
 	<p>Overriding the command is a very common way to configure containers.</p>
 	<h2 id="overriding-the-entrypoint">Overriding the entrypoint</h2>
 	<p>This is less common, but it can also be done:</p>
-	<p><strong>Image:</strong> building run command: entrypoint</p>
+	<p><mark><strong>Image:</strong> building run command: entrypoint</mark></p>
 	<pre class="hljs"><code><div>docker run -it --<span class="hljs-built_in">rm</span> --entrypoint /bin/sh spuacv/spuc:latest
 </div></code></pre>
 	<h2 id="challenge-entrypoint--command-combinations">Challenge: Entrypoint + Command combinations</h2>
@@ -851,7 +851,7 @@ curl localhost:8321/export
 		<li><strong>C:</strong> Python script can be changed easily, which is more likely to be bad than good!</li>
 		<li><strong>D:</strong> Maximum flexibility, but re-write the whole command to modify even the parameters.</li>
 	</ul>
-	<h2 id="show-keypoints-slide-image-4">Show keypoints slide <strong>Image</strong></h2>
+	<p><mark><strong>Image:</strong> keypoints slide</mark></p>
 
 </body>
 
