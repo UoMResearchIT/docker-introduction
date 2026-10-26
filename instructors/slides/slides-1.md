@@ -135,6 +135,30 @@ If you have Docker Desktop, we encourage you to <span style="font-size: 1.5rem;"
 
 ---
 
+![height:300](../fig/stamp_analogy/00_stamp.png)
+
+---
+
+![height:300](../fig/stamp_analogy/01_print.png)
+
+---
+
+![height:300](../fig/stamp_analogy/02_container.png)
+
+---
+
+![height:300](../fig/stamp_analogy/03_alive.png)
+
+---
+
+![height:300](../fig/stamp_analogy/04_copies.png)
+
+---
+
+![height:300](../fig/stamp_analogy/05_bottomline.png)
+
+---
+
 ![width:1000](../fig/Docker_Desktop_keypoints.png)
 
 ---
@@ -159,6 +183,25 @@ If you have Docker Desktop, we encourage you to <span style="font-size: 1.5rem;"
 
 ---
 
+![width:1000](../fig/run_command/run_command_00_run.png)
+
+---
+
+![width:1000](../fig/run_command/run_command_01_detach.png)
+
+---
+
+![width:1000](../fig/run_command/run_command_02_port.png)
+
+---
+
+![width:1000](../fig/run_command/run_command_03_name.png)
+
+---
+
+![width:1000](../fig/run_command/run_command_04_rm.png)
+
+---
 <div style="display: flex; font-size: 1.8rem;">
 
 <div style="flex: 1; padding: 10px;">
@@ -177,6 +220,23 @@ If you have Docker Desktop, we encourage you to <span style="font-size: 1.5rem;"
 
 ---
 
+<h1> Break! </h1>
+
+---
+
+![width:1000](../fig/run_command/run_command_05_volume.png)
+
+---
+
+![width:1000](../fig/run_command/run_command_06_bind_dir.png)
+
+---
+
+![width:1000](../fig/run_command/run_command_07_bind_file.png)
+
+---
+
+
 ![width:1000](../fig/common_mistakes_with_volumes.png)
 
 ---
@@ -186,6 +246,18 @@ If you have Docker Desktop, we encourage you to <span style="font-size: 1.5rem;"
 ---
 
 ![width:1000](../fig/docker_hub_keypoints.png)
+
+---
+
+![width:1000](../fig/run_command/run_command_08_env.png)
+
+---
+
+![width:1000](../fig/run_command/run_command_09_command.png)
+
+---
+
+![width:1000](../fig/run_command/run_command_10_entrypoint.png)
 
 ---
 

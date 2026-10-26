@@ -12,7 +12,7 @@ We will look at **Containers** and **Images** only.
 
 
 ## Getting images
-Search and pull of SPUC container: **spuacv-spuc**  
+Search and pull of SPUC container: **spuacv/spuc**
 Click on image to see **docs**.  
 Show how to select a **tag**.  
 Option to ***run*** or ***pull***.
@@ -27,6 +27,8 @@ Click on image name to inspect.
 Go to **vulnerabilities** and start analysis.
 
 Important to check, but this is ok, verified image **python:3-slim**.
+
+Look at the **command** and **entrypoint**.
 
 ## Running 
 
@@ -77,7 +79,7 @@ apt update
 apt install nano
 nano config/print.config
 ```
-chango to
+Add `{time} ` at the beginning, so you get in the end:
 ```
 ::::: {time} Unicorn number {count} spotted at {location}!! Brightness: {brightness} {units}
 ```
@@ -136,8 +138,10 @@ Run **alpine**. Nothing happens.
 
 Delete all containers and images.
 
+<mark>**x6 Images:** Stamp analogy</mark>
 
-## Show keypoints slide **Image**
+
+<mark>**Image:** keypoints slide</mark>
 
 
 --------------------------------------------------
@@ -145,18 +149,21 @@ Delete all containers and images.
 
 # Building our Docker CLI toolkit
 
+## The structure of a Docker command
+<mark>**Image:** A diagram showing the syntactic structure of a Docker command</mark>
 
 ## Pulling and Listing Images
 ```bash
 docker pull spuacv/spuc:latest
 ```
 
-## The structure of a Docker command
-**Image:** A diagram showing the syntactic structure of a Docker command
-
-## Listing Images
 ```bash
 docker image ls
+```
+
+If you run something you don't have, it will pull it for you automatically.
+```bash
+docker run hello-world
 ```
 
 ## Inspecting
@@ -170,22 +177,27 @@ docker inspect spuacv/spuc:latest -f "Command: {{.Config.Cmd}}"
 docker inspect spuacv/spuc:latest -f "Entrypoint: {{.Config.Entrypoint}}"
 ```
 ```bash
-docker inspect spuacv/spuc:latest -f $'Command: {{.Config.Cmd}}\nEntrypoint: {{.Config.Entrypoint}}'
+docker inspect spuacv/spuc:latest -f $'Entrypoint: {{.Config.Entrypoint}}\nCommand: {{.Config.Cmd}}'
 ```
 
 ## Default Command
-**Image:** A diagram representing the lifecycle of a container
+<mark>**Image:** A diagram representing the lifecycle of a container</mark>
 
 ### Further examples of container lifecycle
-**Image:** Example 1 - hello-world
-**Image:** Example 2 - sleep forever
+<mark>**Image:** Example 1 - hello-world</mark>
+
+<mark>**Image:** Example 2 - sleep forever</mark>
 
 
 ## Running
+<mark>**Image:** building run command: run</mark>
+
 ```bash
 docker run spuacv/spuc:latest
 ```
 Use `Ctrl+C` to stop the container.
+
+<mark>**Image:** building run command: detach</mark>
 ```bash
 docker run -d spuacv/spuc:latest
 ```
@@ -209,6 +221,8 @@ curl -X PUT localhost:8321/unicorn_spotted?location=moon\&brightness=100
 *Error!* port was not exposed.
 
 ## Exposing ports
+<mark>**Image:** building run command: ports</mark>
+
 ```bash
 docker run -d -p 8321:8321 spuacv/spuc:latest
 ```
@@ -223,6 +237,8 @@ docker logs unruffled_noyce
 ```
 
 ## Setting the name of a container
+<mark>**Image:** building run command: --name</mark>
+
 ```bash
 docker run -d --name spuc_container -p 8321:8321 spuacv/spuc:latest
 ```
@@ -298,8 +314,14 @@ docker system prune
 ```
 
 ### Automatic cleanup
+<mark>**Image:** building run command: --rm</mark>
+
 ```bash
 docker run -d --rm --name spuc_container -p 8321:8321 spuacv/spuc:latest
+
+docker kill spuc_container
+
+docker ps -a
 ```
 This is a relatively standard command.  
 It will get worse.
@@ -307,8 +329,13 @@ It will get worse.
 Already ahead of Docker Desktop, but lets do more, like persist data.
 
 
-## Show keypoints slide **Image**
+<mark>**Image:** keypoints slide</mark>
 
+
+--------------------------------------------------
+--------------------------------------------------
+
+Break!
 
 --------------------------------------------------
 --------------------------------------------------
@@ -321,11 +348,13 @@ Containers are ephemeral, but we want our unicorn sightings to persist.
 
 ## Volumes
 Managed by Docker, hidden away in file system.  
+
+<mark>**Image:** building run command: volumes</mark>
+
 They are declared with `name:path`:
 **-v spuc-volume:/spuc/output**
 
 ```bash
-docker kill spuc_container
 docker run -d --rm --name spuc_container -p 8321:8321 -v spuc-volume:/spuc/output spuacv/spuc:latest
 ```
 ```bash
@@ -359,7 +388,10 @@ docker exec spuc_container cat /spuc/output/unicorn_sightings.txt
 
 
 ## Bind mounts
-Managed by the user, can be handy, can be dangerous.  
+Managed by the user, can be handy, can be dangerous.
+
+<mark>**Image:** building run command: bind-mounts</mark>
+
 They are declared with `path:path`:
 **-v ./spuc/output:/spuc/output**
 
@@ -398,7 +430,14 @@ Note that this **will not keep changes in sync** like a bind mount
 
 ### Bind mount files
 We can bind mount individual files, like the print config.
+
+<mark>**Image:** building run command: bind-files</mark>
+
 First we modify the file to our liking:
+```
+nano print.config
+```
+Add `{time} ` and ` number {count} ` at the beginning, so you get in the end:
 ```
 ::::: {time} Unicorn number {count} spotted at {location}! Brightness: {brightness} {units}
 ```
@@ -426,7 +465,7 @@ docker logs spuc_container
 We could do the same with a whole directory, but be careful not to overwrite important files in the container!
 
 ## ! Challenge: Common mistakes with volumes
-**Image:** Common mistakes with volumes
+<mark>**Image:** Common mistakes with volumes</mark>
 ```bash
 docker run -v spuc-vol spuacv/spuc:latest
 ```
@@ -440,7 +479,7 @@ docker run -v ./spucs/output:/spuc/output spuacv/spuc:latest
 **Fix:** Use sudo rm -rf ./spucs to remove the directory and try again.
 
 ```bash
-ocker run -v ./spuc-vol:/spuc/output spuacv/spuc:latest
+docker run -v ./spuc-vol:/spuc/output spuacv/spuc:latest
 ```
 **Problem:** `path:path` Therefore, bind mount, and will create **spuc-vol**.  
 **Fix:** Use sudo rm -rf ./spuc-volume to remove the directory and try again.
@@ -458,7 +497,7 @@ docker run -v print.config:/spuc/config/print.config spuacv/spuc:latest
 **Fix:** Use docker volume rm print.config to remove the volume and try again.
 
 
-## Show keypoints slide **Image**
+<mark>**Image:** keypoints slide</mark>
 
 
 --------------------------------------------------
@@ -519,7 +558,7 @@ The “official” badge is shown on the top of the repository.
 - ACR from Azure, Microsoft.
 
 
-## Show keypoints slide **Image**
+<mark>**Image:** keypoints slide</mark>
 
 
 --------------------------------------------------
@@ -537,6 +576,9 @@ We can:
 
 ## Setting the environment
 We set environment variables with `-e name=value`:
+
+<mark>**Image:** building run command: env</mark>
+
 ```bash
 docker kill spuc_container
 docker run -d --rm --name spuc_container -p 8321:8321 -v ./print.config:/spuc/config/print.config -v spuc-volume:/spuc/output -e EXPORT=true spuacv/spuc:latest
@@ -560,9 +602,12 @@ We must change it to the much more standard **Intergalactic Unicorn Luminosity U
 
 Parameters are passed on the command. Remember:
 ```bash
-docker inspect spuacv/spuc:latest -f "Entrypoint: {{.Config.Entrypoint}}\nCommand: {{.Config.Cmd}}"
+docker inspect spuacv/spuc:latest -f $'Entrypoint: {{.Config.Entrypoint}}\nCommand: {{.Config.Cmd}}'
 ```
 To override it, we write the command we want at the end:
+
+<mark>**Image:** building run command: command</mark>
+
 ```bash
 docker kill spuc_container
 docker run -d --rm --name spuc_container -p 8321:8321 -v ./print.config:/spuc/config/print.config -v spuc-volume:/spuc/output -e EXPORT=true spuacv/spuc:latest --units iulu
@@ -591,6 +636,9 @@ Overriding the command is a very common way to configure containers.
 ## Overriding the entrypoint
 
 This is less common, but it can also be done:
+
+<mark>**Image:** building run command: entrypoint</mark>
+
 ```bash
 docker run -it --rm --entrypoint /bin/sh spuacv/spuc:latest
 ```
@@ -611,5 +659,5 @@ All valid combinations, but with different implications:
 - **D:** Maximum flexibility, but re-write the whole command to modify even the parameters.
 
 
-## Show keypoints slide **Image**
+<mark>**Image:** keypoints slide</mark>
 

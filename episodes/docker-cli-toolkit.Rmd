@@ -638,8 +638,7 @@ As we can see, the container is alive and well, and we can now exec into it agai
 ## Cleaning up
 
 The last thing we need to know is how to clean up after ourselves.
-We have already removed a container using the `docker rm` command,
-and we can use the `docker image rm` command to remove an image:
+We have already removed a container using the `docker rm` command:
 ```bash
 docker kill spuc_container
 ```
@@ -652,23 +651,15 @@ docker rm spuc_container
 ```output
 spuc_container
 ```
+and we can use the `docker image rm` command to remove an image:
 ```bash
-docker image rm spuacv/spuc:latest
+docker image rm alpine:latest
 ```
 ```output
-Untagged: spuacv/spuc:latest
-Untagged: spuacv/spuc@sha256:ad219064aaaad76860c53ec8420730d69dc5f8beb9345b0a15176111c2a976c5
-Deleted: sha256:ce72bd42e51c049fe29b4c15dc912e88c4461e94c2e1d403b90e2e53dfb1b420
-Deleted: sha256:975e4f6d3de315ced48fa0d0eda7e3af5cd4953c16adfbd443e65d6d2bf0eaa6
-Deleted: sha256:f3fc2c0e51d4240d55e40b0305762df66600cdd5073a5c92008cfe8f867f5437
-Deleted: sha256:f3e2fffff5c16237e6507a6196eb76fd2eba64e343c3a1b2692b73b95fcd1298
-Deleted: sha256:d4d3e0d103c04b9fd2eb428699c46302a3d38d695729ee49068be07ad7e5c442
-Deleted: sha256:700c7bb1865e2ca492d821c689f11175c66e9d27f210b3f04521040290c34126
-Deleted: sha256:5d5adb77457c9a495a5037ce44a0db461b8d3b605177a2c3bc6dc0d7876a681d
-Deleted: sha256:3a77b40519ce3ffa585333bab02f30371b4c8c7ffa10a35fd4c82a0d3423fa91
-Deleted: sha256:791eb7562f83ac1fc48aa6f31129bf947d7de7d8c9b85db92131c3beb5650bd6
-Deleted: sha256:c59180f9a5f41ea7e3d92ee36d5b4c01dadf5148075c0d01c394f7efc321a3ca
-Deleted: sha256:8d853c8add5d1e7b0aafc4b68a3d9fb8e7a0da27970c2acf831fe63be4a0cd2c
+Untagged: alpine:latest
+Untagged: alpine@sha256:be2656061b536c1883c4034790e21d0a09c5aaaf51968b89368a3c0371ea2c9a
+Deleted: sha256:b92841763c5c2140a20eeb2a44e94ebb0e80fd51d9d6b5895ea72fa999525d68
+Deleted: sha256:75c137aedfb2760f88629236cb7b797630aed0c3d91d626d1d1bb694878fc2ba
 ```
 
 An alternative is to do a single-line full clean up.
@@ -694,6 +685,8 @@ deleted: sha256:f03fb04b8bc613f46cc1d1915d2f98dcb6e008ae8e212ae9a3dbfaa68c111476
 Total reclaimed space: 13.09MB
 ```
 
+**Note:** you can also use `docker container prune` to remove all stopped containers only.
+
 ### Automatic cleanup
 
 There is one more point to make.
@@ -708,6 +701,11 @@ docker run -d --rm --name spuc_container -p 8321:8321 spuacv/spuc:latest
 
 We can verify that the container exists using `docker ps`.
 When the container is stopped, however, the container is automatically removed.
+```bash
+docker kill spuc_container
+docker ps -a
+```
+
 We don't have to worry about cleaning up afterwards, but it comes at a price.
 Since we've deleted the container, there is no way to bring it back.
 
