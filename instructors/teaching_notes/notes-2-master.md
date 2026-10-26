@@ -358,7 +358,7 @@ It updated just fine without a down
 If we try and record a unicorn sighting using curl
 
 ```
-curl -X PUT localhost:8321/unicorn_spotted?location=asteroid&brightness=242
+curl -X PUT localhost:8321/unicorn_spotted?location=asteroid\&brightness=242
 ```
 
 It fails! Because we haven't exposed the port
@@ -373,7 +373,7 @@ Let's add that to compose (as a list)
 
 ```
 docker compose up -d
-curl -X PUT localhost:8321/unicorn_spotted?location=asteroid&brightness=242
+curl -X PUT localhost:8321/unicorn_spotted?location=asteroid\&brightness=242
 ```
 
 Much better!
@@ -507,7 +507,14 @@ services:
 +  image: spuc-stats
 ```
 
-But... if we want to build this, we need to do it manually!
+```bash
+docker compose up -d
+docker compose logs
+```
+
+Problem solved but...
+
+If we want to build this, we need to do it manually!
 
 Instead, let's tell compose to use that using build
 
