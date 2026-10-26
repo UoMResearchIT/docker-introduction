@@ -61,7 +61,7 @@ Let's squash that run command!
 ### Recap: Our previous run command
 
 ```bash
-    docker run -d --rm --name spuc_container -p 8321:8321 -v ./print.config:/spuc/config/print.config -v spuc-volume:/spuc/output -v stats.py:/spuc/plugins/stats.py -e EXPORT=true spuacv/spuc:latest --units iulu
+    docker run -d --rm --name spuc_container -p 8321:8321 -v ./print.config:/spuc/config/print.config -v spuc-volume:/spuc/output -e EXPORT=true spuacv/spuc:latest --units iulu
  ```
 
 ---
@@ -84,7 +84,6 @@ table {
 | `-p 8321:8321`                                | Map port 8321 on the host to port 8321 in the container |
 | `-v ./print.config:/spuc/config/print.config` | Bind mount the `./print.config` file into the container |
 | `-v spuc-volume:/spuc/output`                 | Persist the `/spuc/output` directory in a volume        |
-| `-v ./stats.py:/spuc/plugins/stats.py`        | Bind mount the `./stats.py` plugin into the container   |
 | `-e EXPORT=true`                              | Set the environment variable `EXPORT` to `true`         |
 | `--units iulu`                                | Set the units to Imperial Unicorn Length Units          |
 
