@@ -39,12 +39,6 @@ docker kill spuc_container
 docker run --rm --name spuc_container -p 8321:8321 -v ./print.config:/spuc/config/print.config -v spuc-volume:/spuc/output -v ./stats.py:/spuc/plugins/stats.py -e EXPORT=true spuacv/spuc:latest --units iulu
 ```
 
-Let's try the curl it suggests!
-
-```bash
-curl localhost:8321/export
-```
-
 Oh! No module named pandas! 
 
 Of course... we need to install it. But if we do it interactively it wont persist?
