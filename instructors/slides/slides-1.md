@@ -135,6 +135,30 @@ If you have Docker Desktop, we encourage you to <span style="font-size: 1.5rem;"
 
 ---
 
+![height:300](../fig/stamp_analogy/00_stamp.png)
+
+---
+
+![height:300](../fig/stamp_analogy/01_print.png)
+
+---
+
+![height:300](../fig/stamp_analogy/02_container.png)
+
+---
+
+![height:300](../fig/stamp_analogy/03_alive.png)
+
+---
+
+![height:300](../fig/stamp_analogy/04_copies.png)
+
+---
+
+![height:300](../fig/stamp_analogy/05_bottomline.png)
+
+---
+
 ![width:1000](../fig/Docker_Desktop_keypoints.png)
 
 ---
