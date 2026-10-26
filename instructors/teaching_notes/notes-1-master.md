@@ -479,7 +479,7 @@ docker run -v ./spucs/output:/spuc/output spuacv/spuc:latest
 **Fix:** Use sudo rm -rf ./spucs to remove the directory and try again.
 
 ```bash
-ocker run -v ./spuc-vol:/spuc/output spuacv/spuc:latest
+docker run -v ./spuc-vol:/spuc/output spuacv/spuc:latest
 ```
 **Problem:** `path:path` Therefore, bind mount, and will create **spuc-vol**.  
 **Fix:** Use sudo rm -rf ./spuc-volume to remove the directory and try again.

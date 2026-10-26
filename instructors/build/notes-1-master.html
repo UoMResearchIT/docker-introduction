@@ -694,7 +694,7 @@ docker logs spuc_container
 		and mount it.<br>
 		<strong>Fix:</strong> Use sudo rm -rf ./spucs to remove the directory and try again.
 	</p>
-	<pre class="hljs"><code><div>ocker run -v ./spuc-vol:/spuc/output spuacv/spuc:latest
+	<pre class="hljs"><code><div>docker run -v ./spuc-vol:/spuc/output spuacv/spuc:latest
 </div></code></pre>
 	<p><strong>Problem:</strong> <code>path:path</code> Therefore, bind mount, and will create
 		<strong>spuc-vol</strong>.<br>
