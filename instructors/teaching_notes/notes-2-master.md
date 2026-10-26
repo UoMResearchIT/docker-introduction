@@ -2,6 +2,9 @@
 
 > [!CAUTION]
 > run some curls
+>
+> echo "::::: {time} Unicorn number {count} spotted at {location}! Brightness: {brightness} {units}" > print.config
+
 
 # Dockerfiles
 
