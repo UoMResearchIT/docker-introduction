@@ -515,7 +515,7 @@ With Docker Compose, you can easily add new services to your stack
 
 For example maybe SPUC would benefit from :
 
-- A propert database (rather than a file)
+- A proper database (rather than a file)
 - Support for unicorn sensors via a message queue 
 - Allowing users to upload images of their sightings
 
