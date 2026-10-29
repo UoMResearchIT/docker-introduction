@@ -40,6 +40,10 @@ Let's take a look at Docker Compose and see how it can help us run SPUC and SPUC
 As an initial step, we will learn how to run a container using Docker Compose.
 
 The first thing we need to do is create a `compose.yml` file in our current directory.
+```bash
+touch compose.yml
+```
+
 All `compose.yml` files start with `services:`.
 This is the root element under which we define the services we want to run.
 ```yml

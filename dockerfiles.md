@@ -15,6 +15,24 @@ exercises: 0
 - What is a `Dockerfile`?
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
+::::::::::::::::::::::::::::::::::::::: callout
+
+### Working directory
+
+If you have been following along,
+you should currently be working in a directory called `docker-intro`,
+and you should have the `print.config` file in that directory.
+If you are not, create the directory and copy the file from a temporary spuc container:
+```bash
+mkdir docker-intro
+cd docker-intro
+docker run -d --rm --name temp_spuc_container spuacv/spuc:latest
+docker cp temp_spuc_container:/spuc/config/print.config ./
+docker kill temp_spuc_container
+```
+
+:::::::::::::::::::::::::::::::::::::::::::::::
+
 The SPUC documentation just keeps on giving, let's keep the streak going!
 
 There is another cool feature on there that we haven't used yet -
@@ -92,7 +110,58 @@ For example, `ubuntu` for general purpose Linux, `python` for Python development
 But of course, the most natural fit for us right now is to use the SPUC image as a base image.
 This way we can be sure that our new image will have all the dependencies we need.
 
-Let's create a new file called `Dockerfile` in our current directory, and add the following content:
+Let's create a new file called `Dockerfile` in our current directory:
+```bash
+touch Dockerfile
+```
+
+::::::::::::::::::::::::::::::::::::::: callout
+
+### Creating files that Docker can read
+
+If you are using **Linux** or **Mac**, you should not have issues with creating and editing files.
+Use your text editor of choice to create and edit the file.
+
+If you are using **Windows**, you need to watch out for a few common pitfalls:
+
+- Make sure the files do not have an extension.
+  Windows will often add a `.txt` extension to files created in Notepad, for example.
+- Make sure the files are saved with Unix line endings, not Windows line endings.
+  This is a common problem when using Notepad or Wordpad.
+- Make sure the file is saved in the working directory of the bash terminal.
+
+Most of the issues can be avoided by first creating the file in your bash (wsl) terminal,
+and then opening it in your text editor.
+That is what the `touch` command does - it creates an empty file in the current directory.
+
+You can then open it in your text editor of choice, for example:
+```bash
+explorer.exe Dockerfile
+```
+
+If you are still struggling, try using VSCode to edit your file
+(you might have to [install it](https://learn.microsoft.com/en-us/windows/wsl/tutorials/wsl-vscode#install-vs-code-and-the-wsl-extension) first),
+which you can open in your current terminal with
+```bash
+code .
+```
+If prompted, click on "Trust Folder & Continue".
+If you want to use the terminal inside VSCode, open `Terminal > New Terminal`.
+This will open a terminal in the bottom of the VSCode window.
+It should be a bash terminal (indicated at the top right of the terminal),
+but just in case, confirm by running
+```bash
+echo $0
+```
+if it does not return `/bin/bash`, it is likely a PowerShell terminal.
+
+In the terminal, type `wsl`. This will load the bash terminal in wsl, where you can continue running the commands.
+
+Make sure your working directory is correct - using `ls` should show `print.config`, `stats.py`, and `Dockerfile`.
+
+:::::::::::::::::::::::::::::::::::::::::::::::
+
+In the file we just created, add the following content:
 ```Dockerfile
 # Dockerfile
 FROM spuacv/spuc:latest
