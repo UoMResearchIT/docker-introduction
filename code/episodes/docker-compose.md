@@ -3,6 +3,9 @@
 
 
 ## Running a container
+```bash
+touch compose.yml
+```
 ```yml
 # compose.yml
 services:
