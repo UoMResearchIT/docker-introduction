@@ -8,6 +8,16 @@
 
 # Dockerfiles
 
+> [!WARNING]
+> Students should be in dir and have `print.config`, but if not:
+> ```bash
+> mkdir docker-intro
+> cd docker-intro
+> docker run -d --rm --name temp_spuc_container spuacv/spuc:latest
+> docker cp temp_spuc_container:/spuc/config/print.config ./
+> docker kill temp_spuc_container
+> ```
+
 > [!NOTE]
 > We are trying to add a plugin to SPUC
 >
@@ -61,6 +71,20 @@ The best fit for us right now though is the SPUC image itself!
 
 > [!CAUTION]
 > Lets start a file called "Dockerfile"
+> ```bash
+> touch Dockerfile
+> ```
+
+> [!WARNING]
+> Windows users, do:
+> ```bash
+> touch Dockerfile
+> explorer.exe Dockerfile
+> ```
+> or use VSCode
+> ```
+> code .
+> ```
 
 > [!CAUTION]
 > Open a terminal alongside the editor
@@ -272,6 +296,9 @@ When using Compose, you make a single yaml file that defines your service
 
 > [!CAUTION]
 > First, let's make a file `compose.yml` 
+> ```bash
+> touch compose.yml
+> ```
 
 And we write the first and most crucial element: service
 
