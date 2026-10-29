@@ -204,13 +204,13 @@ If you have Docker Desktop, we encourage you to <span style="font-size: 1.5rem;"
 ---
 <div style="display: flex; font-size: 1.8rem;">
 
-<div style="flex: 1; padding: 10px;">
+<div style="flex: 1; padding: 10px; margin-top:-50px;">
 
 ![width:600](../fig/docker_cli_keypoints_1.png)
 
 </div>
 
-<div style="flex: 1; padding: 10px; margin-top:145px;">
+<div style="flex: 1; padding: 10px; margin-top:90px;">
 
 ![width:550](../fig/docker_cli_keypoints_2.png)
 
