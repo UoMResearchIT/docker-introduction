@@ -26,8 +26,8 @@
      showgrid="false"
      showguides="true"
      inkscape:zoom="1.2938725"
-     inkscape:cx="185.87612"
-     inkscape:cy="275.52947"
+     inkscape:cx="-114.77174"
+     inkscape:cy="586.22469"
      inkscape:window-width="2494"
      inkscape:window-height="1333"
      inkscape:window-x="1986"
@@ -39,61 +39,71 @@
        y="0"
        width="159.19913"
        height="16.446053"
-       id="page11105" />
+       id="page11105"
+       inkscape:label="01_detach" />
     <inkscape:page
        x="-0.020104311"
        y="19.072369"
        width="159.13655"
        height="15.484806"
-       id="page11107" />
+       id="page11107"
+       inkscape:label="02_port" />
     <inkscape:page
        x="-0.13338754"
        y="36.861282"
        width="159.24017"
        height="16.472437"
-       id="page11109" />
+       id="page11109"
+       inkscape:label="03_name" />
     <inkscape:page
        x="-0.039855648"
        y="55.455837"
        width="159.14299"
        height="16.028751"
-       id="page11111" />
+       id="page11111"
+       inkscape:label="04_rm" />
     <inkscape:page
        x="-0.051593367"
        y="73.582848"
        width="159.20387"
        height="21.052139"
-       id="page11113" />
+       id="page11113"
+       inkscape:label="05_volume" />
     <inkscape:page
        x="-0.01523262"
        y="97.515701"
        width="159.12408"
        height="21.649132"
-       id="page11115" />
+       id="page11115"
+       inkscape:label="06_bind_dir" />
     <inkscape:page
        x="-0.043262307"
        y="123.63752"
        width="159.15157"
        height="31.103912"
-       id="page11117" />
+       id="page11117"
+       inkscape:label="07_bind_file" />
     <inkscape:page
        x="-0.10685831"
        y="158.08315"
        width="159.20915"
        height="27.989532"
-       id="page11119" />
+       id="page11119"
+       inkscape:label="08_env" />
     <inkscape:page
        x="-0.01182603"
        y="190.1138"
        width="159.1382"
        height="31.41626"
-       id="page11121" />
+       id="page11121"
+       inkscape:label="09_command" />
     <inkscape:page
        x="-0.0054364167"
        y="223.24892"
        width="159.11276"
        height="17.354279"
-       id="page11123" />
+       id="page11123"
+       inkscape:label="10_entrypoint" />
     <sodipodi:guide
        position="-0.0083665067,19.734235"
        orientation="1,0"
@@ -109,7 +119,8 @@
        y="-16.612444"
        width="159.27675"
        height="13.558931"
-       id="page1098" />
+       id="page1098"
+       inkscape:label="00_run" />
   </sodipodi:namedview>
   <defs
      id="defs2" />
@@ -224,7 +235,7 @@
        id="g10646">
       <g
          id="g6264"
-         style="opacity:0.6">
+         style="opacity:0.4">
         <rect
            style="fill:#ff8a00;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1;stop-color:#000000"
            id="rect455"
@@ -248,7 +259,7 @@
       </g>
       <g
          id="g6274"
-         style="opacity:0.6">
+         style="opacity:0.4">
         <rect
            style="fill:#00deff;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1;stop-color:#000000"
            id="rect455-3-6"
@@ -375,7 +386,7 @@
       <g
          id="g6264-2-9"
          transform="translate(0,33.059496)"
-         style="opacity:0.6">
+         style="opacity:0.4">
         <rect
            style="fill:#ff8a00;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1;stop-color:#000000"
            id="rect455-7-2"
@@ -400,7 +411,7 @@
       <g
          id="g6274-3-3"
          transform="translate(72.141787,33.059496)"
-         style="opacity:0.6">
+         style="opacity:0.4">
         <rect
            style="fill:#00deff;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1;stop-color:#000000"
            id="rect455-3-6-6-7"
@@ -425,7 +436,7 @@
       <g
          id="g6269-2-2"
          transform="translate(0,33.059496)"
-         style="opacity:0.6">
+         style="opacity:0.4">
         <rect
            style="fill:#ffe300;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1;stop-color:#000000"
            id="rect455-3-61-2"
@@ -450,7 +461,7 @@
       <g
          id="g6634-7"
          transform="translate(110.35337,33.059496)"
-         style="opacity:0.6">
+         style="opacity:0.4">
         <rect
            style="fill:#00de3f;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1;stop-color:#000000"
            id="rect455-3-6-3-2-3"
@@ -479,7 +490,7 @@
       <g
          id="g6264-2"
          transform="translate(0,18.314877)"
-         style="opacity:0.6">
+         style="opacity:0.4">
         <rect
            style="fill:#ff8a00;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1;stop-color:#000000"
            id="rect455-7"
@@ -504,7 +515,7 @@
       <g
          id="g6274-3"
          transform="translate(26.639332,18.314877)"
-         style="opacity:0.6">
+         style="opacity:0.4">
         <rect
            style="fill:#00deff;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1;stop-color:#000000"
            id="rect455-3-6-6"
@@ -529,7 +540,7 @@
       <g
          id="g6269-2"
          transform="translate(0,18.314877)"
-         style="opacity:0.6">
+         style="opacity:0.4">
         <rect
            style="fill:#ffe300;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1;stop-color:#000000"
            id="rect455-3-61"
@@ -606,7 +617,7 @@
       <g
          id="g6639-2"
          transform="translate(122.81384,44.743636)"
-         style="opacity:0.6">
+         style="opacity:0.4">
         <rect
            style="fill:#00b2ff;fill-opacity:1;stroke:#000000;stroke-width:0.199999;stroke-dasharray:none;stroke-opacity:1;stop-color:#000000"
            id="rect455-3-6-3-9-9"
@@ -631,7 +642,7 @@
       <g
          id="g6264-2-9-9"
          transform="translate(0,44.743636)"
-         style="opacity:0.6">
+         style="opacity:0.4">
         <rect
            style="fill:#ff8a00;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1;stop-color:#000000"
            id="rect455-7-2-4"
@@ -656,7 +667,7 @@
       <g
          id="g6274-3-3-4"
          transform="translate(82.279563,44.743636)"
-         style="opacity:0.6">
+         style="opacity:0.4">
         <rect
            style="fill:#00deff;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1;stop-color:#000000"
            id="rect455-3-6-6-7-5"
@@ -681,7 +692,7 @@
       <g
          id="g6269-2-2-6"
          transform="translate(0,44.743636)"
-         style="opacity:0.6">
+         style="opacity:0.4">
         <rect
            style="fill:#ffe300;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1;stop-color:#000000"
            id="rect455-3-61-2-1"
@@ -706,7 +717,7 @@
       <g
          id="g6634-7-3"
          transform="translate(120.69398,44.743636)"
-         style="opacity:0.6">
+         style="opacity:0.4">
         <rect
            style="fill:#00de3f;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1;stop-color:#000000"
            id="rect455-3-6-3-2-3-2"
@@ -759,7 +770,7 @@
       <g
          id="g6644-1"
          transform="translate(124.82246,61.567855)"
-         style="opacity:0.6">
+         style="opacity:0.4">
         <rect
            style="fill:#ffe300;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1;stop-color:#000000"
            id="rect455-3-1-5"
@@ -784,7 +795,7 @@
       <g
          id="g6639-2-7"
          transform="translate(122.81384,61.567855)"
-         style="opacity:0.6">
+         style="opacity:0.4">
         <rect
            style="fill:#00b2ff;fill-opacity:1;stroke:#000000;stroke-width:0.199999;stroke-dasharray:none;stroke-opacity:1;stop-color:#000000"
            id="rect455-3-6-3-9-9-6"
@@ -809,7 +820,7 @@
       <g
          id="g6264-2-9-9-9"
          transform="translate(0,61.567855)"
-         style="opacity:0.6">
+         style="opacity:0.4">
         <rect
            style="fill:#ff8a00;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1;stop-color:#000000"
            id="rect455-7-2-4-3"
@@ -834,7 +845,7 @@
       <g
          id="g6274-3-3-4-5"
          transform="translate(43.453068,69.15092)"
-         style="opacity:0.6">
+         style="opacity:0.4">
         <rect
            style="fill:#00deff;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1;stop-color:#000000"
            id="rect455-3-6-6-7-5-2"
@@ -859,7 +870,7 @@
       <g
          id="g6269-2-2-6-7"
          transform="translate(0,61.567855)"
-         style="opacity:0.6">
+         style="opacity:0.4">
         <rect
            style="fill:#ffe300;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1;stop-color:#000000"
            id="rect455-3-61-2-1-4"
@@ -884,7 +895,7 @@
       <g
          id="g6634-7-3-0"
          transform="translate(120.69398,61.567855)"
-         style="opacity:0.6">
+         style="opacity:0.4">
         <rect
            style="fill:#00de3f;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1;stop-color:#000000"
            id="rect455-3-6-3-2-3-2-7"
@@ -916,7 +927,7 @@
         <rect
            style="fill:#9c8cfb;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1;stop-color:#000000"
            id="rect455-3-6-3-5"
-           width="90.680519"
+           width="55.833931"
            height="5.354085"
            x="93.214203"
            y="26.298637"
@@ -932,12 +943,12 @@
              id="tspan6292"
              style="stroke-width:0.264583"
              x="93.882668"
-             y="30.218685">-v ./spuc/output:/spuc/output spuacv/spuc:latest</tspan></text>
+             y="30.218685">-v ./spuc/output:/spuc/output</tspan></text>
       </g>
       <g
          id="g6644-1-1"
          transform="translate(124.82246,92.096201)"
-         style="opacity:0.6">
+         style="opacity:0.4">
         <rect
            style="fill:#ffe300;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1;stop-color:#000000"
            id="rect455-3-1-5-4"
@@ -962,7 +973,7 @@
       <g
          id="g6639-2-7-0"
          transform="translate(122.81384,92.096201)"
-         style="opacity:0.6">
+         style="opacity:0.4">
         <rect
            style="fill:#00b2ff;fill-opacity:1;stroke:#000000;stroke-width:0.199999;stroke-dasharray:none;stroke-opacity:1;stop-color:#000000"
            id="rect455-3-6-3-9-9-6-6"
@@ -987,7 +998,7 @@
       <g
          id="g6264-2-9-9-9-2"
          transform="translate(0,92.096201)"
-         style="opacity:0.6">
+         style="opacity:0.4">
         <rect
            style="fill:#ff8a00;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1;stop-color:#000000"
            id="rect455-7-2-4-3-6"
@@ -1011,8 +1022,8 @@
       </g>
       <g
          id="g6274-3-3-4-5-9"
-         transform="translate(79.413174,100.04491)"
-         style="opacity:0.6">
+         transform="translate(45.273363,100.04491)"
+         style="opacity:0.4">
         <rect
            style="fill:#00deff;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1;stop-color:#000000"
            id="rect455-3-6-6-7-5-2-5"
@@ -1037,7 +1048,7 @@
       <g
          id="g6269-2-2-6-7-8"
          transform="translate(0,92.096201)"
-         style="opacity:0.6">
+         style="opacity:0.4">
         <rect
            style="fill:#ffe300;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1;stop-color:#000000"
            id="rect455-3-61-2-1-4-7"
@@ -1062,7 +1073,7 @@
       <g
          id="g6634-7-3-0-2"
          transform="translate(120.69398,92.096201)"
-         style="opacity:0.6">
+         style="opacity:0.4">
         <rect
            style="fill:#00de3f;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1;stop-color:#000000"
            id="rect455-3-6-3-2-3-2-7-7"
@@ -1091,11 +1102,11 @@
       <g
          id="g6609-4"
          transform="translate(-52.949906,126.6842)"
-         style="opacity:0.6">
+         style="opacity:0.4">
         <rect
            style="fill:#9c8cfb;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1;stop-color:#000000"
            id="rect455-3-6-3-5-8"
-           width="90.680519"
+           width="55.721951"
            height="5.354085"
            x="93.214203"
            y="26.298637"
@@ -1111,7 +1122,7 @@
              id="tspan6292-2"
              style="stroke-width:0.264583"
              x="93.882668"
-             y="30.218685">-v ./spuc/output:/spuc/output spuacv/spuc:latest</tspan></text>
+             y="30.218685">-v ./spuc/output:/spuc/output</tspan></text>
       </g>
       <g
          id="g6609-6"
@@ -1140,7 +1151,7 @@
       <g
          id="g6644-1-1-1"
          transform="translate(124.82246,118.70014)"
-         style="opacity:0.6">
+         style="opacity:0.4">
         <rect
            style="fill:#ffe300;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1;stop-color:#000000"
            id="rect455-3-1-5-4-5"
@@ -1165,7 +1176,7 @@
       <g
          id="g6639-2-7-0-9"
          transform="translate(122.81384,118.70014)"
-         style="opacity:0.6">
+         style="opacity:0.4">
         <rect
            style="fill:#00b2ff;fill-opacity:1;stroke:#000000;stroke-width:0.199999;stroke-dasharray:none;stroke-opacity:1;stop-color:#000000"
            id="rect455-3-6-3-9-9-6-6-0"
@@ -1190,7 +1201,7 @@
       <g
          id="g6264-2-9-9-9-2-7"
          transform="translate(0,118.70014)"
-         style="opacity:0.6">
+         style="opacity:0.4">
         <rect
            style="fill:#ff8a00;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1;stop-color:#000000"
            id="rect455-7-2-4-3-6-7"
@@ -1215,7 +1226,7 @@
       <g
          id="g6274-3-3-4-5-9-5"
          transform="translate(64.850424,134.17279)"
-         style="opacity:0.6">
+         style="opacity:0.4">
         <rect
            style="fill:#00deff;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1;stop-color:#000000"
            id="rect455-3-6-6-7-5-2-5-9"
@@ -1240,7 +1251,7 @@
       <g
          id="g6269-2-2-6-7-8-6"
          transform="translate(0,118.70014)"
-         style="opacity:0.6">
+         style="opacity:0.4">
         <rect
            style="fill:#ffe300;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1;stop-color:#000000"
            id="rect455-3-61-2-1-4-7-7"
@@ -1265,7 +1276,7 @@
       <g
          id="g6634-7-3-0-2-5"
          transform="translate(120.69398,118.70014)"
-         style="opacity:0.6">
+         style="opacity:0.4">
         <rect
            style="fill:#00de3f;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1;stop-color:#000000"
            id="rect455-3-6-3-2-3-2-7-7-6"
@@ -1318,11 +1329,11 @@
       <g
          id="g6609-4-9"
          transform="translate(-52.949906,158.08217)"
-         style="opacity:0.6">
+         style="opacity:0.4">
         <rect
            style="fill:#9c8cfb;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1;stop-color:#000000"
            id="rect455-3-6-3-5-8-4"
-           width="90.680519"
+           width="55.782261"
            height="5.354085"
            x="93.214203"
            y="26.298637"
@@ -1338,12 +1349,12 @@
              id="tspan6292-2-9"
              style="stroke-width:0.264583"
              x="93.882668"
-             y="30.218685">-v ./spuc/output:/spuc/output spuacv/spuc:latest</tspan></text>
+             y="30.218685">-v ./spuc/output:/spuc/output</tspan></text>
       </g>
       <g
          id="g6609-6-2"
          transform="translate(-52.949906,165.57076)"
-         style="opacity:0.6">
+         style="opacity:0.4">
         <rect
            style="fill:#9c8cfb;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1;stop-color:#000000"
            id="rect455-3-6-3-5-1-2"
@@ -1368,7 +1379,7 @@
       <g
          id="g6274-3-3-4-5-9-5-7"
          transform="translate(64.850424,165.57076)"
-         style="opacity:0.6">
+         style="opacity:0.4">
         <rect
            style="fill:#00deff;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1;stop-color:#000000"
            id="rect455-3-6-6-7-5-2-5-9-5"
@@ -1393,7 +1404,7 @@
       <g
          id="g6644-1-1-1-9"
          transform="translate(124.82246,150.66354)"
-         style="opacity:0.6">
+         style="opacity:0.4">
         <rect
            style="fill:#ffe300;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1;stop-color:#000000"
            id="rect455-3-1-5-4-5-6"
@@ -1418,7 +1429,7 @@
       <g
          id="g6639-2-7-0-9-5"
          transform="translate(122.81384,150.66353)"
-         style="opacity:0.6">
+         style="opacity:0.4">
         <rect
            style="fill:#00b2ff;fill-opacity:1;stroke:#000000;stroke-width:0.199999;stroke-dasharray:none;stroke-opacity:1;stop-color:#000000"
            id="rect455-3-6-3-9-9-6-6-0-6"
@@ -1443,7 +1454,7 @@
       <g
          id="g6264-2-9-9-9-2-7-5"
          transform="translate(0,150.66353)"
-         style="opacity:0.6">
+         style="opacity:0.4">
         <rect
            style="fill:#ff8a00;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1;stop-color:#000000"
            id="rect455-7-2-4-3-6-7-9"
@@ -1468,7 +1479,7 @@
       <g
          id="g6269-2-2-6-7-8-6-0"
          transform="translate(0,150.66353)"
-         style="opacity:0.6">
+         style="opacity:0.4">
         <rect
            style="fill:#ffe300;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1;stop-color:#000000"
            id="rect455-3-61-2-1-4-7-7-4"
@@ -1493,7 +1504,7 @@
       <g
          id="g6634-7-3-0-2-5-4"
          transform="translate(120.69398,150.66353)"
-         style="opacity:0.6">
+         style="opacity:0.4">
         <rect
            style="fill:#00de3f;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1;stop-color:#000000"
            id="rect455-3-6-3-2-3-2-7-7-6-7"
@@ -1546,7 +1557,7 @@
       <g
          id="g6624-1"
          transform="translate(-138.19299,185.5252)"
-         style="opacity:0.6">
+         style="opacity:0.4">
         <rect
            style="fill:#00de3f;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1;stop-color:#000000"
            id="rect455-3-6-3-28"
@@ -1571,11 +1582,11 @@
       <g
          id="g6609-4-9-6"
          transform="translate(-52.949906,192.94384)"
-         style="opacity:0.6">
+         style="opacity:0.4">
         <rect
            style="fill:#9c8cfb;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1;stop-color:#000000"
            id="rect455-3-6-3-5-8-4-8"
-           width="90.680519"
+           width="55.982006"
            height="5.354085"
            x="93.214203"
            y="26.298637"
@@ -1591,12 +1602,12 @@
              id="tspan6292-2-9-2"
              style="stroke-width:0.264583"
              x="93.882668"
-             y="30.218685">-v ./spuc/output:/spuc/output spuacv/spuc:latest</tspan></text>
+             y="30.218685">-v ./spuc/output:/spuc/output</tspan></text>
       </g>
       <g
          id="g6609-6-2-1"
          transform="translate(-52.949906,200.43243)"
-         style="opacity:0.6">
+         style="opacity:0.4">
         <rect
            style="fill:#9c8cfb;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1;stop-color:#000000"
            id="rect455-3-6-3-5-1-2-0"
@@ -1621,7 +1632,7 @@
       <g
          id="g6274-3-3-4-5-9-5-7-1"
          transform="translate(64.850424,200.43243)"
-         style="opacity:0.6">
+         style="opacity:0.4">
         <rect
            style="fill:#00deff;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1;stop-color:#000000"
            id="rect455-3-6-6-7-5-2-5-9-5-0"
@@ -1646,7 +1657,7 @@
       <g
          id="g6644-1-1-1-9-0"
          transform="translate(124.82246,185.52521)"
-         style="opacity:0.6">
+         style="opacity:0.4">
         <rect
            style="fill:#ffe300;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1;stop-color:#000000"
            id="rect455-3-1-5-4-5-6-6"
@@ -1671,7 +1682,7 @@
       <g
          id="g6639-2-7-0-9-5-2"
          transform="translate(122.81384,185.5252)"
-         style="opacity:0.6">
+         style="opacity:0.4">
         <rect
            style="fill:#00b2ff;fill-opacity:1;stroke:#000000;stroke-width:0.199999;stroke-dasharray:none;stroke-opacity:1;stop-color:#000000"
            id="rect455-3-6-3-9-9-6-6-0-6-5"
@@ -1696,7 +1707,7 @@
       <g
          id="g6264-2-9-9-9-2-7-5-2"
          transform="translate(0,185.5252)"
-         style="opacity:0.6">
+         style="opacity:0.4">
         <rect
            style="fill:#ff8a00;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1;stop-color:#000000"
            id="rect455-7-2-4-3-6-7-9-8"
@@ -1721,7 +1732,7 @@
       <g
          id="g6269-2-2-6-7-8-6-0-2"
          transform="translate(0,185.5252)"
-         style="opacity:0.6">
+         style="opacity:0.4">
         <rect
            style="fill:#ffe300;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1;stop-color:#000000"
            id="rect455-3-61-2-1-4-7-7-4-4"
@@ -1746,7 +1757,7 @@
       <g
          id="g6634-7-3-0-2-5-4-2"
          transform="translate(120.69398,185.5252)"
-         style="opacity:0.6">
+         style="opacity:0.4">
         <rect
            style="fill:#00de3f;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1;stop-color:#000000"
            id="rect455-3-6-3-2-3-2-7-7-6-7-9"
@@ -1798,7 +1809,7 @@
       <g
          id="g6644-1-1-1-9-1-8"
          transform="translate(124.82246,224.55663)"
-         style="opacity:0.6">
+         style="opacity:0.4">
         <rect
            style="fill:#ffe300;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1;stop-color:#000000"
            id="rect455-3-1-5-4-5-6-8-9"
@@ -1847,7 +1858,7 @@
       <g
          id="g6264-2-9-9-9-2-7-5-8-6"
          transform="translate(0,224.55662)"
-         style="opacity:0.6">
+         style="opacity:0.4">
         <rect
            style="fill:#ff8a00;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1;stop-color:#000000"
            id="rect455-7-2-4-3-6-7-9-3-4"
@@ -1872,7 +1883,7 @@
       <g
          id="g6274-3-3-4-5-9-5-8-9-5"
          transform="translate(51.159332,224.55663)"
-         style="opacity:0.6">
+         style="opacity:0.4">
         <rect
            style="fill:#00deff;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1;stop-color:#000000"
            id="rect455-3-6-6-7-5-2-5-9-1-6-4"
