@@ -3,6 +3,15 @@
 
 
 ## Making our data persist
+
+```bash
+mkdir docker-intro
+cd docker-intro
+```
+```bash
+cd /mnt/c/Users/<your_username>/Documents
+```
+
 ## Volumes
 ```bash
 docker run -d --rm --name spuc_container -p 8321:8321 -v spuc-volume:/spuc/output spuacv/spuc:latest

@@ -2,6 +2,16 @@
 
 
 
+
+### Working directory
+```bash
+mkdir docker-intro
+cd docker-intro
+docker run -d --rm --name temp_spuc_container spuacv/spuc:latest
+docker cp temp_spuc_container:/spuc/config/print.config ./
+docker kill temp_spuc_container
+```
+
 ```python
 # stats.py
 from __main__ import app
@@ -26,6 +36,21 @@ docker kill spuc_container
 docker run --rm --name spuc_container -p 8321:8321 -v ./print.config:/spuc/config/print.config -v spuc-volume:/spuc/output -v ./stats.py:/spuc/plugins/stats.py -e EXPORT=true spuacv/spuc:latest --units iulu
 ```
 ## Creating Docker Images
+```bash
+touch Dockerfile
+```
+
+### Creating files that Docker can read
+```bash
+explorer.exe Dockerfile
+```
+```bash
+code .
+```
+```bash
+echo $0
+```
+
 ```Dockerfile
 # Dockerfile
 FROM spuacv/spuc:latest
