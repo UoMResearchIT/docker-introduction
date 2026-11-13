@@ -370,7 +370,7 @@
       </div>
     </nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Using Docker Compose</h1>
-        <p>Last updated on 2026-11-10 |
+        <p>Last updated on 2026-11-13 |
 
         <a href="https://github.com/UoMResearchIT/docker-introduction/edit/main/episodes/docker-compose.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -433,35 +433,41 @@ SPUC and SPUCSVi.</p>
 <hr class="half-width"><p>As an initial step, we will learn how to run a container using Docker
 Compose.</p>
 <p>The first thing we need to do is create a <code>compose.yml</code>
-file in our current directory. All <code>compose.yml</code> files start
-with <code>services:</code>. This is the root element under which we
-define the services we want to run.</p>
+file in our current directory.</p>
 <div class="codewrapper sourceCode" id="cb1">
-<h3 class="code-label">YML<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode yml" tabindex="0"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" tabindex="-1" aria-label="code-block-1-1"></a><span class="co"># compose.yml</span></span>
-<span id="cb1-2"><a href="#cb1-2" tabindex="-1" aria-label="code-block-1-2"></a><span class="fu">services</span><span class="kw">:</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1" aria-label="code-block-1-1"></a><span class="fu">touch</span> compose.yml</span></code></pre>
 </div>
-<p>Next, let’s add the service for the SPUC container. We’ll call it
-<code>spuc</code> and we will tell it what <code>image</code> to
-use.</p>
+<p>All <code>compose.yml</code> files start with <code>services:</code>.
+This is the root element under which we define the services we want to
+run.</p>
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">YML<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode yml" tabindex="0"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1" tabindex="-1" aria-label="code-block-2-1"></a><span class="co"># compose.yml</span></span>
-<span id="cb2-2"><a href="#cb2-2" tabindex="-1" aria-label="code-block-2-2"></a><span class="fu">services</span><span class="kw">:</span></span>
-<span id="cb2-3"><a href="#cb2-3" tabindex="-1" aria-label="code-block-2-3"></a><span class="at">  </span><span class="fu">spuc</span><span class="kw">:</span><span class="co">                            # The name of the service</span></span>
-<span id="cb2-4"><a href="#cb2-4" tabindex="-1" aria-label="code-block-2-4"></a><span class="at">    </span><span class="fu">image</span><span class="kw">:</span><span class="at"> spuacv/spuc:latest</span><span class="co">      # The image to use</span></span></code></pre>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1" aria-label="code-block-2-2"></a><span class="fu">services</span><span class="kw">:</span></span></code></pre>
+</div>
+<p>Next, let’s add the service for the SPUC container. We’ll call it
+<code>spuc</code> and we will tell it what <code>image</code> to
+use.</p>
+<div class="codewrapper sourceCode" id="cb3">
+<h3 class="code-label">YML<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode yml" tabindex="0"><code class="sourceCode yaml"><span id="cb3-1"><a href="#cb3-1" tabindex="-1" aria-label="code-block-3-1"></a><span class="co"># compose.yml</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1" aria-label="code-block-3-2"></a><span class="fu">services</span><span class="kw">:</span></span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1" aria-label="code-block-3-3"></a><span class="at">  </span><span class="fu">spuc</span><span class="kw">:</span><span class="co">                            # The name of the service</span></span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1" aria-label="code-block-3-4"></a><span class="at">    </span><span class="fu">image</span><span class="kw">:</span><span class="at"> spuacv/spuc:latest</span><span class="co">      # The image to use</span></span></code></pre>
 </div>
 <p>This is actually enough for us to run the container! But we won’t use
 <code>docker run</code> any more.</p>
 <p>Instead, we will use the base command <code>docker compose</code>. To
 run the services, we add the command <code>up</code>, signalling that we
 want to bring services up (i.e. start them).</p>
-<div class="codewrapper sourceCode" id="cb3">
+<div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1" aria-label="code-block-3-1"></a><span class="ex">docker</span> compose up</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1" aria-label="code-block-4-1"></a><span class="ex">docker</span> compose up</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -523,10 +529,10 @@ more configuration to our Docker Compose file.</p>
 <p>Let’s recall our <code>docker run</code> command for the regular SPUC
 container (rather than the one we made ourselves - we’ll get to that in
 a bit):</p>
-<div class="codewrapper sourceCode" id="cb5">
+<div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1" aria-label="code-block-5-1"></a><span class="ex">docker</span> run <span class="at">-d</span> <span class="at">--rm</span> <span class="at">--name</span> spuc_container <span class="at">-p</span> 8321:8321 <span class="at">-v</span> ./print.config:/spuc/config/print.config <span class="at">-v</span> spuc-volume:/spuc/output <span class="at">-v</span> stats.py:/spuc/plugins/stats.py <span class="at">-e</span> EXPORT=true spuacv/spuc:latest <span class="at">--units</span> iulu</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1" aria-label="code-block-6-1"></a><span class="ex">docker</span> run <span class="at">-d</span> <span class="at">--rm</span> <span class="at">--name</span> spuc_container <span class="at">-p</span> 8321:8321 <span class="at">-v</span> ./print.config:/spuc/config/print.config <span class="at">-v</span> spuc-volume:/spuc/output <span class="at">-v</span> stats.py:/spuc/plugins/stats.py <span class="at">-e</span> EXPORT=true spuacv/spuc:latest <span class="at">--units</span> iulu</span></code></pre>
 </div>
 <p>There are a lot of flags here! Each of these flags has a
 corresponding key in Docker Compose. Lets order all the elements we want
@@ -564,10 +570,10 @@ bit!</p>
 <p>To run a docker compose stack in the background, we can use the
 <code>-d</code> (for detach) flag when calling
 <code>docker compose up</code>.</p>
-<div class="codewrapper sourceCode" id="cb6">
+<div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1" aria-label="code-block-6-1"></a><span class="ex">$</span> docker compose up <span class="at">-d</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1" aria-label="code-block-7-1"></a><span class="ex">$</span> docker compose up <span class="at">-d</span></span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -577,10 +583,10 @@ bit!</p>
 </div>
 <p>Of course, this means we can no longer see the logs! But we can still
 access them using the <code>logs</code> command.</p>
-<div class="codewrapper sourceCode" id="cb8">
+<div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1" aria-label="code-block-8-1"></a><span class="ex">docker</span> compose logs</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1" aria-label="code-block-9-1"></a><span class="ex">docker</span> compose logs</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -666,10 +672,10 @@ output twice?</p>
 <h3 id="removing-the-container-when-it-stops">Removing the container when it stops<a class="anchor" aria-label="anchor" href="#removing-the-container-when-it-stops"></a></h3>
 <p>We can stop and remove the container with the <code>down</code>
 command.</p>
-<div class="codewrapper sourceCode" id="cb10">
+<div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1" aria-label="code-block-10-1"></a><span class="ex">docker</span> compose down</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1" aria-label="code-block-11-1"></a><span class="ex">docker</span> compose down</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -686,19 +692,19 @@ can use <code>[Ctrl+C]</code> like we did before.</p>
 <h3 id="naming-the-container">Naming the container<a class="anchor" aria-label="anchor" href="#naming-the-container"></a></h3>
 <p>The next item in our list is the name of the container. We can name
 the container using the <code>container_name</code> key.</p>
-<div class="codewrapper sourceCode" id="cb12">
+<div class="codewrapper sourceCode" id="cb13">
 <h3 class="code-label">YML<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode yml" tabindex="0"><code class="sourceCode yaml"><span id="cb12-1"><a href="#cb12-1" tabindex="-1" aria-label="code-block-12-1"></a><span class="co"># compose.yml</span></span>
-<span id="cb12-2"><a href="#cb12-2" tabindex="-1" aria-label="code-block-12-2"></a><span class="fu">services</span><span class="kw">:</span></span>
-<span id="cb12-3"><a href="#cb12-3" tabindex="-1" aria-label="code-block-12-3"></a><span class="at">  </span><span class="fu">spuc</span><span class="kw">:</span></span>
-<span id="cb12-4"><a href="#cb12-4" tabindex="-1" aria-label="code-block-12-4"></a><span class="at">    </span><span class="fu">image</span><span class="kw">:</span><span class="at"> spuacv/spuc:latest</span></span>
-<span id="cb12-5"><a href="#cb12-5" tabindex="-1" aria-label="code-block-12-5"></a><span class="at">    </span><span class="fu">container_name</span><span class="kw">:</span><span class="at"> spuc_container</span><span class="co">            # The name of the container</span></span></code></pre>
+<pre class="sourceCode yml" tabindex="0"><code class="sourceCode yaml"><span id="cb13-1"><a href="#cb13-1" tabindex="-1" aria-label="code-block-13-1"></a><span class="co"># compose.yml</span></span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1" aria-label="code-block-13-2"></a><span class="fu">services</span><span class="kw">:</span></span>
+<span id="cb13-3"><a href="#cb13-3" tabindex="-1" aria-label="code-block-13-3"></a><span class="at">  </span><span class="fu">spuc</span><span class="kw">:</span></span>
+<span id="cb13-4"><a href="#cb13-4" tabindex="-1" aria-label="code-block-13-4"></a><span class="at">    </span><span class="fu">image</span><span class="kw">:</span><span class="at"> spuacv/spuc:latest</span></span>
+<span id="cb13-5"><a href="#cb13-5" tabindex="-1" aria-label="code-block-13-5"></a><span class="at">    </span><span class="fu">container_name</span><span class="kw">:</span><span class="at"> spuc_container</span><span class="co">            # The name of the container</span></span></code></pre>
 </div>
-<div class="codewrapper sourceCode" id="cb13">
+<div class="codewrapper sourceCode" id="cb14">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1" aria-label="code-block-13-1"></a><span class="ex">docker</span> compose up <span class="at">-d</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1" aria-label="code-block-14-1"></a><span class="ex">docker</span> compose up <span class="at">-d</span></span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -738,10 +744,10 @@ file.</p>
 <h3 id="exporting-a-port">Exporting a port<a class="anchor" aria-label="anchor" href="#exporting-a-port"></a></h3>
 <p>Currently, if we attempt to record a sighting of a unicorn, we will
 get a connection refused error.</p>
-<div class="codewrapper sourceCode" id="cb15">
+<div class="codewrapper sourceCode" id="cb16">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" tabindex="-1" aria-label="code-block-15-1"></a><span class="ex">curl</span> <span class="at">-X</span> PUT localhost:8321/unicorn_spotted<span class="pp">?</span>location=asteroid\&amp;brightness=242</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" tabindex="-1" aria-label="code-block-16-1"></a><span class="ex">curl</span> <span class="at">-X</span> PUT localhost:8321/unicorn_spotted<span class="pp">?</span>location=asteroid\&amp;brightness=242</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -754,21 +760,21 @@ host. We can do this using the <code>ports</code> key using the notation
 <p>It’s worth noting the <code>ports</code> key is a list, so we can map
 multiple ports if we need to, and that the host and container ports
 don’t have to be the same!</p>
-<div class="codewrapper sourceCode" id="cb17">
+<div class="codewrapper sourceCode" id="cb18">
 <h3 class="code-label">YML<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode yml" tabindex="0"><code class="sourceCode yaml"><span id="cb17-1"><a href="#cb17-1" tabindex="-1" aria-label="code-block-17-1"></a><span class="co"># compose.yml</span></span>
-<span id="cb17-2"><a href="#cb17-2" tabindex="-1" aria-label="code-block-17-2"></a><span class="fu">services</span><span class="kw">:</span></span>
-<span id="cb17-3"><a href="#cb17-3" tabindex="-1" aria-label="code-block-17-3"></a><span class="at">  </span><span class="fu">spuc</span><span class="kw">:</span></span>
-<span id="cb17-4"><a href="#cb17-4" tabindex="-1" aria-label="code-block-17-4"></a><span class="at">    </span><span class="fu">image</span><span class="kw">:</span><span class="at"> spuacv/spuc:latest</span></span>
-<span id="cb17-5"><a href="#cb17-5" tabindex="-1" aria-label="code-block-17-5"></a><span class="at">    </span><span class="fu">container_name</span><span class="kw">:</span><span class="at"> spuc_container</span></span>
-<span id="cb17-6"><a href="#cb17-6" tabindex="-1" aria-label="code-block-17-6"></a><span class="at">    </span><span class="fu">ports</span><span class="kw">:</span><span class="co">                          # Starts the list of ports to map</span></span>
-<span id="cb17-7"><a href="#cb17-7" tabindex="-1" aria-label="code-block-17-7"></a><span class="at">      </span><span class="kw">-</span><span class="at"> 8321:8321</span><span class="co">                   # Maps port 8321 on the host to port 8321 in the container</span></span></code></pre>
+<pre class="sourceCode yml" tabindex="0"><code class="sourceCode yaml"><span id="cb18-1"><a href="#cb18-1" tabindex="-1" aria-label="code-block-18-1"></a><span class="co"># compose.yml</span></span>
+<span id="cb18-2"><a href="#cb18-2" tabindex="-1" aria-label="code-block-18-2"></a><span class="fu">services</span><span class="kw">:</span></span>
+<span id="cb18-3"><a href="#cb18-3" tabindex="-1" aria-label="code-block-18-3"></a><span class="at">  </span><span class="fu">spuc</span><span class="kw">:</span></span>
+<span id="cb18-4"><a href="#cb18-4" tabindex="-1" aria-label="code-block-18-4"></a><span class="at">    </span><span class="fu">image</span><span class="kw">:</span><span class="at"> spuacv/spuc:latest</span></span>
+<span id="cb18-5"><a href="#cb18-5" tabindex="-1" aria-label="code-block-18-5"></a><span class="at">    </span><span class="fu">container_name</span><span class="kw">:</span><span class="at"> spuc_container</span></span>
+<span id="cb18-6"><a href="#cb18-6" tabindex="-1" aria-label="code-block-18-6"></a><span class="at">    </span><span class="fu">ports</span><span class="kw">:</span><span class="co">                          # Starts the list of ports to map</span></span>
+<span id="cb18-7"><a href="#cb18-7" tabindex="-1" aria-label="code-block-18-7"></a><span class="at">      </span><span class="kw">-</span><span class="at"> 8321:8321</span><span class="co">                   # Maps port 8321 on the host to port 8321 in the container</span></span></code></pre>
 </div>
-<div class="codewrapper sourceCode" id="cb18">
+<div class="codewrapper sourceCode" id="cb19">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" tabindex="-1" aria-label="code-block-18-1"></a><span class="ex">docker</span> compose up <span class="at">-d</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" tabindex="-1" aria-label="code-block-19-1"></a><span class="ex">docker</span> compose up <span class="at">-d</span></span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -778,10 +784,10 @@ don’t have to be the same!</p>
  ✔ Container spuc_container              Created                           0.0s</code></pre>
 </div>
 <p>Now we can record a unicorn sighting!</p>
-<div class="codewrapper sourceCode" id="cb20">
+<div class="codewrapper sourceCode" id="cb21">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" tabindex="-1" aria-label="code-block-20-1"></a><span class="ex">curl</span> <span class="at">-X</span> PUT localhost:8321/unicorn_spotted<span class="pp">?</span>location=asteroid\&amp;brightness=242</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" tabindex="-1" aria-label="code-block-21-1"></a><span class="ex">curl</span> <span class="at">-X</span> PUT localhost:8321/unicorn_spotted<span class="pp">?</span>location=asteroid\&amp;brightness=242</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -796,23 +802,23 @@ used by SPUC. We will use a bind mount for this - mapping a file from
 the host to the container.</p>
 <p>As with the CLI, this is (confusingly) done using the
 <code>volumes</code> key.</p>
-<div class="codewrapper sourceCode" id="cb22">
+<div class="codewrapper sourceCode" id="cb23">
 <h3 class="code-label">YML<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode yml" tabindex="0"><code class="sourceCode yaml"><span id="cb22-1"><a href="#cb22-1" tabindex="-1" aria-label="code-block-22-1"></a><span class="co"># compose.yml</span></span>
-<span id="cb22-2"><a href="#cb22-2" tabindex="-1" aria-label="code-block-22-2"></a><span class="fu">services</span><span class="kw">:</span></span>
-<span id="cb22-3"><a href="#cb22-3" tabindex="-1" aria-label="code-block-22-3"></a><span class="at">  </span><span class="fu">spuc</span><span class="kw">:</span></span>
-<span id="cb22-4"><a href="#cb22-4" tabindex="-1" aria-label="code-block-22-4"></a><span class="at">    </span><span class="fu">image</span><span class="kw">:</span><span class="at"> spuacv/spuc:latest</span></span>
-<span id="cb22-5"><a href="#cb22-5" tabindex="-1" aria-label="code-block-22-5"></a><span class="at">    </span><span class="fu">container_name</span><span class="kw">:</span><span class="at"> spuc_container</span></span>
-<span id="cb22-6"><a href="#cb22-6" tabindex="-1" aria-label="code-block-22-6"></a><span class="at">    </span><span class="fu">ports</span><span class="kw">:</span></span>
-<span id="cb22-7"><a href="#cb22-7" tabindex="-1" aria-label="code-block-22-7"></a><span class="at">      </span><span class="kw">-</span><span class="at"> 8321:8321</span></span>
-<span id="cb22-8"><a href="#cb22-8" tabindex="-1" aria-label="code-block-22-8"></a><span class="at">    </span><span class="fu">volumes</span><span class="kw">:</span><span class="co">                                        # Starts the list of volumes/bind mounts</span></span>
-<span id="cb22-9"><a href="#cb22-9" tabindex="-1" aria-label="code-block-22-9"></a><span class="at">      </span><span class="kw">-</span><span class="at"> ./print.config:/spuc/config/print.config</span><span class="co">    # Bind mounts the print.config file</span></span></code></pre>
+<pre class="sourceCode yml" tabindex="0"><code class="sourceCode yaml"><span id="cb23-1"><a href="#cb23-1" tabindex="-1" aria-label="code-block-23-1"></a><span class="co"># compose.yml</span></span>
+<span id="cb23-2"><a href="#cb23-2" tabindex="-1" aria-label="code-block-23-2"></a><span class="fu">services</span><span class="kw">:</span></span>
+<span id="cb23-3"><a href="#cb23-3" tabindex="-1" aria-label="code-block-23-3"></a><span class="at">  </span><span class="fu">spuc</span><span class="kw">:</span></span>
+<span id="cb23-4"><a href="#cb23-4" tabindex="-1" aria-label="code-block-23-4"></a><span class="at">    </span><span class="fu">image</span><span class="kw">:</span><span class="at"> spuacv/spuc:latest</span></span>
+<span id="cb23-5"><a href="#cb23-5" tabindex="-1" aria-label="code-block-23-5"></a><span class="at">    </span><span class="fu">container_name</span><span class="kw">:</span><span class="at"> spuc_container</span></span>
+<span id="cb23-6"><a href="#cb23-6" tabindex="-1" aria-label="code-block-23-6"></a><span class="at">    </span><span class="fu">ports</span><span class="kw">:</span></span>
+<span id="cb23-7"><a href="#cb23-7" tabindex="-1" aria-label="code-block-23-7"></a><span class="at">      </span><span class="kw">-</span><span class="at"> 8321:8321</span></span>
+<span id="cb23-8"><a href="#cb23-8" tabindex="-1" aria-label="code-block-23-8"></a><span class="at">    </span><span class="fu">volumes</span><span class="kw">:</span><span class="co">                                        # Starts the list of volumes/bind mounts</span></span>
+<span id="cb23-9"><a href="#cb23-9" tabindex="-1" aria-label="code-block-23-9"></a><span class="at">      </span><span class="kw">-</span><span class="at"> ./print.config:/spuc/config/print.config</span><span class="co">    # Bind mounts the print.config file</span></span></code></pre>
 </div>
-<div class="codewrapper sourceCode" id="cb23">
+<div class="codewrapper sourceCode" id="cb24">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" tabindex="-1" aria-label="code-block-23-1"></a><span class="ex">docker</span> compose up <span class="at">-d</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" tabindex="-1" aria-label="code-block-24-1"></a><span class="ex">docker</span> compose up <span class="at">-d</span></span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -833,24 +839,24 @@ a volume.</p>
 <h3 id="volumes">Volumes<a class="anchor" aria-label="anchor" href="#volumes"></a></h3>
 <p>Let’s add a volume to persist the unicorn sightings between runs of
 the container.</p>
-<div class="codewrapper sourceCode" id="cb25">
+<div class="codewrapper sourceCode" id="cb26">
 <h3 class="code-label">YML<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode yml" tabindex="0"><code class="sourceCode yaml"><span id="cb25-1"><a href="#cb25-1" tabindex="-1" aria-label="code-block-25-1"></a><span class="co"># compose.yml</span></span>
-<span id="cb25-2"><a href="#cb25-2" tabindex="-1" aria-label="code-block-25-2"></a><span class="fu">services</span><span class="kw">:</span></span>
-<span id="cb25-3"><a href="#cb25-3" tabindex="-1" aria-label="code-block-25-3"></a><span class="at">  </span><span class="fu">spuc</span><span class="kw">:</span></span>
-<span id="cb25-4"><a href="#cb25-4" tabindex="-1" aria-label="code-block-25-4"></a><span class="at">    </span><span class="fu">image</span><span class="kw">:</span><span class="at"> spuacv/spuc:latest</span></span>
-<span id="cb25-5"><a href="#cb25-5" tabindex="-1" aria-label="code-block-25-5"></a><span class="at">    </span><span class="fu">container_name</span><span class="kw">:</span><span class="at"> spuc_container</span></span>
-<span id="cb25-6"><a href="#cb25-6" tabindex="-1" aria-label="code-block-25-6"></a><span class="at">    </span><span class="fu">ports</span><span class="kw">:</span></span>
-<span id="cb25-7"><a href="#cb25-7" tabindex="-1" aria-label="code-block-25-7"></a><span class="at">      </span><span class="kw">-</span><span class="at"> 8321:8321</span></span>
-<span id="cb25-8"><a href="#cb25-8" tabindex="-1" aria-label="code-block-25-8"></a><span class="at">    </span><span class="fu">volumes</span><span class="kw">:</span></span>
-<span id="cb25-9"><a href="#cb25-9" tabindex="-1" aria-label="code-block-25-9"></a><span class="at">      </span><span class="kw">-</span><span class="at"> ./print.config:/spuc/config/print.config</span></span>
-<span id="cb25-10"><a href="#cb25-10" tabindex="-1" aria-label="code-block-25-10"></a><span class="at">      </span><span class="kw">-</span><span class="at"> spuc-volume:/spuc/output</span><span class="co">                  # Mounts the volume named spuc-volume</span></span></code></pre>
+<pre class="sourceCode yml" tabindex="0"><code class="sourceCode yaml"><span id="cb26-1"><a href="#cb26-1" tabindex="-1" aria-label="code-block-26-1"></a><span class="co"># compose.yml</span></span>
+<span id="cb26-2"><a href="#cb26-2" tabindex="-1" aria-label="code-block-26-2"></a><span class="fu">services</span><span class="kw">:</span></span>
+<span id="cb26-3"><a href="#cb26-3" tabindex="-1" aria-label="code-block-26-3"></a><span class="at">  </span><span class="fu">spuc</span><span class="kw">:</span></span>
+<span id="cb26-4"><a href="#cb26-4" tabindex="-1" aria-label="code-block-26-4"></a><span class="at">    </span><span class="fu">image</span><span class="kw">:</span><span class="at"> spuacv/spuc:latest</span></span>
+<span id="cb26-5"><a href="#cb26-5" tabindex="-1" aria-label="code-block-26-5"></a><span class="at">    </span><span class="fu">container_name</span><span class="kw">:</span><span class="at"> spuc_container</span></span>
+<span id="cb26-6"><a href="#cb26-6" tabindex="-1" aria-label="code-block-26-6"></a><span class="at">    </span><span class="fu">ports</span><span class="kw">:</span></span>
+<span id="cb26-7"><a href="#cb26-7" tabindex="-1" aria-label="code-block-26-7"></a><span class="at">      </span><span class="kw">-</span><span class="at"> 8321:8321</span></span>
+<span id="cb26-8"><a href="#cb26-8" tabindex="-1" aria-label="code-block-26-8"></a><span class="at">    </span><span class="fu">volumes</span><span class="kw">:</span></span>
+<span id="cb26-9"><a href="#cb26-9" tabindex="-1" aria-label="code-block-26-9"></a><span class="at">      </span><span class="kw">-</span><span class="at"> ./print.config:/spuc/config/print.config</span></span>
+<span id="cb26-10"><a href="#cb26-10" tabindex="-1" aria-label="code-block-26-10"></a><span class="at">      </span><span class="kw">-</span><span class="at"> spuc-volume:/spuc/output</span><span class="co">                  # Mounts the volume named spuc-volume</span></span></code></pre>
 </div>
-<div class="codewrapper sourceCode" id="cb26">
+<div class="codewrapper sourceCode" id="cb27">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" tabindex="-1" aria-label="code-block-26-1"></a><span class="ex">docker</span> compose up <span class="at">-d</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" tabindex="-1" aria-label="code-block-27-1"></a><span class="ex">docker</span> compose up <span class="at">-d</span></span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -864,27 +870,27 @@ needed that volume.</p>
 volumes are separate from <em>services</em>, so they are declared at the
 same level. To declare a named volume, we specify its name and end with
 a <code>:</code>. We will do this at the end of the file.</p>
-<div class="codewrapper sourceCode" id="cb28">
+<div class="codewrapper sourceCode" id="cb29">
 <h3 class="code-label">YML<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode yml" tabindex="0"><code class="sourceCode yaml"><span id="cb28-1"><a href="#cb28-1" tabindex="-1" aria-label="code-block-28-1"></a><span class="co"># compose.yml</span></span>
-<span id="cb28-2"><a href="#cb28-2" tabindex="-1" aria-label="code-block-28-2"></a><span class="fu">services</span><span class="kw">:</span></span>
-<span id="cb28-3"><a href="#cb28-3" tabindex="-1" aria-label="code-block-28-3"></a><span class="at">  </span><span class="fu">spuc</span><span class="kw">:</span></span>
-<span id="cb28-4"><a href="#cb28-4" tabindex="-1" aria-label="code-block-28-4"></a><span class="at">    </span><span class="fu">image</span><span class="kw">:</span><span class="at"> spuacv/spuc:latest</span></span>
-<span id="cb28-5"><a href="#cb28-5" tabindex="-1" aria-label="code-block-28-5"></a><span class="at">    </span><span class="fu">container_name</span><span class="kw">:</span><span class="at"> spuc_container</span></span>
-<span id="cb28-6"><a href="#cb28-6" tabindex="-1" aria-label="code-block-28-6"></a><span class="at">    </span><span class="fu">ports</span><span class="kw">:</span></span>
-<span id="cb28-7"><a href="#cb28-7" tabindex="-1" aria-label="code-block-28-7"></a><span class="at">      </span><span class="kw">-</span><span class="at"> 8321:8321</span></span>
-<span id="cb28-8"><a href="#cb28-8" tabindex="-1" aria-label="code-block-28-8"></a><span class="at">    </span><span class="fu">volumes</span><span class="kw">:</span></span>
-<span id="cb28-9"><a href="#cb28-9" tabindex="-1" aria-label="code-block-28-9"></a><span class="at">      </span><span class="kw">-</span><span class="at"> ./print.config:/spuc/config/print.config</span></span>
-<span id="cb28-10"><a href="#cb28-10" tabindex="-1" aria-label="code-block-28-10"></a><span class="at">      </span><span class="kw">-</span><span class="at"> spuc-volume:/spuc/output</span><span class="co">              # Mounts the volume named spuc-volume</span></span>
-<span id="cb28-11"><a href="#cb28-11" tabindex="-1" aria-label="code-block-28-11"></a></span>
-<span id="cb28-12"><a href="#cb28-12" tabindex="-1" aria-label="code-block-28-12"></a><span class="fu">volumes</span><span class="kw">:</span><span class="co">                                      # Starts section for declaring volumes</span></span>
-<span id="cb28-13"><a href="#cb28-13" tabindex="-1" aria-label="code-block-28-13"></a><span class="at">  </span><span class="fu">spuc-volume</span><span class="kw">:</span><span class="co">                                # Declares a volume named spuc-volume</span></span></code></pre>
+<pre class="sourceCode yml" tabindex="0"><code class="sourceCode yaml"><span id="cb29-1"><a href="#cb29-1" tabindex="-1" aria-label="code-block-29-1"></a><span class="co"># compose.yml</span></span>
+<span id="cb29-2"><a href="#cb29-2" tabindex="-1" aria-label="code-block-29-2"></a><span class="fu">services</span><span class="kw">:</span></span>
+<span id="cb29-3"><a href="#cb29-3" tabindex="-1" aria-label="code-block-29-3"></a><span class="at">  </span><span class="fu">spuc</span><span class="kw">:</span></span>
+<span id="cb29-4"><a href="#cb29-4" tabindex="-1" aria-label="code-block-29-4"></a><span class="at">    </span><span class="fu">image</span><span class="kw">:</span><span class="at"> spuacv/spuc:latest</span></span>
+<span id="cb29-5"><a href="#cb29-5" tabindex="-1" aria-label="code-block-29-5"></a><span class="at">    </span><span class="fu">container_name</span><span class="kw">:</span><span class="at"> spuc_container</span></span>
+<span id="cb29-6"><a href="#cb29-6" tabindex="-1" aria-label="code-block-29-6"></a><span class="at">    </span><span class="fu">ports</span><span class="kw">:</span></span>
+<span id="cb29-7"><a href="#cb29-7" tabindex="-1" aria-label="code-block-29-7"></a><span class="at">      </span><span class="kw">-</span><span class="at"> 8321:8321</span></span>
+<span id="cb29-8"><a href="#cb29-8" tabindex="-1" aria-label="code-block-29-8"></a><span class="at">    </span><span class="fu">volumes</span><span class="kw">:</span></span>
+<span id="cb29-9"><a href="#cb29-9" tabindex="-1" aria-label="code-block-29-9"></a><span class="at">      </span><span class="kw">-</span><span class="at"> ./print.config:/spuc/config/print.config</span></span>
+<span id="cb29-10"><a href="#cb29-10" tabindex="-1" aria-label="code-block-29-10"></a><span class="at">      </span><span class="kw">-</span><span class="at"> spuc-volume:/spuc/output</span><span class="co">              # Mounts the volume named spuc-volume</span></span>
+<span id="cb29-11"><a href="#cb29-11" tabindex="-1" aria-label="code-block-29-11"></a></span>
+<span id="cb29-12"><a href="#cb29-12" tabindex="-1" aria-label="code-block-29-12"></a><span class="fu">volumes</span><span class="kw">:</span><span class="co">                                      # Starts section for declaring volumes</span></span>
+<span id="cb29-13"><a href="#cb29-13" tabindex="-1" aria-label="code-block-29-13"></a><span class="at">  </span><span class="fu">spuc-volume</span><span class="kw">:</span><span class="co">                                # Declares a volume named spuc-volume</span></span></code></pre>
 </div>
-<div class="codewrapper sourceCode" id="cb29">
+<div class="codewrapper sourceCode" id="cb30">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" tabindex="-1" aria-label="code-block-29-1"></a><span class="ex">docker</span> compose up <span class="at">-d</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" tabindex="-1" aria-label="code-block-30-1"></a><span class="ex">docker</span> compose up <span class="at">-d</span></span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -902,12 +908,12 @@ ability to remove volumes when the container is removed.</p>
 named in the <code>volumes</code> key.</p>
 <p>You can confirm this by running <code>docker volume ls</code> before
 and after running <code>down</code>.</p>
-<div class="codewrapper sourceCode" id="cb31">
+<div class="codewrapper sourceCode" id="cb32">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1" tabindex="-1" aria-label="code-block-31-1"></a><span class="ex">$</span> docker volume ls</span>
-<span id="cb31-2"><a href="#cb31-2" tabindex="-1" aria-label="code-block-31-2"></a><span class="ex">$</span> docker compose down <span class="at">-v</span></span>
-<span id="cb31-3"><a href="#cb31-3" tabindex="-1" aria-label="code-block-31-3"></a><span class="ex">$</span> docker volume ls</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb32-1"><a href="#cb32-1" tabindex="-1" aria-label="code-block-32-1"></a><span class="ex">$</span> docker volume ls</span>
+<span id="cb32-2"><a href="#cb32-2" tabindex="-1" aria-label="code-block-32-2"></a><span class="ex">$</span> docker compose down <span class="at">-v</span></span>
+<span id="cb32-3"><a href="#cb32-3" tabindex="-1" aria-label="code-block-32-3"></a><span class="ex">$</span> docker volume ls</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -930,30 +936,30 @@ local         spuc-volume</code></pre>
 <p>Next, we need to set the <code>EXPORT</code> environment variable to
 <code>true</code>. This is done using the <code>environment</code>
 key.</p>
-<div class="codewrapper sourceCode" id="cb33">
+<div class="codewrapper sourceCode" id="cb34">
 <h3 class="code-label">YML<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode yml" tabindex="0"><code class="sourceCode yaml"><span id="cb33-1"><a href="#cb33-1" tabindex="-1" aria-label="code-block-33-1"></a><span class="co"># compose.yml</span></span>
-<span id="cb33-2"><a href="#cb33-2" tabindex="-1" aria-label="code-block-33-2"></a><span class="fu">services</span><span class="kw">:</span></span>
-<span id="cb33-3"><a href="#cb33-3" tabindex="-1" aria-label="code-block-33-3"></a><span class="at">  </span><span class="fu">spuc</span><span class="kw">:</span></span>
-<span id="cb33-4"><a href="#cb33-4" tabindex="-1" aria-label="code-block-33-4"></a><span class="at">    </span><span class="fu">image</span><span class="kw">:</span><span class="at"> spuacv/spuc:latest</span></span>
-<span id="cb33-5"><a href="#cb33-5" tabindex="-1" aria-label="code-block-33-5"></a><span class="at">    </span><span class="fu">container_name</span><span class="kw">:</span><span class="at"> spuc_container</span></span>
-<span id="cb33-6"><a href="#cb33-6" tabindex="-1" aria-label="code-block-33-6"></a><span class="at">    </span><span class="fu">ports</span><span class="kw">:</span></span>
-<span id="cb33-7"><a href="#cb33-7" tabindex="-1" aria-label="code-block-33-7"></a><span class="at">      </span><span class="kw">-</span><span class="at"> 8321:8321</span></span>
-<span id="cb33-8"><a href="#cb33-8" tabindex="-1" aria-label="code-block-33-8"></a><span class="at">    </span><span class="fu">volumes</span><span class="kw">:</span></span>
-<span id="cb33-9"><a href="#cb33-9" tabindex="-1" aria-label="code-block-33-9"></a><span class="at">      </span><span class="kw">-</span><span class="at"> ./print.config:/spuc/config/print.config</span></span>
-<span id="cb33-10"><a href="#cb33-10" tabindex="-1" aria-label="code-block-33-10"></a><span class="at">      </span><span class="kw">-</span><span class="at"> spuc-volume:/spuc/output</span></span>
-<span id="cb33-11"><a href="#cb33-11" tabindex="-1" aria-label="code-block-33-11"></a><span class="at">    </span><span class="fu">environment</span><span class="kw">:</span><span class="co">                      # Starts list of environment variables to set</span></span>
-<span id="cb33-12"><a href="#cb33-12" tabindex="-1" aria-label="code-block-33-12"></a><span class="at">      </span><span class="kw">-</span><span class="at"> EXPORT=true</span><span class="co">                   # Sets the EXPORT environment variable to true</span></span>
-<span id="cb33-13"><a href="#cb33-13" tabindex="-1" aria-label="code-block-33-13"></a></span>
-<span id="cb33-14"><a href="#cb33-14" tabindex="-1" aria-label="code-block-33-14"></a><span class="fu">volumes</span><span class="kw">:</span></span>
-<span id="cb33-15"><a href="#cb33-15" tabindex="-1" aria-label="code-block-33-15"></a><span class="at">  </span><span class="fu">spuc-volume</span><span class="kw">:</span></span></code></pre>
+<pre class="sourceCode yml" tabindex="0"><code class="sourceCode yaml"><span id="cb34-1"><a href="#cb34-1" tabindex="-1" aria-label="code-block-34-1"></a><span class="co"># compose.yml</span></span>
+<span id="cb34-2"><a href="#cb34-2" tabindex="-1" aria-label="code-block-34-2"></a><span class="fu">services</span><span class="kw">:</span></span>
+<span id="cb34-3"><a href="#cb34-3" tabindex="-1" aria-label="code-block-34-3"></a><span class="at">  </span><span class="fu">spuc</span><span class="kw">:</span></span>
+<span id="cb34-4"><a href="#cb34-4" tabindex="-1" aria-label="code-block-34-4"></a><span class="at">    </span><span class="fu">image</span><span class="kw">:</span><span class="at"> spuacv/spuc:latest</span></span>
+<span id="cb34-5"><a href="#cb34-5" tabindex="-1" aria-label="code-block-34-5"></a><span class="at">    </span><span class="fu">container_name</span><span class="kw">:</span><span class="at"> spuc_container</span></span>
+<span id="cb34-6"><a href="#cb34-6" tabindex="-1" aria-label="code-block-34-6"></a><span class="at">    </span><span class="fu">ports</span><span class="kw">:</span></span>
+<span id="cb34-7"><a href="#cb34-7" tabindex="-1" aria-label="code-block-34-7"></a><span class="at">      </span><span class="kw">-</span><span class="at"> 8321:8321</span></span>
+<span id="cb34-8"><a href="#cb34-8" tabindex="-1" aria-label="code-block-34-8"></a><span class="at">    </span><span class="fu">volumes</span><span class="kw">:</span></span>
+<span id="cb34-9"><a href="#cb34-9" tabindex="-1" aria-label="code-block-34-9"></a><span class="at">      </span><span class="kw">-</span><span class="at"> ./print.config:/spuc/config/print.config</span></span>
+<span id="cb34-10"><a href="#cb34-10" tabindex="-1" aria-label="code-block-34-10"></a><span class="at">      </span><span class="kw">-</span><span class="at"> spuc-volume:/spuc/output</span></span>
+<span id="cb34-11"><a href="#cb34-11" tabindex="-1" aria-label="code-block-34-11"></a><span class="at">    </span><span class="fu">environment</span><span class="kw">:</span><span class="co">                      # Starts list of environment variables to set</span></span>
+<span id="cb34-12"><a href="#cb34-12" tabindex="-1" aria-label="code-block-34-12"></a><span class="at">      </span><span class="kw">-</span><span class="at"> EXPORT=true</span><span class="co">                   # Sets the EXPORT environment variable to true</span></span>
+<span id="cb34-13"><a href="#cb34-13" tabindex="-1" aria-label="code-block-34-13"></a></span>
+<span id="cb34-14"><a href="#cb34-14" tabindex="-1" aria-label="code-block-34-14"></a><span class="fu">volumes</span><span class="kw">:</span></span>
+<span id="cb34-15"><a href="#cb34-15" tabindex="-1" aria-label="code-block-34-15"></a><span class="at">  </span><span class="fu">spuc-volume</span><span class="kw">:</span></span></code></pre>
 </div>
-<div class="codewrapper sourceCode" id="cb34">
+<div class="codewrapper sourceCode" id="cb35">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb34-1"><a href="#cb34-1" tabindex="-1" aria-label="code-block-34-1"></a><span class="ex">docker</span> compose up <span class="at">-d</span></span>
-<span id="cb34-2"><a href="#cb34-2" tabindex="-1" aria-label="code-block-34-2"></a><span class="ex">docker</span> compose logs</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb35-1"><a href="#cb35-1" tabindex="-1" aria-label="code-block-35-1"></a><span class="ex">docker</span> compose up <span class="at">-d</span></span>
+<span id="cb35-2"><a href="#cb35-2" tabindex="-1" aria-label="code-block-35-2"></a><span class="ex">docker</span> compose logs</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -972,31 +978,31 @@ of the tool and the export functionality is now available.</p>
 <h3 id="overriding-the-default-command">Overriding the default command<a class="anchor" aria-label="anchor" href="#overriding-the-default-command"></a></h3>
 <p>Finally, lets set the units by overriding the command, as we did
 before. For this, we use the <code>command</code> key.</p>
-<div class="codewrapper sourceCode" id="cb36">
+<div class="codewrapper sourceCode" id="cb37">
 <h3 class="code-label">YML<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode yml" tabindex="0"><code class="sourceCode yaml"><span id="cb36-1"><a href="#cb36-1" tabindex="-1" aria-label="code-block-36-1"></a><span class="co"># compose.yml</span></span>
-<span id="cb36-2"><a href="#cb36-2" tabindex="-1" aria-label="code-block-36-2"></a><span class="fu">services</span><span class="kw">:</span></span>
-<span id="cb36-3"><a href="#cb36-3" tabindex="-1" aria-label="code-block-36-3"></a><span class="at">  </span><span class="fu">spuc</span><span class="kw">:</span></span>
-<span id="cb36-4"><a href="#cb36-4" tabindex="-1" aria-label="code-block-36-4"></a><span class="at">    </span><span class="fu">image</span><span class="kw">:</span><span class="at"> spuacv/spuc:latest</span></span>
-<span id="cb36-5"><a href="#cb36-5" tabindex="-1" aria-label="code-block-36-5"></a><span class="at">    </span><span class="fu">container_name</span><span class="kw">:</span><span class="at"> spuc_container</span></span>
-<span id="cb36-6"><a href="#cb36-6" tabindex="-1" aria-label="code-block-36-6"></a><span class="at">    </span><span class="fu">ports</span><span class="kw">:</span></span>
-<span id="cb36-7"><a href="#cb36-7" tabindex="-1" aria-label="code-block-36-7"></a><span class="at">      </span><span class="kw">-</span><span class="at"> 8321:8321</span></span>
-<span id="cb36-8"><a href="#cb36-8" tabindex="-1" aria-label="code-block-36-8"></a><span class="at">    </span><span class="fu">volumes</span><span class="kw">:</span></span>
-<span id="cb36-9"><a href="#cb36-9" tabindex="-1" aria-label="code-block-36-9"></a><span class="at">      </span><span class="kw">-</span><span class="at"> ./print.config:/spuc/config/print.config</span></span>
-<span id="cb36-10"><a href="#cb36-10" tabindex="-1" aria-label="code-block-36-10"></a><span class="at">      </span><span class="kw">-</span><span class="at"> spuc-volume:/spuc/output</span></span>
-<span id="cb36-11"><a href="#cb36-11" tabindex="-1" aria-label="code-block-36-11"></a><span class="at">    </span><span class="fu">environment</span><span class="kw">:</span></span>
-<span id="cb36-12"><a href="#cb36-12" tabindex="-1" aria-label="code-block-36-12"></a><span class="at">      </span><span class="kw">-</span><span class="at"> EXPORT=true</span></span>
-<span id="cb36-13"><a href="#cb36-13" tabindex="-1" aria-label="code-block-36-13"></a><span class="at">    </span><span class="fu">command</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"--units"</span><span class="kw">,</span><span class="at"> </span><span class="st">"iulu"</span><span class="kw">]</span><span class="co">          # Overrides the default command</span></span>
-<span id="cb36-14"><a href="#cb36-14" tabindex="-1" aria-label="code-block-36-14"></a></span>
-<span id="cb36-15"><a href="#cb36-15" tabindex="-1" aria-label="code-block-36-15"></a><span class="fu">volumes</span><span class="kw">:</span></span>
-<span id="cb36-16"><a href="#cb36-16" tabindex="-1" aria-label="code-block-36-16"></a><span class="at">  </span><span class="fu">spuc-volume</span><span class="kw">:</span></span></code></pre>
+<pre class="sourceCode yml" tabindex="0"><code class="sourceCode yaml"><span id="cb37-1"><a href="#cb37-1" tabindex="-1" aria-label="code-block-37-1"></a><span class="co"># compose.yml</span></span>
+<span id="cb37-2"><a href="#cb37-2" tabindex="-1" aria-label="code-block-37-2"></a><span class="fu">services</span><span class="kw">:</span></span>
+<span id="cb37-3"><a href="#cb37-3" tabindex="-1" aria-label="code-block-37-3"></a><span class="at">  </span><span class="fu">spuc</span><span class="kw">:</span></span>
+<span id="cb37-4"><a href="#cb37-4" tabindex="-1" aria-label="code-block-37-4"></a><span class="at">    </span><span class="fu">image</span><span class="kw">:</span><span class="at"> spuacv/spuc:latest</span></span>
+<span id="cb37-5"><a href="#cb37-5" tabindex="-1" aria-label="code-block-37-5"></a><span class="at">    </span><span class="fu">container_name</span><span class="kw">:</span><span class="at"> spuc_container</span></span>
+<span id="cb37-6"><a href="#cb37-6" tabindex="-1" aria-label="code-block-37-6"></a><span class="at">    </span><span class="fu">ports</span><span class="kw">:</span></span>
+<span id="cb37-7"><a href="#cb37-7" tabindex="-1" aria-label="code-block-37-7"></a><span class="at">      </span><span class="kw">-</span><span class="at"> 8321:8321</span></span>
+<span id="cb37-8"><a href="#cb37-8" tabindex="-1" aria-label="code-block-37-8"></a><span class="at">    </span><span class="fu">volumes</span><span class="kw">:</span></span>
+<span id="cb37-9"><a href="#cb37-9" tabindex="-1" aria-label="code-block-37-9"></a><span class="at">      </span><span class="kw">-</span><span class="at"> ./print.config:/spuc/config/print.config</span></span>
+<span id="cb37-10"><a href="#cb37-10" tabindex="-1" aria-label="code-block-37-10"></a><span class="at">      </span><span class="kw">-</span><span class="at"> spuc-volume:/spuc/output</span></span>
+<span id="cb37-11"><a href="#cb37-11" tabindex="-1" aria-label="code-block-37-11"></a><span class="at">    </span><span class="fu">environment</span><span class="kw">:</span></span>
+<span id="cb37-12"><a href="#cb37-12" tabindex="-1" aria-label="code-block-37-12"></a><span class="at">      </span><span class="kw">-</span><span class="at"> EXPORT=true</span></span>
+<span id="cb37-13"><a href="#cb37-13" tabindex="-1" aria-label="code-block-37-13"></a><span class="at">    </span><span class="fu">command</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"--units"</span><span class="kw">,</span><span class="at"> </span><span class="st">"iulu"</span><span class="kw">]</span><span class="co">          # Overrides the default command</span></span>
+<span id="cb37-14"><a href="#cb37-14" tabindex="-1" aria-label="code-block-37-14"></a></span>
+<span id="cb37-15"><a href="#cb37-15" tabindex="-1" aria-label="code-block-37-15"></a><span class="fu">volumes</span><span class="kw">:</span></span>
+<span id="cb37-16"><a href="#cb37-16" tabindex="-1" aria-label="code-block-37-16"></a><span class="at">  </span><span class="fu">spuc-volume</span><span class="kw">:</span></span></code></pre>
 </div>
-<div class="codewrapper sourceCode" id="cb37">
+<div class="codewrapper sourceCode" id="cb38">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb37-1"><a href="#cb37-1" tabindex="-1" aria-label="code-block-37-1"></a><span class="ex">docker</span> compose up <span class="at">-d</span></span>
-<span id="cb37-2"><a href="#cb37-2" tabindex="-1" aria-label="code-block-37-2"></a><span class="ex">docker</span> compose logs</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb38-1"><a href="#cb38-1" tabindex="-1" aria-label="code-block-38-1"></a><span class="ex">docker</span> compose up <span class="at">-d</span></span>
+<span id="cb38-2"><a href="#cb38-2" tabindex="-1" aria-label="code-block-38-2"></a><span class="ex">docker</span> compose logs</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1014,31 +1020,31 @@ spuc_container  |
 command! The only thing we are missing is enabling the plugin.</p>
 <p>We used a bind mount before to put the plugin file in the container,
 so lets try again:</p>
-<div class="codewrapper sourceCode" id="cb39">
+<div class="codewrapper sourceCode" id="cb40">
 <h3 class="code-label">YML<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode yml" tabindex="0"><code class="sourceCode yaml"><span id="cb39-1"><a href="#cb39-1" tabindex="-1" aria-label="code-block-39-1"></a><span class="co"># compose.yml</span></span>
-<span id="cb39-2"><a href="#cb39-2" tabindex="-1" aria-label="code-block-39-2"></a><span class="fu">services</span><span class="kw">:</span></span>
-<span id="cb39-3"><a href="#cb39-3" tabindex="-1" aria-label="code-block-39-3"></a><span class="at">  </span><span class="fu">spuc</span><span class="kw">:</span></span>
-<span id="cb39-4"><a href="#cb39-4" tabindex="-1" aria-label="code-block-39-4"></a><span class="at">    </span><span class="fu">image</span><span class="kw">:</span><span class="at"> spuacv/spuc:latest</span></span>
-<span id="cb39-5"><a href="#cb39-5" tabindex="-1" aria-label="code-block-39-5"></a><span class="at">    </span><span class="fu">container_name</span><span class="kw">:</span><span class="at"> spuc_container</span></span>
-<span id="cb39-6"><a href="#cb39-6" tabindex="-1" aria-label="code-block-39-6"></a><span class="at">    </span><span class="fu">ports</span><span class="kw">:</span></span>
-<span id="cb39-7"><a href="#cb39-7" tabindex="-1" aria-label="code-block-39-7"></a><span class="at">      </span><span class="kw">-</span><span class="at"> 8321:8321</span></span>
-<span id="cb39-8"><a href="#cb39-8" tabindex="-1" aria-label="code-block-39-8"></a><span class="at">    </span><span class="fu">volumes</span><span class="kw">:</span></span>
-<span id="cb39-9"><a href="#cb39-9" tabindex="-1" aria-label="code-block-39-9"></a><span class="at">      </span><span class="kw">-</span><span class="at"> ./print.config:/spuc/config/print.config</span></span>
-<span id="cb39-10"><a href="#cb39-10" tabindex="-1" aria-label="code-block-39-10"></a><span class="at">      </span><span class="kw">-</span><span class="at"> spuc-volume:/spuc/output</span></span>
-<span id="cb39-11"><a href="#cb39-11" tabindex="-1" aria-label="code-block-39-11"></a><span class="at">      </span><span class="kw">-</span><span class="at"> ./stats.py:/spuc/plugins/stats.py</span><span class="co">        # Mounts the stats.py plugin</span></span>
-<span id="cb39-12"><a href="#cb39-12" tabindex="-1" aria-label="code-block-39-12"></a><span class="at">    </span><span class="fu">environment</span><span class="kw">:</span></span>
-<span id="cb39-13"><a href="#cb39-13" tabindex="-1" aria-label="code-block-39-13"></a><span class="at">      </span><span class="kw">-</span><span class="at"> EXPORT=true</span></span>
-<span id="cb39-14"><a href="#cb39-14" tabindex="-1" aria-label="code-block-39-14"></a><span class="at">    </span><span class="fu">command</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"--units"</span><span class="kw">,</span><span class="at"> </span><span class="st">"iulu"</span><span class="kw">]</span></span>
-<span id="cb39-15"><a href="#cb39-15" tabindex="-1" aria-label="code-block-39-15"></a></span>
-<span id="cb39-16"><a href="#cb39-16" tabindex="-1" aria-label="code-block-39-16"></a><span class="fu">volumes</span><span class="kw">:</span></span>
-<span id="cb39-17"><a href="#cb39-17" tabindex="-1" aria-label="code-block-39-17"></a><span class="at">  </span><span class="fu">spuc-volume</span><span class="kw">:</span></span></code></pre>
+<pre class="sourceCode yml" tabindex="0"><code class="sourceCode yaml"><span id="cb40-1"><a href="#cb40-1" tabindex="-1" aria-label="code-block-40-1"></a><span class="co"># compose.yml</span></span>
+<span id="cb40-2"><a href="#cb40-2" tabindex="-1" aria-label="code-block-40-2"></a><span class="fu">services</span><span class="kw">:</span></span>
+<span id="cb40-3"><a href="#cb40-3" tabindex="-1" aria-label="code-block-40-3"></a><span class="at">  </span><span class="fu">spuc</span><span class="kw">:</span></span>
+<span id="cb40-4"><a href="#cb40-4" tabindex="-1" aria-label="code-block-40-4"></a><span class="at">    </span><span class="fu">image</span><span class="kw">:</span><span class="at"> spuacv/spuc:latest</span></span>
+<span id="cb40-5"><a href="#cb40-5" tabindex="-1" aria-label="code-block-40-5"></a><span class="at">    </span><span class="fu">container_name</span><span class="kw">:</span><span class="at"> spuc_container</span></span>
+<span id="cb40-6"><a href="#cb40-6" tabindex="-1" aria-label="code-block-40-6"></a><span class="at">    </span><span class="fu">ports</span><span class="kw">:</span></span>
+<span id="cb40-7"><a href="#cb40-7" tabindex="-1" aria-label="code-block-40-7"></a><span class="at">      </span><span class="kw">-</span><span class="at"> 8321:8321</span></span>
+<span id="cb40-8"><a href="#cb40-8" tabindex="-1" aria-label="code-block-40-8"></a><span class="at">    </span><span class="fu">volumes</span><span class="kw">:</span></span>
+<span id="cb40-9"><a href="#cb40-9" tabindex="-1" aria-label="code-block-40-9"></a><span class="at">      </span><span class="kw">-</span><span class="at"> ./print.config:/spuc/config/print.config</span></span>
+<span id="cb40-10"><a href="#cb40-10" tabindex="-1" aria-label="code-block-40-10"></a><span class="at">      </span><span class="kw">-</span><span class="at"> spuc-volume:/spuc/output</span></span>
+<span id="cb40-11"><a href="#cb40-11" tabindex="-1" aria-label="code-block-40-11"></a><span class="at">      </span><span class="kw">-</span><span class="at"> ./stats.py:/spuc/plugins/stats.py</span><span class="co">        # Mounts the stats.py plugin</span></span>
+<span id="cb40-12"><a href="#cb40-12" tabindex="-1" aria-label="code-block-40-12"></a><span class="at">    </span><span class="fu">environment</span><span class="kw">:</span></span>
+<span id="cb40-13"><a href="#cb40-13" tabindex="-1" aria-label="code-block-40-13"></a><span class="at">      </span><span class="kw">-</span><span class="at"> EXPORT=true</span></span>
+<span id="cb40-14"><a href="#cb40-14" tabindex="-1" aria-label="code-block-40-14"></a><span class="at">    </span><span class="fu">command</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"--units"</span><span class="kw">,</span><span class="at"> </span><span class="st">"iulu"</span><span class="kw">]</span></span>
+<span id="cb40-15"><a href="#cb40-15" tabindex="-1" aria-label="code-block-40-15"></a></span>
+<span id="cb40-16"><a href="#cb40-16" tabindex="-1" aria-label="code-block-40-16"></a><span class="fu">volumes</span><span class="kw">:</span></span>
+<span id="cb40-17"><a href="#cb40-17" tabindex="-1" aria-label="code-block-40-17"></a><span class="at">  </span><span class="fu">spuc-volume</span><span class="kw">:</span></span></code></pre>
 </div>
-<div class="codewrapper sourceCode" id="cb40">
+<div class="codewrapper sourceCode" id="cb41">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb40-1"><a href="#cb40-1" tabindex="-1" aria-label="code-block-40-1"></a><span class="ex">docker</span> compose up <span class="at">-d</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb41-1"><a href="#cb41-1" tabindex="-1" aria-label="code-block-41-1"></a><span class="ex">docker</span> compose up <span class="at">-d</span></span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1048,10 +1054,10 @@ so lets try again:</p>
 </div>
 <p>Seems to have worked, lets look at the logs to see if the plugin was
 loaded.</p>
-<div class="codewrapper sourceCode" id="cb42">
+<div class="codewrapper sourceCode" id="cb43">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb42-1"><a href="#cb42-1" tabindex="-1" aria-label="code-block-42-1"></a><span class="ex">docker</span> compose logs</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb43-1"><a href="#cb43-1" tabindex="-1" aria-label="code-block-43-1"></a><span class="ex">docker</span> compose logs</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1071,26 +1077,26 @@ own container in the first place!</p>
 </section><section><h2 class="section-heading" id="building-containers-in-docker-compose">Building containers in Docker Compose<a class="anchor" aria-label="anchor" href="#building-containers-in-docker-compose"></a></h2>
 <hr class="half-width"><p>We could use the tag we used when we built the container to use that
 image:</p>
-<div class="codewrapper sourceCode" id="cb44">
+<div class="codewrapper sourceCode" id="cb45">
 <h3 class="code-label">YML<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode yml" tabindex="0"><code class="sourceCode yaml"><span id="cb44-1"><a href="#cb44-1" tabindex="-1" aria-label="code-block-44-1"></a><span class="co"># compose.yml</span></span>
-<span id="cb44-2"><a href="#cb44-2" tabindex="-1" aria-label="code-block-44-2"></a><span class="fu">services</span><span class="kw">:</span></span>
-<span id="cb44-3"><a href="#cb44-3" tabindex="-1" aria-label="code-block-44-3"></a><span class="at">  </span><span class="fu">spuc</span><span class="kw">:</span></span>
-<span id="cb44-4"><a href="#cb44-4" tabindex="-1" aria-label="code-block-44-4"></a><span class="at">    </span><span class="fu">image</span><span class="kw">:</span><span class="at"> spuc-stats</span><span class="co">   # Use the image we built earlier</span></span>
-<span id="cb44-5"><a href="#cb44-5" tabindex="-1" aria-label="code-block-44-5"></a><span class="at">    </span><span class="fu">container_name</span><span class="kw">:</span><span class="at"> spuc_container</span></span>
-<span id="cb44-6"><a href="#cb44-6" tabindex="-1" aria-label="code-block-44-6"></a><span class="at">    </span><span class="fu">ports</span><span class="kw">:</span></span>
-<span id="cb44-7"><a href="#cb44-7" tabindex="-1" aria-label="code-block-44-7"></a><span class="at">      </span><span class="kw">-</span><span class="at"> 8321:8321</span></span>
-<span id="cb44-8"><a href="#cb44-8" tabindex="-1" aria-label="code-block-44-8"></a><span class="at">    </span><span class="fu">volumes</span><span class="kw">:</span></span>
-<span id="cb44-9"><a href="#cb44-9" tabindex="-1" aria-label="code-block-44-9"></a><span class="at">      </span><span class="kw">-</span><span class="at"> ./print.config:/spuc/config/print.config</span></span>
-<span id="cb44-10"><a href="#cb44-10" tabindex="-1" aria-label="code-block-44-10"></a><span class="at">      </span><span class="kw">-</span><span class="at"> spuc-volume:/spuc/output</span></span>
-<span id="cb44-11"><a href="#cb44-11" tabindex="-1" aria-label="code-block-44-11"></a><span class="at">      </span><span class="kw">-</span><span class="at"> ./stats.py:/spuc/plugins/stats.py</span><span class="co">        # Mounts the stats.py plugin</span></span>
-<span id="cb44-12"><a href="#cb44-12" tabindex="-1" aria-label="code-block-44-12"></a><span class="at">    </span><span class="fu">environment</span><span class="kw">:</span></span>
-<span id="cb44-13"><a href="#cb44-13" tabindex="-1" aria-label="code-block-44-13"></a><span class="at">      </span><span class="kw">-</span><span class="at"> EXPORT=true</span></span>
-<span id="cb44-14"><a href="#cb44-14" tabindex="-1" aria-label="code-block-44-14"></a><span class="at">    </span><span class="fu">command</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"--units"</span><span class="kw">,</span><span class="at"> </span><span class="st">"iulu"</span><span class="kw">]</span></span>
-<span id="cb44-15"><a href="#cb44-15" tabindex="-1" aria-label="code-block-44-15"></a></span>
-<span id="cb44-16"><a href="#cb44-16" tabindex="-1" aria-label="code-block-44-16"></a><span class="fu">volumes</span><span class="kw">:</span></span>
-<span id="cb44-17"><a href="#cb44-17" tabindex="-1" aria-label="code-block-44-17"></a><span class="at">  </span><span class="fu">spuc-volume</span><span class="kw">:</span></span></code></pre>
+<pre class="sourceCode yml" tabindex="0"><code class="sourceCode yaml"><span id="cb45-1"><a href="#cb45-1" tabindex="-1" aria-label="code-block-45-1"></a><span class="co"># compose.yml</span></span>
+<span id="cb45-2"><a href="#cb45-2" tabindex="-1" aria-label="code-block-45-2"></a><span class="fu">services</span><span class="kw">:</span></span>
+<span id="cb45-3"><a href="#cb45-3" tabindex="-1" aria-label="code-block-45-3"></a><span class="at">  </span><span class="fu">spuc</span><span class="kw">:</span></span>
+<span id="cb45-4"><a href="#cb45-4" tabindex="-1" aria-label="code-block-45-4"></a><span class="at">    </span><span class="fu">image</span><span class="kw">:</span><span class="at"> spuc-stats</span><span class="co">   # Use the image we built earlier</span></span>
+<span id="cb45-5"><a href="#cb45-5" tabindex="-1" aria-label="code-block-45-5"></a><span class="at">    </span><span class="fu">container_name</span><span class="kw">:</span><span class="at"> spuc_container</span></span>
+<span id="cb45-6"><a href="#cb45-6" tabindex="-1" aria-label="code-block-45-6"></a><span class="at">    </span><span class="fu">ports</span><span class="kw">:</span></span>
+<span id="cb45-7"><a href="#cb45-7" tabindex="-1" aria-label="code-block-45-7"></a><span class="at">      </span><span class="kw">-</span><span class="at"> 8321:8321</span></span>
+<span id="cb45-8"><a href="#cb45-8" tabindex="-1" aria-label="code-block-45-8"></a><span class="at">    </span><span class="fu">volumes</span><span class="kw">:</span></span>
+<span id="cb45-9"><a href="#cb45-9" tabindex="-1" aria-label="code-block-45-9"></a><span class="at">      </span><span class="kw">-</span><span class="at"> ./print.config:/spuc/config/print.config</span></span>
+<span id="cb45-10"><a href="#cb45-10" tabindex="-1" aria-label="code-block-45-10"></a><span class="at">      </span><span class="kw">-</span><span class="at"> spuc-volume:/spuc/output</span></span>
+<span id="cb45-11"><a href="#cb45-11" tabindex="-1" aria-label="code-block-45-11"></a><span class="at">      </span><span class="kw">-</span><span class="at"> ./stats.py:/spuc/plugins/stats.py</span><span class="co">        # Mounts the stats.py plugin</span></span>
+<span id="cb45-12"><a href="#cb45-12" tabindex="-1" aria-label="code-block-45-12"></a><span class="at">    </span><span class="fu">environment</span><span class="kw">:</span></span>
+<span id="cb45-13"><a href="#cb45-13" tabindex="-1" aria-label="code-block-45-13"></a><span class="at">      </span><span class="kw">-</span><span class="at"> EXPORT=true</span></span>
+<span id="cb45-14"><a href="#cb45-14" tabindex="-1" aria-label="code-block-45-14"></a><span class="at">    </span><span class="fu">command</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"--units"</span><span class="kw">,</span><span class="at"> </span><span class="st">"iulu"</span><span class="kw">]</span></span>
+<span id="cb45-15"><a href="#cb45-15" tabindex="-1" aria-label="code-block-45-15"></a></span>
+<span id="cb45-16"><a href="#cb45-16" tabindex="-1" aria-label="code-block-45-16"></a><span class="fu">volumes</span><span class="kw">:</span></span>
+<span id="cb45-17"><a href="#cb45-17" tabindex="-1" aria-label="code-block-45-17"></a><span class="at">  </span><span class="fu">spuc-volume</span><span class="kw">:</span></span></code></pre>
 </div>
 <p>However, this would mean that if we want to adjust our locally built
 container, we would have to rebuild it separately.</p>
@@ -1098,29 +1104,29 @@ container, we would have to rebuild it separately.</p>
 to build the container if needed.</p>
 <p>To do that, we use the <code>build</code> key instead of the
 <code>image</code> key:</p>
-<div class="codewrapper sourceCode" id="cb45">
+<div class="codewrapper sourceCode" id="cb46">
 <h3 class="code-label">YML<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode yml" tabindex="0"><code class="sourceCode yaml"><span id="cb45-1"><a href="#cb45-1" tabindex="-1" aria-label="code-block-45-1"></a><span class="co"># compose.yml</span></span>
-<span id="cb45-2"><a href="#cb45-2" tabindex="-1" aria-label="code-block-45-2"></a><span class="fu">services</span><span class="kw">:</span></span>
-<span id="cb45-3"><a href="#cb45-3" tabindex="-1" aria-label="code-block-45-3"></a><span class="at">  </span><span class="fu">spuc</span><span class="kw">:</span></span>
-<span id="cb45-4"><a href="#cb45-4" tabindex="-1" aria-label="code-block-45-4"></a><span class="co">  # image: spuc-stats</span></span>
-<span id="cb45-5"><a href="#cb45-5" tabindex="-1" aria-label="code-block-45-5"></a><span class="at">    </span><span class="fu">build</span><span class="kw">:</span><span class="co">                        # Instead of using the 'image' key, we use the 'build' key</span></span>
-<span id="cb45-6"><a href="#cb45-6" tabindex="-1" aria-label="code-block-45-6"></a><span class="at">      </span><span class="fu">context</span><span class="kw">:</span><span class="at"> .</span><span class="co">                  # Sets the build context (the directory in which the Dockerfile is located)</span></span>
-<span id="cb45-7"><a href="#cb45-7" tabindex="-1" aria-label="code-block-45-7"></a><span class="at">      </span><span class="fu">dockerfile</span><span class="kw">:</span><span class="at"> Dockerfile</span><span class="co">      # Sets the name of the Dockerfile</span></span>
-<span id="cb45-8"><a href="#cb45-8" tabindex="-1" aria-label="code-block-45-8"></a><span class="at">    </span><span class="fu">container_name</span><span class="kw">:</span><span class="at"> spuc_container</span></span>
-<span id="cb45-9"><a href="#cb45-9" tabindex="-1" aria-label="code-block-45-9"></a><span class="at">    </span><span class="fu">ports</span><span class="kw">:</span></span>
-<span id="cb45-10"><a href="#cb45-10" tabindex="-1" aria-label="code-block-45-10"></a><span class="at">      </span><span class="kw">-</span><span class="at"> 8321:8321</span></span>
-<span id="cb45-11"><a href="#cb45-11" tabindex="-1" aria-label="code-block-45-11"></a><span class="at">    </span><span class="fu">volumes</span><span class="kw">:</span></span>
-<span id="cb45-12"><a href="#cb45-12" tabindex="-1" aria-label="code-block-45-12"></a><span class="at">      </span><span class="kw">-</span><span class="at"> ./print.config:/spuc/config/print.config</span></span>
-<span id="cb45-13"><a href="#cb45-13" tabindex="-1" aria-label="code-block-45-13"></a><span class="at">      </span><span class="kw">-</span><span class="at"> spuc-volume:/spuc/output</span></span>
-<span id="cb45-14"><a href="#cb45-14" tabindex="-1" aria-label="code-block-45-14"></a><span class="at">      </span><span class="kw">-</span><span class="at"> ./stats.py:/spuc/plugins/stats.py</span></span>
-<span id="cb45-15"><a href="#cb45-15" tabindex="-1" aria-label="code-block-45-15"></a><span class="at">    </span><span class="fu">environment</span><span class="kw">:</span></span>
-<span id="cb45-16"><a href="#cb45-16" tabindex="-1" aria-label="code-block-45-16"></a><span class="at">      </span><span class="kw">-</span><span class="at"> EXPORT=true</span></span>
-<span id="cb45-17"><a href="#cb45-17" tabindex="-1" aria-label="code-block-45-17"></a><span class="at">    </span><span class="fu">command</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"--units"</span><span class="kw">,</span><span class="at"> </span><span class="st">"iulu"</span><span class="kw">]</span></span>
-<span id="cb45-18"><a href="#cb45-18" tabindex="-1" aria-label="code-block-45-18"></a></span>
-<span id="cb45-19"><a href="#cb45-19" tabindex="-1" aria-label="code-block-45-19"></a><span class="fu">volumes</span><span class="kw">:</span></span>
-<span id="cb45-20"><a href="#cb45-20" tabindex="-1" aria-label="code-block-45-20"></a><span class="at">  </span><span class="fu">spuc-volume</span><span class="kw">:</span></span></code></pre>
+<pre class="sourceCode yml" tabindex="0"><code class="sourceCode yaml"><span id="cb46-1"><a href="#cb46-1" tabindex="-1" aria-label="code-block-46-1"></a><span class="co"># compose.yml</span></span>
+<span id="cb46-2"><a href="#cb46-2" tabindex="-1" aria-label="code-block-46-2"></a><span class="fu">services</span><span class="kw">:</span></span>
+<span id="cb46-3"><a href="#cb46-3" tabindex="-1" aria-label="code-block-46-3"></a><span class="at">  </span><span class="fu">spuc</span><span class="kw">:</span></span>
+<span id="cb46-4"><a href="#cb46-4" tabindex="-1" aria-label="code-block-46-4"></a><span class="co">  # image: spuc-stats</span></span>
+<span id="cb46-5"><a href="#cb46-5" tabindex="-1" aria-label="code-block-46-5"></a><span class="at">    </span><span class="fu">build</span><span class="kw">:</span><span class="co">                        # Instead of using the 'image' key, we use the 'build' key</span></span>
+<span id="cb46-6"><a href="#cb46-6" tabindex="-1" aria-label="code-block-46-6"></a><span class="at">      </span><span class="fu">context</span><span class="kw">:</span><span class="at"> .</span><span class="co">                  # Sets the build context (the directory in which the Dockerfile is located)</span></span>
+<span id="cb46-7"><a href="#cb46-7" tabindex="-1" aria-label="code-block-46-7"></a><span class="at">      </span><span class="fu">dockerfile</span><span class="kw">:</span><span class="at"> Dockerfile</span><span class="co">      # Sets the name of the Dockerfile</span></span>
+<span id="cb46-8"><a href="#cb46-8" tabindex="-1" aria-label="code-block-46-8"></a><span class="at">    </span><span class="fu">container_name</span><span class="kw">:</span><span class="at"> spuc_container</span></span>
+<span id="cb46-9"><a href="#cb46-9" tabindex="-1" aria-label="code-block-46-9"></a><span class="at">    </span><span class="fu">ports</span><span class="kw">:</span></span>
+<span id="cb46-10"><a href="#cb46-10" tabindex="-1" aria-label="code-block-46-10"></a><span class="at">      </span><span class="kw">-</span><span class="at"> 8321:8321</span></span>
+<span id="cb46-11"><a href="#cb46-11" tabindex="-1" aria-label="code-block-46-11"></a><span class="at">    </span><span class="fu">volumes</span><span class="kw">:</span></span>
+<span id="cb46-12"><a href="#cb46-12" tabindex="-1" aria-label="code-block-46-12"></a><span class="at">      </span><span class="kw">-</span><span class="at"> ./print.config:/spuc/config/print.config</span></span>
+<span id="cb46-13"><a href="#cb46-13" tabindex="-1" aria-label="code-block-46-13"></a><span class="at">      </span><span class="kw">-</span><span class="at"> spuc-volume:/spuc/output</span></span>
+<span id="cb46-14"><a href="#cb46-14" tabindex="-1" aria-label="code-block-46-14"></a><span class="at">      </span><span class="kw">-</span><span class="at"> ./stats.py:/spuc/plugins/stats.py</span></span>
+<span id="cb46-15"><a href="#cb46-15" tabindex="-1" aria-label="code-block-46-15"></a><span class="at">    </span><span class="fu">environment</span><span class="kw">:</span></span>
+<span id="cb46-16"><a href="#cb46-16" tabindex="-1" aria-label="code-block-46-16"></a><span class="at">      </span><span class="kw">-</span><span class="at"> EXPORT=true</span></span>
+<span id="cb46-17"><a href="#cb46-17" tabindex="-1" aria-label="code-block-46-17"></a><span class="at">    </span><span class="fu">command</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"--units"</span><span class="kw">,</span><span class="at"> </span><span class="st">"iulu"</span><span class="kw">]</span></span>
+<span id="cb46-18"><a href="#cb46-18" tabindex="-1" aria-label="code-block-46-18"></a></span>
+<span id="cb46-19"><a href="#cb46-19" tabindex="-1" aria-label="code-block-46-19"></a><span class="fu">volumes</span><span class="kw">:</span></span>
+<span id="cb46-20"><a href="#cb46-20" tabindex="-1" aria-label="code-block-46-20"></a><span class="at">  </span><span class="fu">spuc-volume</span><span class="kw">:</span></span></code></pre>
 </div>
 <p>This tells docker compose to look for the Dockerfile in the current
 directory. If needed, it will then build the container and tag it with
@@ -1139,11 +1145,11 @@ right before starting the container. This will rebuild the image every
 time you run it, but use cached layers if they exist.</p>
 <p>Let’s start our services using that flag, and verify that the plugin
 is loaded.</p>
-<div class="codewrapper sourceCode" id="cb46">
+<div class="codewrapper sourceCode" id="cb47">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb46-1"><a href="#cb46-1" tabindex="-1" aria-label="code-block-46-1"></a><span class="ex">docker</span> compose up <span class="at">--build</span> <span class="at">-d</span></span>
-<span id="cb46-2"><a href="#cb46-2" tabindex="-1" aria-label="code-block-46-2"></a><span class="ex">docker</span> compose logs</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb47-1"><a href="#cb47-1" tabindex="-1" aria-label="code-block-47-1"></a><span class="ex">docker</span> compose up <span class="at">--build</span> <span class="at">-d</span></span>
+<span id="cb47-2"><a href="#cb47-2" tabindex="-1" aria-label="code-block-47-2"></a><span class="ex">docker</span> compose logs</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1194,11 +1200,11 @@ the configuration from the Dockerfile within the
 all of the configuration inside the Dockerfile. The only thing that was
 different was the <code>pip install pandas</code> command. Therefore,
 our dockerfile could be as simple as this:</p>
-<div class="codewrapper sourceCode" id="cb48">
+<div class="codewrapper sourceCode" id="cb49">
 <h3 class="code-label">DOCKERFILE<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode dockerfile" tabindex="0"><code class="sourceCode dockerfile"><span id="cb48-1"><a href="#cb48-1" tabindex="-1" aria-label="code-block-48-1"></a><span class="kw">FROM</span> spuacv/spuc:latest</span>
-<span id="cb48-2"><a href="#cb48-2" tabindex="-1" aria-label="code-block-48-2"></a><span class="kw">RUN</span> <span class="ex">pip</span> install pandas</span></code></pre>
+<pre class="sourceCode dockerfile" tabindex="0"><code class="sourceCode dockerfile"><span id="cb49-1"><a href="#cb49-1" tabindex="-1" aria-label="code-block-49-1"></a><span class="kw">FROM</span> spuacv/spuc:latest</span>
+<span id="cb49-2"><a href="#cb49-2" tabindex="-1" aria-label="code-block-49-2"></a><span class="kw">RUN</span> <span class="ex">pip</span> install pandas</span></code></pre>
 </div>
 <p>Alternatively, we could simplify our <code>compose.yml</code> file by
 removing the duplicated configuration. However, this would make the
@@ -1254,43 +1260,43 @@ the URL! For our service named <code>spuc</code>, the hostname would be
 <code>port</code> appended i.e. <code>http://spuc:8321</code>.</p>
 <p>Knowing this, we are able to add SPUCSVi to our Docker Compose
 file!</p>
-<div class="codewrapper sourceCode" id="cb49">
+<div class="codewrapper sourceCode" id="cb50">
 <h3 class="code-label">YML<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode yml" tabindex="0"><code class="sourceCode yaml"><span id="cb49-1"><a href="#cb49-1" tabindex="-1" aria-label="code-block-49-1"></a><span class="co"># compose.yml</span></span>
-<span id="cb49-2"><a href="#cb49-2" tabindex="-1" aria-label="code-block-49-2"></a><span class="fu">services</span><span class="kw">:</span></span>
-<span id="cb49-3"><a href="#cb49-3" tabindex="-1" aria-label="code-block-49-3"></a><span class="at">  </span><span class="fu">spuc</span><span class="kw">:</span></span>
-<span id="cb49-4"><a href="#cb49-4" tabindex="-1" aria-label="code-block-49-4"></a><span class="at">    </span><span class="fu">build</span><span class="kw">:</span></span>
-<span id="cb49-5"><a href="#cb49-5" tabindex="-1" aria-label="code-block-49-5"></a><span class="at">      </span><span class="fu">context</span><span class="kw">:</span><span class="at"> .</span></span>
-<span id="cb49-6"><a href="#cb49-6" tabindex="-1" aria-label="code-block-49-6"></a><span class="at">      </span><span class="fu">dockerfile</span><span class="kw">:</span><span class="at"> Dockerfile</span></span>
-<span id="cb49-7"><a href="#cb49-7" tabindex="-1" aria-label="code-block-49-7"></a><span class="at">    </span><span class="fu">container_name</span><span class="kw">:</span><span class="at"> spuc_container</span></span>
-<span id="cb49-8"><a href="#cb49-8" tabindex="-1" aria-label="code-block-49-8"></a><span class="at">    </span><span class="fu">ports</span><span class="kw">:</span></span>
-<span id="cb49-9"><a href="#cb49-9" tabindex="-1" aria-label="code-block-49-9"></a><span class="at">      </span><span class="kw">-</span><span class="at"> 8321:8321</span></span>
-<span id="cb49-10"><a href="#cb49-10" tabindex="-1" aria-label="code-block-49-10"></a><span class="at">    </span><span class="fu">volumes</span><span class="kw">:</span></span>
-<span id="cb49-11"><a href="#cb49-11" tabindex="-1" aria-label="code-block-49-11"></a><span class="at">      </span><span class="kw">-</span><span class="at"> ./print.config:/spuc/config/print.config</span></span>
-<span id="cb49-12"><a href="#cb49-12" tabindex="-1" aria-label="code-block-49-12"></a><span class="at">      </span><span class="kw">-</span><span class="at"> spuc-volume:/spuc/output</span></span>
-<span id="cb49-13"><a href="#cb49-13" tabindex="-1" aria-label="code-block-49-13"></a><span class="at">      </span><span class="kw">-</span><span class="at"> ./stats.py:/spuc/plugins/stats.py</span></span>
-<span id="cb49-14"><a href="#cb49-14" tabindex="-1" aria-label="code-block-49-14"></a><span class="at">    </span><span class="fu">environment</span><span class="kw">:</span></span>
-<span id="cb49-15"><a href="#cb49-15" tabindex="-1" aria-label="code-block-49-15"></a><span class="at">      </span><span class="kw">-</span><span class="at"> EXPORT=true</span></span>
-<span id="cb49-16"><a href="#cb49-16" tabindex="-1" aria-label="code-block-49-16"></a><span class="at">    </span><span class="fu">command</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"--units"</span><span class="kw">,</span><span class="at"> </span><span class="st">"iulu"</span><span class="kw">]</span></span>
-<span id="cb49-17"><a href="#cb49-17" tabindex="-1" aria-label="code-block-49-17"></a></span>
-<span id="cb49-18"><a href="#cb49-18" tabindex="-1" aria-label="code-block-49-18"></a><span class="at">  </span><span class="fu">spucsvi</span><span class="kw">:</span><span class="co">                            # Declare a new service named spucsvi</span></span>
-<span id="cb49-19"><a href="#cb49-19" tabindex="-1" aria-label="code-block-49-19"></a><span class="at">    </span><span class="fu">image</span><span class="kw">:</span><span class="at"> spuacv/spucsvi:latest</span><span class="co">      # Specify the image to use</span></span>
-<span id="cb49-20"><a href="#cb49-20" tabindex="-1" aria-label="code-block-49-20"></a><span class="at">    </span><span class="fu">container_name</span><span class="kw">:</span><span class="at"> spucsvi_container</span><span class="co"> # Name the container spucsvi</span></span>
-<span id="cb49-21"><a href="#cb49-21" tabindex="-1" aria-label="code-block-49-21"></a><span class="at">    </span><span class="fu">ports</span><span class="kw">:</span><span class="co">                            # </span></span>
-<span id="cb49-22"><a href="#cb49-22" tabindex="-1" aria-label="code-block-49-22"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="st">"8322:8322"</span><span class="co">                   # Map port 8322 on the host to port 8322 in the container</span></span>
-<span id="cb49-23"><a href="#cb49-23" tabindex="-1" aria-label="code-block-49-23"></a><span class="at">    </span><span class="fu">environment</span><span class="kw">:</span><span class="co">                      # </span></span>
-<span id="cb49-24"><a href="#cb49-24" tabindex="-1" aria-label="code-block-49-24"></a><span class="at">      </span><span class="kw">-</span><span class="at"> SPUC_URL=http://spuc:8321</span><span class="co">     # Specify the SPUC_URL environment variable</span></span>
-<span id="cb49-25"><a href="#cb49-25" tabindex="-1" aria-label="code-block-49-25"></a></span>
-<span id="cb49-26"><a href="#cb49-26" tabindex="-1" aria-label="code-block-49-26"></a><span class="fu">volumes</span><span class="kw">:</span></span>
-<span id="cb49-27"><a href="#cb49-27" tabindex="-1" aria-label="code-block-49-27"></a><span class="at">  </span><span class="fu">spuc-volume</span><span class="kw">:</span></span></code></pre>
+<pre class="sourceCode yml" tabindex="0"><code class="sourceCode yaml"><span id="cb50-1"><a href="#cb50-1" tabindex="-1" aria-label="code-block-50-1"></a><span class="co"># compose.yml</span></span>
+<span id="cb50-2"><a href="#cb50-2" tabindex="-1" aria-label="code-block-50-2"></a><span class="fu">services</span><span class="kw">:</span></span>
+<span id="cb50-3"><a href="#cb50-3" tabindex="-1" aria-label="code-block-50-3"></a><span class="at">  </span><span class="fu">spuc</span><span class="kw">:</span></span>
+<span id="cb50-4"><a href="#cb50-4" tabindex="-1" aria-label="code-block-50-4"></a><span class="at">    </span><span class="fu">build</span><span class="kw">:</span></span>
+<span id="cb50-5"><a href="#cb50-5" tabindex="-1" aria-label="code-block-50-5"></a><span class="at">      </span><span class="fu">context</span><span class="kw">:</span><span class="at"> .</span></span>
+<span id="cb50-6"><a href="#cb50-6" tabindex="-1" aria-label="code-block-50-6"></a><span class="at">      </span><span class="fu">dockerfile</span><span class="kw">:</span><span class="at"> Dockerfile</span></span>
+<span id="cb50-7"><a href="#cb50-7" tabindex="-1" aria-label="code-block-50-7"></a><span class="at">    </span><span class="fu">container_name</span><span class="kw">:</span><span class="at"> spuc_container</span></span>
+<span id="cb50-8"><a href="#cb50-8" tabindex="-1" aria-label="code-block-50-8"></a><span class="at">    </span><span class="fu">ports</span><span class="kw">:</span></span>
+<span id="cb50-9"><a href="#cb50-9" tabindex="-1" aria-label="code-block-50-9"></a><span class="at">      </span><span class="kw">-</span><span class="at"> 8321:8321</span></span>
+<span id="cb50-10"><a href="#cb50-10" tabindex="-1" aria-label="code-block-50-10"></a><span class="at">    </span><span class="fu">volumes</span><span class="kw">:</span></span>
+<span id="cb50-11"><a href="#cb50-11" tabindex="-1" aria-label="code-block-50-11"></a><span class="at">      </span><span class="kw">-</span><span class="at"> ./print.config:/spuc/config/print.config</span></span>
+<span id="cb50-12"><a href="#cb50-12" tabindex="-1" aria-label="code-block-50-12"></a><span class="at">      </span><span class="kw">-</span><span class="at"> spuc-volume:/spuc/output</span></span>
+<span id="cb50-13"><a href="#cb50-13" tabindex="-1" aria-label="code-block-50-13"></a><span class="at">      </span><span class="kw">-</span><span class="at"> ./stats.py:/spuc/plugins/stats.py</span></span>
+<span id="cb50-14"><a href="#cb50-14" tabindex="-1" aria-label="code-block-50-14"></a><span class="at">    </span><span class="fu">environment</span><span class="kw">:</span></span>
+<span id="cb50-15"><a href="#cb50-15" tabindex="-1" aria-label="code-block-50-15"></a><span class="at">      </span><span class="kw">-</span><span class="at"> EXPORT=true</span></span>
+<span id="cb50-16"><a href="#cb50-16" tabindex="-1" aria-label="code-block-50-16"></a><span class="at">    </span><span class="fu">command</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"--units"</span><span class="kw">,</span><span class="at"> </span><span class="st">"iulu"</span><span class="kw">]</span></span>
+<span id="cb50-17"><a href="#cb50-17" tabindex="-1" aria-label="code-block-50-17"></a></span>
+<span id="cb50-18"><a href="#cb50-18" tabindex="-1" aria-label="code-block-50-18"></a><span class="at">  </span><span class="fu">spucsvi</span><span class="kw">:</span><span class="co">                            # Declare a new service named spucsvi</span></span>
+<span id="cb50-19"><a href="#cb50-19" tabindex="-1" aria-label="code-block-50-19"></a><span class="at">    </span><span class="fu">image</span><span class="kw">:</span><span class="at"> spuacv/spucsvi:latest</span><span class="co">      # Specify the image to use</span></span>
+<span id="cb50-20"><a href="#cb50-20" tabindex="-1" aria-label="code-block-50-20"></a><span class="at">    </span><span class="fu">container_name</span><span class="kw">:</span><span class="at"> spucsvi_container</span><span class="co"> # Name the container spucsvi</span></span>
+<span id="cb50-21"><a href="#cb50-21" tabindex="-1" aria-label="code-block-50-21"></a><span class="at">    </span><span class="fu">ports</span><span class="kw">:</span><span class="co">                            # </span></span>
+<span id="cb50-22"><a href="#cb50-22" tabindex="-1" aria-label="code-block-50-22"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="st">"8322:8322"</span><span class="co">                   # Map port 8322 on the host to port 8322 in the container</span></span>
+<span id="cb50-23"><a href="#cb50-23" tabindex="-1" aria-label="code-block-50-23"></a><span class="at">    </span><span class="fu">environment</span><span class="kw">:</span><span class="co">                      # </span></span>
+<span id="cb50-24"><a href="#cb50-24" tabindex="-1" aria-label="code-block-50-24"></a><span class="at">      </span><span class="kw">-</span><span class="at"> SPUC_URL=http://spuc:8321</span><span class="co">     # Specify the SPUC_URL environment variable</span></span>
+<span id="cb50-25"><a href="#cb50-25" tabindex="-1" aria-label="code-block-50-25"></a></span>
+<span id="cb50-26"><a href="#cb50-26" tabindex="-1" aria-label="code-block-50-26"></a><span class="fu">volumes</span><span class="kw">:</span></span>
+<span id="cb50-27"><a href="#cb50-27" tabindex="-1" aria-label="code-block-50-27"></a><span class="at">  </span><span class="fu">spuc-volume</span><span class="kw">:</span></span></code></pre>
 </div>
 <p>Now both services will be started at the same time!</p>
-<div class="codewrapper sourceCode" id="cb50">
+<div class="codewrapper sourceCode" id="cb51">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb50-1"><a href="#cb50-1" tabindex="-1" aria-label="code-block-50-1"></a><span class="ex">docker</span> compose up <span class="at">-d</span></span>
-<span id="cb50-2"><a href="#cb50-2" tabindex="-1" aria-label="code-block-50-2"></a><span class="ex">docker</span> compose logs</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb51-1"><a href="#cb51-1" tabindex="-1" aria-label="code-block-51-1"></a><span class="ex">docker</span> compose up <span class="at">-d</span></span>
+<span id="cb51-2"><a href="#cb51-2" tabindex="-1" aria-label="code-block-51-2"></a><span class="ex">docker</span> compose logs</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1372,41 +1378,41 @@ need to be able to access the SPUC service directly.</p>
 This is a good security practice and helps keep things tidy.</p>
 <p>To do this we need to stop exposing the ports for SPUC, by removing
 the <code>ports</code> key from the SPUC service:</p>
-<div class="codewrapper sourceCode" id="cb52">
+<div class="codewrapper sourceCode" id="cb53">
 <h3 class="code-label">YML<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode yml" tabindex="0"><code class="sourceCode yaml"><span id="cb52-1"><a href="#cb52-1" tabindex="-1" aria-label="code-block-52-1"></a><span class="co"># compose.yml</span></span>
-<span id="cb52-2"><a href="#cb52-2" tabindex="-1" aria-label="code-block-52-2"></a><span class="fu">services</span><span class="kw">:</span></span>
-<span id="cb52-3"><a href="#cb52-3" tabindex="-1" aria-label="code-block-52-3"></a><span class="at">  </span><span class="fu">spuc</span><span class="kw">:</span></span>
-<span id="cb52-4"><a href="#cb52-4" tabindex="-1" aria-label="code-block-52-4"></a><span class="at">    </span><span class="fu">build</span><span class="kw">:</span></span>
-<span id="cb52-5"><a href="#cb52-5" tabindex="-1" aria-label="code-block-52-5"></a><span class="at">      </span><span class="fu">context</span><span class="kw">:</span><span class="at"> .</span></span>
-<span id="cb52-6"><a href="#cb52-6" tabindex="-1" aria-label="code-block-52-6"></a><span class="at">      </span><span class="fu">dockerfile</span><span class="kw">:</span><span class="at"> Dockerfile</span></span>
-<span id="cb52-7"><a href="#cb52-7" tabindex="-1" aria-label="code-block-52-7"></a><span class="at">    </span><span class="fu">container_name</span><span class="kw">:</span><span class="at"> spuc_container</span></span>
-<span id="cb52-8"><a href="#cb52-8" tabindex="-1" aria-label="code-block-52-8"></a><span class="co">    # ports:                            # We can remove these two lines</span></span>
-<span id="cb52-9"><a href="#cb52-9" tabindex="-1" aria-label="code-block-52-9"></a><span class="co">    #   - 8321:8321</span></span>
-<span id="cb52-10"><a href="#cb52-10" tabindex="-1" aria-label="code-block-52-10"></a><span class="at">    </span><span class="fu">volumes</span><span class="kw">:</span></span>
-<span id="cb52-11"><a href="#cb52-11" tabindex="-1" aria-label="code-block-52-11"></a><span class="at">      </span><span class="kw">-</span><span class="at"> ./print.config:/spuc/config/print.config</span></span>
-<span id="cb52-12"><a href="#cb52-12" tabindex="-1" aria-label="code-block-52-12"></a><span class="at">      </span><span class="kw">-</span><span class="at"> spuc-volume:/spuc/output</span></span>
-<span id="cb52-13"><a href="#cb52-13" tabindex="-1" aria-label="code-block-52-13"></a><span class="at">      </span><span class="kw">-</span><span class="at"> ./stats.py:/spuc/plugins/stats.py</span></span>
-<span id="cb52-14"><a href="#cb52-14" tabindex="-1" aria-label="code-block-52-14"></a><span class="at">    </span><span class="fu">environment</span><span class="kw">:</span></span>
-<span id="cb52-15"><a href="#cb52-15" tabindex="-1" aria-label="code-block-52-15"></a><span class="at">      </span><span class="kw">-</span><span class="at"> EXPORT=true</span></span>
-<span id="cb52-16"><a href="#cb52-16" tabindex="-1" aria-label="code-block-52-16"></a><span class="at">    </span><span class="fu">command</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"--units"</span><span class="kw">,</span><span class="at"> </span><span class="st">"iulu"</span><span class="kw">]</span></span>
-<span id="cb52-17"><a href="#cb52-17" tabindex="-1" aria-label="code-block-52-17"></a></span>
-<span id="cb52-18"><a href="#cb52-18" tabindex="-1" aria-label="code-block-52-18"></a><span class="at">  </span><span class="fu">spucsvi</span><span class="kw">:</span></span>
-<span id="cb52-19"><a href="#cb52-19" tabindex="-1" aria-label="code-block-52-19"></a><span class="at">    </span><span class="fu">image</span><span class="kw">:</span><span class="at"> spuacv/spucsvi:latest</span></span>
-<span id="cb52-20"><a href="#cb52-20" tabindex="-1" aria-label="code-block-52-20"></a><span class="at">    </span><span class="fu">container_name</span><span class="kw">:</span><span class="at"> spucsvi</span></span>
-<span id="cb52-21"><a href="#cb52-21" tabindex="-1" aria-label="code-block-52-21"></a><span class="at">    </span><span class="fu">ports</span><span class="kw">:</span></span>
-<span id="cb52-22"><a href="#cb52-22" tabindex="-1" aria-label="code-block-52-22"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="st">"8322:8322"</span></span>
-<span id="cb52-23"><a href="#cb52-23" tabindex="-1" aria-label="code-block-52-23"></a><span class="at">    </span><span class="fu">environment</span><span class="kw">:</span></span>
-<span id="cb52-24"><a href="#cb52-24" tabindex="-1" aria-label="code-block-52-24"></a><span class="at">      </span><span class="kw">-</span><span class="at"> SPUC_URL=http://spuc:8321</span></span>
-<span id="cb52-25"><a href="#cb52-25" tabindex="-1" aria-label="code-block-52-25"></a></span>
-<span id="cb52-26"><a href="#cb52-26" tabindex="-1" aria-label="code-block-52-26"></a><span class="fu">volumes</span><span class="kw">:</span></span>
-<span id="cb52-27"><a href="#cb52-27" tabindex="-1" aria-label="code-block-52-27"></a><span class="at">  </span><span class="fu">spuc-volume</span><span class="kw">:</span></span></code></pre>
+<pre class="sourceCode yml" tabindex="0"><code class="sourceCode yaml"><span id="cb53-1"><a href="#cb53-1" tabindex="-1" aria-label="code-block-53-1"></a><span class="co"># compose.yml</span></span>
+<span id="cb53-2"><a href="#cb53-2" tabindex="-1" aria-label="code-block-53-2"></a><span class="fu">services</span><span class="kw">:</span></span>
+<span id="cb53-3"><a href="#cb53-3" tabindex="-1" aria-label="code-block-53-3"></a><span class="at">  </span><span class="fu">spuc</span><span class="kw">:</span></span>
+<span id="cb53-4"><a href="#cb53-4" tabindex="-1" aria-label="code-block-53-4"></a><span class="at">    </span><span class="fu">build</span><span class="kw">:</span></span>
+<span id="cb53-5"><a href="#cb53-5" tabindex="-1" aria-label="code-block-53-5"></a><span class="at">      </span><span class="fu">context</span><span class="kw">:</span><span class="at"> .</span></span>
+<span id="cb53-6"><a href="#cb53-6" tabindex="-1" aria-label="code-block-53-6"></a><span class="at">      </span><span class="fu">dockerfile</span><span class="kw">:</span><span class="at"> Dockerfile</span></span>
+<span id="cb53-7"><a href="#cb53-7" tabindex="-1" aria-label="code-block-53-7"></a><span class="at">    </span><span class="fu">container_name</span><span class="kw">:</span><span class="at"> spuc_container</span></span>
+<span id="cb53-8"><a href="#cb53-8" tabindex="-1" aria-label="code-block-53-8"></a><span class="co">    # ports:                            # We can remove these two lines</span></span>
+<span id="cb53-9"><a href="#cb53-9" tabindex="-1" aria-label="code-block-53-9"></a><span class="co">    #   - 8321:8321</span></span>
+<span id="cb53-10"><a href="#cb53-10" tabindex="-1" aria-label="code-block-53-10"></a><span class="at">    </span><span class="fu">volumes</span><span class="kw">:</span></span>
+<span id="cb53-11"><a href="#cb53-11" tabindex="-1" aria-label="code-block-53-11"></a><span class="at">      </span><span class="kw">-</span><span class="at"> ./print.config:/spuc/config/print.config</span></span>
+<span id="cb53-12"><a href="#cb53-12" tabindex="-1" aria-label="code-block-53-12"></a><span class="at">      </span><span class="kw">-</span><span class="at"> spuc-volume:/spuc/output</span></span>
+<span id="cb53-13"><a href="#cb53-13" tabindex="-1" aria-label="code-block-53-13"></a><span class="at">      </span><span class="kw">-</span><span class="at"> ./stats.py:/spuc/plugins/stats.py</span></span>
+<span id="cb53-14"><a href="#cb53-14" tabindex="-1" aria-label="code-block-53-14"></a><span class="at">    </span><span class="fu">environment</span><span class="kw">:</span></span>
+<span id="cb53-15"><a href="#cb53-15" tabindex="-1" aria-label="code-block-53-15"></a><span class="at">      </span><span class="kw">-</span><span class="at"> EXPORT=true</span></span>
+<span id="cb53-16"><a href="#cb53-16" tabindex="-1" aria-label="code-block-53-16"></a><span class="at">    </span><span class="fu">command</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"--units"</span><span class="kw">,</span><span class="at"> </span><span class="st">"iulu"</span><span class="kw">]</span></span>
+<span id="cb53-17"><a href="#cb53-17" tabindex="-1" aria-label="code-block-53-17"></a></span>
+<span id="cb53-18"><a href="#cb53-18" tabindex="-1" aria-label="code-block-53-18"></a><span class="at">  </span><span class="fu">spucsvi</span><span class="kw">:</span></span>
+<span id="cb53-19"><a href="#cb53-19" tabindex="-1" aria-label="code-block-53-19"></a><span class="at">    </span><span class="fu">image</span><span class="kw">:</span><span class="at"> spuacv/spucsvi:latest</span></span>
+<span id="cb53-20"><a href="#cb53-20" tabindex="-1" aria-label="code-block-53-20"></a><span class="at">    </span><span class="fu">container_name</span><span class="kw">:</span><span class="at"> spucsvi</span></span>
+<span id="cb53-21"><a href="#cb53-21" tabindex="-1" aria-label="code-block-53-21"></a><span class="at">    </span><span class="fu">ports</span><span class="kw">:</span></span>
+<span id="cb53-22"><a href="#cb53-22" tabindex="-1" aria-label="code-block-53-22"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="st">"8322:8322"</span></span>
+<span id="cb53-23"><a href="#cb53-23" tabindex="-1" aria-label="code-block-53-23"></a><span class="at">    </span><span class="fu">environment</span><span class="kw">:</span></span>
+<span id="cb53-24"><a href="#cb53-24" tabindex="-1" aria-label="code-block-53-24"></a><span class="at">      </span><span class="kw">-</span><span class="at"> SPUC_URL=http://spuc:8321</span></span>
+<span id="cb53-25"><a href="#cb53-25" tabindex="-1" aria-label="code-block-53-25"></a></span>
+<span id="cb53-26"><a href="#cb53-26" tabindex="-1" aria-label="code-block-53-26"></a><span class="fu">volumes</span><span class="kw">:</span></span>
+<span id="cb53-27"><a href="#cb53-27" tabindex="-1" aria-label="code-block-53-27"></a><span class="at">  </span><span class="fu">spuc-volume</span><span class="kw">:</span></span></code></pre>
 </div>
-<div class="codewrapper sourceCode" id="cb53">
+<div class="codewrapper sourceCode" id="cb54">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb53-1"><a href="#cb53-1" tabindex="-1" aria-label="code-block-53-1"></a><span class="ex">docker</span> compose up <span class="at">-d</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb54-1"><a href="#cb54-1" tabindex="-1" aria-label="code-block-54-1"></a><span class="ex">docker</span> compose up <span class="at">-d</span></span></code></pre>
 </div>
 <p>Now, the SPUC service is only accessible from within the Docker
 network! Try doing a curl to register a sighting and you wont be able
@@ -1435,59 +1441,6 @@ need to specify the network name for each service that you want to
 connect to the network.</p>
 <p>For example, to specify the network name as
 <code>spuc_network</code>, you would add the following to the file:</p>
-<div class="codewrapper sourceCode" id="cb54">
-<h3 class="code-label">YML<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode yml" tabindex="0"><code class="sourceCode yaml"><span id="cb54-1"><a href="#cb54-1" tabindex="-1" aria-label="code-block-54-1"></a><span class="co"># compose.yml</span></span>
-<span id="cb54-2"><a href="#cb54-2" tabindex="-1" aria-label="code-block-54-2"></a><span class="fu">services</span><span class="kw">:</span></span>
-<span id="cb54-3"><a href="#cb54-3" tabindex="-1" aria-label="code-block-54-3"></a><span class="at">  </span><span class="fu">spuc</span><span class="kw">:</span></span>
-<span id="cb54-4"><a href="#cb54-4" tabindex="-1" aria-label="code-block-54-4"></a><span class="at">    </span><span class="fu">build</span><span class="kw">:</span></span>
-<span id="cb54-5"><a href="#cb54-5" tabindex="-1" aria-label="code-block-54-5"></a><span class="at">      </span><span class="fu">context</span><span class="kw">:</span><span class="at"> .</span></span>
-<span id="cb54-6"><a href="#cb54-6" tabindex="-1" aria-label="code-block-54-6"></a><span class="at">      </span><span class="fu">dockerfile</span><span class="kw">:</span><span class="at"> Dockerfile</span></span>
-<span id="cb54-7"><a href="#cb54-7" tabindex="-1" aria-label="code-block-54-7"></a><span class="at">    </span><span class="fu">container_name</span><span class="kw">:</span><span class="at"> spuc_container</span></span>
-<span id="cb54-8"><a href="#cb54-8" tabindex="-1" aria-label="code-block-54-8"></a><span class="at">    </span><span class="fu">volumes</span><span class="kw">:</span></span>
-<span id="cb54-9"><a href="#cb54-9" tabindex="-1" aria-label="code-block-54-9"></a><span class="at">      </span><span class="kw">-</span><span class="at"> ./print.config:/spuc/config/print.config</span></span>
-<span id="cb54-10"><a href="#cb54-10" tabindex="-1" aria-label="code-block-54-10"></a><span class="at">      </span><span class="kw">-</span><span class="at"> spuc-volume:/spuc/output</span></span>
-<span id="cb54-11"><a href="#cb54-11" tabindex="-1" aria-label="code-block-54-11"></a><span class="at">      </span><span class="kw">-</span><span class="at"> ./stats.py:/spuc/plugins/stats.py</span></span>
-<span id="cb54-12"><a href="#cb54-12" tabindex="-1" aria-label="code-block-54-12"></a><span class="at">    </span><span class="fu">environment</span><span class="kw">:</span></span>
-<span id="cb54-13"><a href="#cb54-13" tabindex="-1" aria-label="code-block-54-13"></a><span class="at">      </span><span class="kw">-</span><span class="at"> EXPORT=true</span></span>
-<span id="cb54-14"><a href="#cb54-14" tabindex="-1" aria-label="code-block-54-14"></a><span class="at">    </span><span class="fu">command</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"--units"</span><span class="kw">,</span><span class="at"> </span><span class="st">"iulu"</span><span class="kw">]</span></span>
-<span id="cb54-15"><a href="#cb54-15" tabindex="-1" aria-label="code-block-54-15"></a><span class="at">    </span><span class="fu">networks</span><span class="kw">:</span><span class="co">                         # Starts list of networks to connect this service to</span></span>
-<span id="cb54-16"><a href="#cb54-16" tabindex="-1" aria-label="code-block-54-16"></a><span class="at">      </span><span class="kw">-</span><span class="at"> spuc_network</span><span class="co">                  # Connects to the spuc_network network</span></span>
-<span id="cb54-17"><a href="#cb54-17" tabindex="-1" aria-label="code-block-54-17"></a></span>
-<span id="cb54-18"><a href="#cb54-18" tabindex="-1" aria-label="code-block-54-18"></a><span class="at">  </span><span class="fu">spucsvi</span><span class="kw">:</span></span>
-<span id="cb54-19"><a href="#cb54-19" tabindex="-1" aria-label="code-block-54-19"></a><span class="at">    </span><span class="fu">image</span><span class="kw">:</span><span class="at"> spuacv/spucsvi:latest</span></span>
-<span id="cb54-20"><a href="#cb54-20" tabindex="-1" aria-label="code-block-54-20"></a><span class="at">    </span><span class="fu">container_name</span><span class="kw">:</span><span class="at"> spucsvi</span></span>
-<span id="cb54-21"><a href="#cb54-21" tabindex="-1" aria-label="code-block-54-21"></a><span class="at">    </span><span class="fu">ports</span><span class="kw">:</span></span>
-<span id="cb54-22"><a href="#cb54-22" tabindex="-1" aria-label="code-block-54-22"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="st">"8322:8322"</span></span>
-<span id="cb54-23"><a href="#cb54-23" tabindex="-1" aria-label="code-block-54-23"></a><span class="at">    </span><span class="fu">environment</span><span class="kw">:</span></span>
-<span id="cb54-24"><a href="#cb54-24" tabindex="-1" aria-label="code-block-54-24"></a><span class="at">      </span><span class="kw">-</span><span class="at"> SPUC_URL=http://spuc:8321</span></span>
-<span id="cb54-25"><a href="#cb54-25" tabindex="-1" aria-label="code-block-54-25"></a><span class="at">    </span><span class="fu">networks</span><span class="kw">:</span><span class="co">                         # Starts list of networks to connect this service to</span></span>
-<span id="cb54-26"><a href="#cb54-26" tabindex="-1" aria-label="code-block-54-26"></a><span class="at">      </span><span class="kw">-</span><span class="at"> spuc_network</span><span class="co">                  # Connects to the spuc_network network</span></span>
-<span id="cb54-27"><a href="#cb54-27" tabindex="-1" aria-label="code-block-54-27"></a></span>
-<span id="cb54-28"><a href="#cb54-28" tabindex="-1" aria-label="code-block-54-28"></a><span class="fu">volumes</span><span class="kw">:</span></span>
-<span id="cb54-29"><a href="#cb54-29" tabindex="-1" aria-label="code-block-54-29"></a><span class="at">  </span><span class="fu">spuc-volume</span><span class="kw">:</span></span>
-<span id="cb54-30"><a href="#cb54-30" tabindex="-1" aria-label="code-block-54-30"></a></span>
-<span id="cb54-31"><a href="#cb54-31" tabindex="-1" aria-label="code-block-54-31"></a><span class="fu">networks</span><span class="kw">:</span><span class="co">                             # Starts section for declaring networks</span></span>
-<span id="cb54-32"><a href="#cb54-32" tabindex="-1" aria-label="code-block-54-32"></a><span class="at">  </span><span class="fu">spuc_network</span><span class="kw">:</span><span class="co">                       # Declares a network for spuc</span></span>
-<span id="cb54-33"><a href="#cb54-33" tabindex="-1" aria-label="code-block-54-33"></a><span class="at">    </span><span class="fu">name</span><span class="kw">:</span><span class="at"> spuc_network</span><span class="co">                # Specifies the name of the network</span></span></code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="section level3">
-<h3 id="depends-on">Depends on<a class="anchor" aria-label="anchor" href="#depends-on"></a></h3>
-<p>There is an important problem that we haven’t addressed yet - what
-happens if the SPUCSVi service starts before the SPUC service?</p>
-<p>This is a common problem when running multiple services together -
-services that depend on each other need to start in a specific
-order.</p>
-<p>Docker Compose has a solution to this - the <code>depends_on</code>
-key.</p>
-<p>We can use this key to tell Docker Compose that the SPUCSVi service
-depends on the SPUC service.</p>
 <div class="codewrapper sourceCode" id="cb55">
 <h3 class="code-label">YML<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -1505,19 +1458,72 @@ depends on the SPUC service.</p>
 <span id="cb55-12"><a href="#cb55-12" tabindex="-1" aria-label="code-block-55-12"></a><span class="at">    </span><span class="fu">environment</span><span class="kw">:</span></span>
 <span id="cb55-13"><a href="#cb55-13" tabindex="-1" aria-label="code-block-55-13"></a><span class="at">      </span><span class="kw">-</span><span class="at"> EXPORT=true</span></span>
 <span id="cb55-14"><a href="#cb55-14" tabindex="-1" aria-label="code-block-55-14"></a><span class="at">    </span><span class="fu">command</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"--units"</span><span class="kw">,</span><span class="at"> </span><span class="st">"iulu"</span><span class="kw">]</span></span>
-<span id="cb55-15"><a href="#cb55-15" tabindex="-1" aria-label="code-block-55-15"></a></span>
-<span id="cb55-16"><a href="#cb55-16" tabindex="-1" aria-label="code-block-55-16"></a><span class="at">  </span><span class="fu">spucsvi</span><span class="kw">:</span></span>
-<span id="cb55-17"><a href="#cb55-17" tabindex="-1" aria-label="code-block-55-17"></a><span class="at">    </span><span class="fu">image</span><span class="kw">:</span><span class="at"> spuacv/spucsvi:latest</span></span>
-<span id="cb55-18"><a href="#cb55-18" tabindex="-1" aria-label="code-block-55-18"></a><span class="at">    </span><span class="fu">container_name</span><span class="kw">:</span><span class="at"> spucsvi</span></span>
-<span id="cb55-19"><a href="#cb55-19" tabindex="-1" aria-label="code-block-55-19"></a><span class="at">    </span><span class="fu">ports</span><span class="kw">:</span></span>
-<span id="cb55-20"><a href="#cb55-20" tabindex="-1" aria-label="code-block-55-20"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="st">"8322:8322"</span></span>
-<span id="cb55-21"><a href="#cb55-21" tabindex="-1" aria-label="code-block-55-21"></a><span class="at">    </span><span class="fu">environment</span><span class="kw">:</span></span>
-<span id="cb55-22"><a href="#cb55-22" tabindex="-1" aria-label="code-block-55-22"></a><span class="at">      </span><span class="kw">-</span><span class="at"> SPUC_URL=http://spuc:8321</span></span>
-<span id="cb55-23"><a href="#cb55-23" tabindex="-1" aria-label="code-block-55-23"></a><span class="at">    </span><span class="fu">depends_on</span><span class="kw">:</span><span class="co">                     # Starts section for declaring dependencies</span></span>
-<span id="cb55-24"><a href="#cb55-24" tabindex="-1" aria-label="code-block-55-24"></a><span class="at">      </span><span class="kw">-</span><span class="at"> spuc</span><span class="co">                        # Declares that the spucsvi service depends on the spuc service</span></span>
-<span id="cb55-25"><a href="#cb55-25" tabindex="-1" aria-label="code-block-55-25"></a></span>
-<span id="cb55-26"><a href="#cb55-26" tabindex="-1" aria-label="code-block-55-26"></a><span class="fu">volumes</span><span class="kw">:</span></span>
-<span id="cb55-27"><a href="#cb55-27" tabindex="-1" aria-label="code-block-55-27"></a><span class="at">  </span><span class="fu">spuc-volume</span><span class="kw">:</span></span></code></pre>
+<span id="cb55-15"><a href="#cb55-15" tabindex="-1" aria-label="code-block-55-15"></a><span class="at">    </span><span class="fu">networks</span><span class="kw">:</span><span class="co">                         # Starts list of networks to connect this service to</span></span>
+<span id="cb55-16"><a href="#cb55-16" tabindex="-1" aria-label="code-block-55-16"></a><span class="at">      </span><span class="kw">-</span><span class="at"> spuc_network</span><span class="co">                  # Connects to the spuc_network network</span></span>
+<span id="cb55-17"><a href="#cb55-17" tabindex="-1" aria-label="code-block-55-17"></a></span>
+<span id="cb55-18"><a href="#cb55-18" tabindex="-1" aria-label="code-block-55-18"></a><span class="at">  </span><span class="fu">spucsvi</span><span class="kw">:</span></span>
+<span id="cb55-19"><a href="#cb55-19" tabindex="-1" aria-label="code-block-55-19"></a><span class="at">    </span><span class="fu">image</span><span class="kw">:</span><span class="at"> spuacv/spucsvi:latest</span></span>
+<span id="cb55-20"><a href="#cb55-20" tabindex="-1" aria-label="code-block-55-20"></a><span class="at">    </span><span class="fu">container_name</span><span class="kw">:</span><span class="at"> spucsvi</span></span>
+<span id="cb55-21"><a href="#cb55-21" tabindex="-1" aria-label="code-block-55-21"></a><span class="at">    </span><span class="fu">ports</span><span class="kw">:</span></span>
+<span id="cb55-22"><a href="#cb55-22" tabindex="-1" aria-label="code-block-55-22"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="st">"8322:8322"</span></span>
+<span id="cb55-23"><a href="#cb55-23" tabindex="-1" aria-label="code-block-55-23"></a><span class="at">    </span><span class="fu">environment</span><span class="kw">:</span></span>
+<span id="cb55-24"><a href="#cb55-24" tabindex="-1" aria-label="code-block-55-24"></a><span class="at">      </span><span class="kw">-</span><span class="at"> SPUC_URL=http://spuc:8321</span></span>
+<span id="cb55-25"><a href="#cb55-25" tabindex="-1" aria-label="code-block-55-25"></a><span class="at">    </span><span class="fu">networks</span><span class="kw">:</span><span class="co">                         # Starts list of networks to connect this service to</span></span>
+<span id="cb55-26"><a href="#cb55-26" tabindex="-1" aria-label="code-block-55-26"></a><span class="at">      </span><span class="kw">-</span><span class="at"> spuc_network</span><span class="co">                  # Connects to the spuc_network network</span></span>
+<span id="cb55-27"><a href="#cb55-27" tabindex="-1" aria-label="code-block-55-27"></a></span>
+<span id="cb55-28"><a href="#cb55-28" tabindex="-1" aria-label="code-block-55-28"></a><span class="fu">volumes</span><span class="kw">:</span></span>
+<span id="cb55-29"><a href="#cb55-29" tabindex="-1" aria-label="code-block-55-29"></a><span class="at">  </span><span class="fu">spuc-volume</span><span class="kw">:</span></span>
+<span id="cb55-30"><a href="#cb55-30" tabindex="-1" aria-label="code-block-55-30"></a></span>
+<span id="cb55-31"><a href="#cb55-31" tabindex="-1" aria-label="code-block-55-31"></a><span class="fu">networks</span><span class="kw">:</span><span class="co">                             # Starts section for declaring networks</span></span>
+<span id="cb55-32"><a href="#cb55-32" tabindex="-1" aria-label="code-block-55-32"></a><span class="at">  </span><span class="fu">spuc_network</span><span class="kw">:</span><span class="co">                       # Declares a network for spuc</span></span>
+<span id="cb55-33"><a href="#cb55-33" tabindex="-1" aria-label="code-block-55-33"></a><span class="at">    </span><span class="fu">name</span><span class="kw">:</span><span class="at"> spuc_network</span><span class="co">                # Specifies the name of the network</span></span></code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section level3">
+<h3 id="depends-on">Depends on<a class="anchor" aria-label="anchor" href="#depends-on"></a></h3>
+<p>There is an important problem that we haven’t addressed yet - what
+happens if the SPUCSVi service starts before the SPUC service?</p>
+<p>This is a common problem when running multiple services together -
+services that depend on each other need to start in a specific
+order.</p>
+<p>Docker Compose has a solution to this - the <code>depends_on</code>
+key.</p>
+<p>We can use this key to tell Docker Compose that the SPUCSVi service
+depends on the SPUC service.</p>
+<div class="codewrapper sourceCode" id="cb56">
+<h3 class="code-label">YML<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode yml" tabindex="0"><code class="sourceCode yaml"><span id="cb56-1"><a href="#cb56-1" tabindex="-1" aria-label="code-block-56-1"></a><span class="co"># compose.yml</span></span>
+<span id="cb56-2"><a href="#cb56-2" tabindex="-1" aria-label="code-block-56-2"></a><span class="fu">services</span><span class="kw">:</span></span>
+<span id="cb56-3"><a href="#cb56-3" tabindex="-1" aria-label="code-block-56-3"></a><span class="at">  </span><span class="fu">spuc</span><span class="kw">:</span></span>
+<span id="cb56-4"><a href="#cb56-4" tabindex="-1" aria-label="code-block-56-4"></a><span class="at">    </span><span class="fu">build</span><span class="kw">:</span></span>
+<span id="cb56-5"><a href="#cb56-5" tabindex="-1" aria-label="code-block-56-5"></a><span class="at">      </span><span class="fu">context</span><span class="kw">:</span><span class="at"> .</span></span>
+<span id="cb56-6"><a href="#cb56-6" tabindex="-1" aria-label="code-block-56-6"></a><span class="at">      </span><span class="fu">dockerfile</span><span class="kw">:</span><span class="at"> Dockerfile</span></span>
+<span id="cb56-7"><a href="#cb56-7" tabindex="-1" aria-label="code-block-56-7"></a><span class="at">    </span><span class="fu">container_name</span><span class="kw">:</span><span class="at"> spuc_container</span></span>
+<span id="cb56-8"><a href="#cb56-8" tabindex="-1" aria-label="code-block-56-8"></a><span class="at">    </span><span class="fu">volumes</span><span class="kw">:</span></span>
+<span id="cb56-9"><a href="#cb56-9" tabindex="-1" aria-label="code-block-56-9"></a><span class="at">      </span><span class="kw">-</span><span class="at"> ./print.config:/spuc/config/print.config</span></span>
+<span id="cb56-10"><a href="#cb56-10" tabindex="-1" aria-label="code-block-56-10"></a><span class="at">      </span><span class="kw">-</span><span class="at"> spuc-volume:/spuc/output</span></span>
+<span id="cb56-11"><a href="#cb56-11" tabindex="-1" aria-label="code-block-56-11"></a><span class="at">      </span><span class="kw">-</span><span class="at"> ./stats.py:/spuc/plugins/stats.py</span></span>
+<span id="cb56-12"><a href="#cb56-12" tabindex="-1" aria-label="code-block-56-12"></a><span class="at">    </span><span class="fu">environment</span><span class="kw">:</span></span>
+<span id="cb56-13"><a href="#cb56-13" tabindex="-1" aria-label="code-block-56-13"></a><span class="at">      </span><span class="kw">-</span><span class="at"> EXPORT=true</span></span>
+<span id="cb56-14"><a href="#cb56-14" tabindex="-1" aria-label="code-block-56-14"></a><span class="at">    </span><span class="fu">command</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"--units"</span><span class="kw">,</span><span class="at"> </span><span class="st">"iulu"</span><span class="kw">]</span></span>
+<span id="cb56-15"><a href="#cb56-15" tabindex="-1" aria-label="code-block-56-15"></a></span>
+<span id="cb56-16"><a href="#cb56-16" tabindex="-1" aria-label="code-block-56-16"></a><span class="at">  </span><span class="fu">spucsvi</span><span class="kw">:</span></span>
+<span id="cb56-17"><a href="#cb56-17" tabindex="-1" aria-label="code-block-56-17"></a><span class="at">    </span><span class="fu">image</span><span class="kw">:</span><span class="at"> spuacv/spucsvi:latest</span></span>
+<span id="cb56-18"><a href="#cb56-18" tabindex="-1" aria-label="code-block-56-18"></a><span class="at">    </span><span class="fu">container_name</span><span class="kw">:</span><span class="at"> spucsvi</span></span>
+<span id="cb56-19"><a href="#cb56-19" tabindex="-1" aria-label="code-block-56-19"></a><span class="at">    </span><span class="fu">ports</span><span class="kw">:</span></span>
+<span id="cb56-20"><a href="#cb56-20" tabindex="-1" aria-label="code-block-56-20"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="st">"8322:8322"</span></span>
+<span id="cb56-21"><a href="#cb56-21" tabindex="-1" aria-label="code-block-56-21"></a><span class="at">    </span><span class="fu">environment</span><span class="kw">:</span></span>
+<span id="cb56-22"><a href="#cb56-22" tabindex="-1" aria-label="code-block-56-22"></a><span class="at">      </span><span class="kw">-</span><span class="at"> SPUC_URL=http://spuc:8321</span></span>
+<span id="cb56-23"><a href="#cb56-23" tabindex="-1" aria-label="code-block-56-23"></a><span class="at">    </span><span class="fu">depends_on</span><span class="kw">:</span><span class="co">                     # Starts section for declaring dependencies</span></span>
+<span id="cb56-24"><a href="#cb56-24" tabindex="-1" aria-label="code-block-56-24"></a><span class="at">      </span><span class="kw">-</span><span class="at"> spuc</span><span class="co">                        # Declares that the spucsvi service depends on the spuc service</span></span>
+<span id="cb56-25"><a href="#cb56-25" tabindex="-1" aria-label="code-block-56-25"></a></span>
+<span id="cb56-26"><a href="#cb56-26" tabindex="-1" aria-label="code-block-56-26"></a><span class="fu">volumes</span><span class="kw">:</span></span>
+<span id="cb56-27"><a href="#cb56-27" tabindex="-1" aria-label="code-block-56-27"></a><span class="at">  </span><span class="fu">spuc-volume</span><span class="kw">:</span></span></code></pre>
 </div>
 <p>Now, when we run <code>docker compose up</code>, the SPUCSVi service
 will wait until SPUC has started before it starts.</p>
@@ -1542,59 +1548,6 @@ returns a non-zero exit code if the endpoint is not available.</p>
 to the <code>depends_on</code> key in the SPUCSVi service. This tells
 Docker Compose to only start the service if the service it depends on is
 <em>healthy</em>, rather than just <em>started</em>.</p>
-<div class="codewrapper sourceCode" id="cb56">
-<h3 class="code-label">YML<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode yml" tabindex="0"><code class="sourceCode yaml"><span id="cb56-1"><a href="#cb56-1" tabindex="-1" aria-label="code-block-56-1"></a><span class="co"># compose.yml</span></span>
-<span id="cb56-2"><a href="#cb56-2" tabindex="-1" aria-label="code-block-56-2"></a><span class="fu">services</span><span class="kw">:</span></span>
-<span id="cb56-3"><a href="#cb56-3" tabindex="-1" aria-label="code-block-56-3"></a><span class="at">  </span><span class="fu">spuc</span><span class="kw">:</span></span>
-<span id="cb56-4"><a href="#cb56-4" tabindex="-1" aria-label="code-block-56-4"></a><span class="at">    </span><span class="fu">build</span><span class="kw">:</span></span>
-<span id="cb56-5"><a href="#cb56-5" tabindex="-1" aria-label="code-block-56-5"></a><span class="at">      </span><span class="fu">context</span><span class="kw">:</span><span class="at"> .</span></span>
-<span id="cb56-6"><a href="#cb56-6" tabindex="-1" aria-label="code-block-56-6"></a><span class="at">      </span><span class="fu">dockerfile</span><span class="kw">:</span><span class="at"> Dockerfile</span></span>
-<span id="cb56-7"><a href="#cb56-7" tabindex="-1" aria-label="code-block-56-7"></a><span class="at">    </span><span class="fu">container_name</span><span class="kw">:</span><span class="at"> spuc_container</span></span>
-<span id="cb56-8"><a href="#cb56-8" tabindex="-1" aria-label="code-block-56-8"></a><span class="at">    </span><span class="fu">volumes</span><span class="kw">:</span></span>
-<span id="cb56-9"><a href="#cb56-9" tabindex="-1" aria-label="code-block-56-9"></a><span class="at">      </span><span class="kw">-</span><span class="at"> ./print.config:/spuc/config/print.config</span></span>
-<span id="cb56-10"><a href="#cb56-10" tabindex="-1" aria-label="code-block-56-10"></a><span class="at">      </span><span class="kw">-</span><span class="at"> spuc-volume:/spuc/output</span></span>
-<span id="cb56-11"><a href="#cb56-11" tabindex="-1" aria-label="code-block-56-11"></a><span class="at">      </span><span class="kw">-</span><span class="at"> ./stats.py:/spuc/plugins/stats.py</span></span>
-<span id="cb56-12"><a href="#cb56-12" tabindex="-1" aria-label="code-block-56-12"></a><span class="at">    </span><span class="fu">environment</span><span class="kw">:</span></span>
-<span id="cb56-13"><a href="#cb56-13" tabindex="-1" aria-label="code-block-56-13"></a><span class="at">      </span><span class="kw">-</span><span class="at"> EXPORT=true</span></span>
-<span id="cb56-14"><a href="#cb56-14" tabindex="-1" aria-label="code-block-56-14"></a><span class="at">    </span><span class="fu">command</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"--units"</span><span class="kw">,</span><span class="at"> </span><span class="st">"iulu"</span><span class="kw">]</span></span>
-<span id="cb56-15"><a href="#cb56-15" tabindex="-1" aria-label="code-block-56-15"></a><span class="at">    </span><span class="fu">healthcheck</span><span class="kw">:</span><span class="co">                                                  # Starts section for declaring healthchecks</span></span>
-<span id="cb56-16"><a href="#cb56-16" tabindex="-1" aria-label="code-block-56-16"></a><span class="at">      </span><span class="fu">test</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"CMD"</span><span class="kw">,</span><span class="at"> </span><span class="st">"curl"</span><span class="kw">,</span><span class="at"> </span><span class="st">"--fail"</span><span class="kw">,</span><span class="at"> </span><span class="st">"http://spuc:8321/export"</span><span class="kw">]</span><span class="co">  # Specifies the healthcheck command (ran from inside the container)</span></span>
-<span id="cb56-17"><a href="#cb56-17" tabindex="-1" aria-label="code-block-56-17"></a><span class="at">      </span><span class="fu">interval</span><span class="kw">:</span><span class="at"> 3s</span><span class="co">                                                # Specifies the interval between healthchecks</span></span>
-<span id="cb56-18"><a href="#cb56-18" tabindex="-1" aria-label="code-block-56-18"></a><span class="at">      </span><span class="fu">timeout</span><span class="kw">:</span><span class="at"> 2s</span><span class="co">                                                 # Specifies the timeout for the healthcheck</span></span>
-<span id="cb56-19"><a href="#cb56-19" tabindex="-1" aria-label="code-block-56-19"></a><span class="at">      </span><span class="fu">retries</span><span class="kw">:</span><span class="at"> </span><span class="dv">5</span><span class="co">                                                  # Specifies the number of retries before failing completely</span></span>
-<span id="cb56-20"><a href="#cb56-20" tabindex="-1" aria-label="code-block-56-20"></a></span>
-<span id="cb56-21"><a href="#cb56-21" tabindex="-1" aria-label="code-block-56-21"></a><span class="at">  </span><span class="fu">spucsvi</span><span class="kw">:</span></span>
-<span id="cb56-22"><a href="#cb56-22" tabindex="-1" aria-label="code-block-56-22"></a><span class="at">    </span><span class="fu">image</span><span class="kw">:</span><span class="at"> spuacv/spucsvi:latest</span></span>
-<span id="cb56-23"><a href="#cb56-23" tabindex="-1" aria-label="code-block-56-23"></a><span class="at">    </span><span class="fu">container_name</span><span class="kw">:</span><span class="at"> spucsvi</span></span>
-<span id="cb56-24"><a href="#cb56-24" tabindex="-1" aria-label="code-block-56-24"></a><span class="at">    </span><span class="fu">ports</span><span class="kw">:</span></span>
-<span id="cb56-25"><a href="#cb56-25" tabindex="-1" aria-label="code-block-56-25"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="st">"8322:8322"</span></span>
-<span id="cb56-26"><a href="#cb56-26" tabindex="-1" aria-label="code-block-56-26"></a><span class="at">    </span><span class="fu">environment</span><span class="kw">:</span></span>
-<span id="cb56-27"><a href="#cb56-27" tabindex="-1" aria-label="code-block-56-27"></a><span class="at">      </span><span class="kw">-</span><span class="at"> SPUC_URL=http://spuc:8321</span></span>
-<span id="cb56-28"><a href="#cb56-28" tabindex="-1" aria-label="code-block-56-28"></a><span class="at">    </span><span class="fu">depends_on</span><span class="kw">:</span></span>
-<span id="cb56-29"><a href="#cb56-29" tabindex="-1" aria-label="code-block-56-29"></a><span class="at">      </span><span class="fu">spuc</span><span class="kw">:</span><span class="co">                                                       # This changed from a list (- spuc) to a mapping (spuc:)</span></span>
-<span id="cb56-30"><a href="#cb56-30" tabindex="-1" aria-label="code-block-56-30"></a><span class="at">        </span><span class="fu">condition</span><span class="kw">:</span><span class="at"> service_healthy</span><span class="co">                                # Specifies further conditions for starting the service</span></span>
-<span id="cb56-31"><a href="#cb56-31" tabindex="-1" aria-label="code-block-56-31"></a></span>
-<span id="cb56-32"><a href="#cb56-32" tabindex="-1" aria-label="code-block-56-32"></a><span class="fu">volumes</span><span class="kw">:</span></span>
-<span id="cb56-33"><a href="#cb56-33" tabindex="-1" aria-label="code-block-56-33"></a><span class="at">  </span><span class="fu">spuc-volume</span><span class="kw">:</span></span></code></pre>
-</div>
-<p>Now, when we run <code>docker compose up</code>, the SPUCSVi service
-will only start when the SPUC service is <em>ready</em>.</p>
-<div id="accordionSpoiler4" class="accordion spoiler-accordion accordion-flush">
-<div class="accordion-item">
-<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler4" aria-expanded="false" aria-controls="collapseSpoiler4">
-  <h3 class="accordion-header" id="headingSpoiler4">
-  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>
-  Simulating a slow start
-  </h3>
-</button>
-<div id="collapseSpoiler4" class="accordion-collapse collapse" aria-labelledby="headingSpoiler4" data-bs-parent="#accordionSpoiler4">
-<div class="accordion-body">
-<p>This is a little hard to see in action as the SPUC service starts so
-quickly. To be able to see it, let’s add a <code>sleep</code> command to
-the <code>entrypoint</code> of the SPUC service to simulate a slow
-start.</p>
 <div class="codewrapper sourceCode" id="cb57">
 <h3 class="code-label">YML<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -1612,31 +1565,84 @@ start.</p>
 <span id="cb57-12"><a href="#cb57-12" tabindex="-1" aria-label="code-block-57-12"></a><span class="at">    </span><span class="fu">environment</span><span class="kw">:</span></span>
 <span id="cb57-13"><a href="#cb57-13" tabindex="-1" aria-label="code-block-57-13"></a><span class="at">      </span><span class="kw">-</span><span class="at"> EXPORT=true</span></span>
 <span id="cb57-14"><a href="#cb57-14" tabindex="-1" aria-label="code-block-57-14"></a><span class="at">    </span><span class="fu">command</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"--units"</span><span class="kw">,</span><span class="at"> </span><span class="st">"iulu"</span><span class="kw">]</span></span>
-<span id="cb57-15"><a href="#cb57-15" tabindex="-1" aria-label="code-block-57-15"></a><span class="at">    </span><span class="fu">entrypoint</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"sh"</span><span class="kw">,</span><span class="at"> </span><span class="st">"-c"</span><span class="kw">,</span><span class="at"> </span><span class="st">"sleep 5 &amp;&amp; python /spuc/spuc.py"</span><span class="kw">]</span><span class="co">   # Adds a sleep command to the entrypoint to simulate a slow start</span></span>
-<span id="cb57-16"><a href="#cb57-16" tabindex="-1" aria-label="code-block-57-16"></a><span class="at">    </span><span class="fu">healthcheck</span><span class="kw">:</span></span>
-<span id="cb57-17"><a href="#cb57-17" tabindex="-1" aria-label="code-block-57-17"></a><span class="at">      </span><span class="fu">test</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"CMD"</span><span class="kw">,</span><span class="at"> </span><span class="st">"curl"</span><span class="kw">,</span><span class="at"> </span><span class="st">"--fail"</span><span class="kw">,</span><span class="at"> </span><span class="st">"http://spuc:8321/export"</span><span class="kw">]</span></span>
-<span id="cb57-18"><a href="#cb57-18" tabindex="-1" aria-label="code-block-57-18"></a><span class="at">      </span><span class="fu">interval</span><span class="kw">:</span><span class="at"> 3s</span></span>
-<span id="cb57-19"><a href="#cb57-19" tabindex="-1" aria-label="code-block-57-19"></a><span class="at">      </span><span class="fu">timeout</span><span class="kw">:</span><span class="at"> 2s</span></span>
-<span id="cb57-20"><a href="#cb57-20" tabindex="-1" aria-label="code-block-57-20"></a><span class="at">      </span><span class="fu">retries</span><span class="kw">:</span><span class="at"> </span><span class="dv">5</span></span>
-<span id="cb57-21"><a href="#cb57-21" tabindex="-1" aria-label="code-block-57-21"></a></span>
-<span id="cb57-22"><a href="#cb57-22" tabindex="-1" aria-label="code-block-57-22"></a><span class="at">  </span><span class="fu">spucsvi</span><span class="kw">:</span></span>
-<span id="cb57-23"><a href="#cb57-23" tabindex="-1" aria-label="code-block-57-23"></a><span class="at">    </span><span class="fu">image</span><span class="kw">:</span><span class="at"> spuacv/spucsvi:latest</span></span>
-<span id="cb57-24"><a href="#cb57-24" tabindex="-1" aria-label="code-block-57-24"></a><span class="at">    </span><span class="fu">container_name</span><span class="kw">:</span><span class="at"> spucsvi</span></span>
-<span id="cb57-25"><a href="#cb57-25" tabindex="-1" aria-label="code-block-57-25"></a><span class="at">    </span><span class="fu">ports</span><span class="kw">:</span></span>
-<span id="cb57-26"><a href="#cb57-26" tabindex="-1" aria-label="code-block-57-26"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="st">"8322:8322"</span></span>
-<span id="cb57-27"><a href="#cb57-27" tabindex="-1" aria-label="code-block-57-27"></a><span class="at">    </span><span class="fu">environment</span><span class="kw">:</span></span>
-<span id="cb57-28"><a href="#cb57-28" tabindex="-1" aria-label="code-block-57-28"></a><span class="at">      </span><span class="kw">-</span><span class="at"> SPUC_URL=http://spuc:8321</span></span>
-<span id="cb57-29"><a href="#cb57-29" tabindex="-1" aria-label="code-block-57-29"></a><span class="at">    </span><span class="fu">depends_on</span><span class="kw">:</span></span>
-<span id="cb57-30"><a href="#cb57-30" tabindex="-1" aria-label="code-block-57-30"></a><span class="at">      </span><span class="fu">spuc</span><span class="kw">:</span></span>
-<span id="cb57-31"><a href="#cb57-31" tabindex="-1" aria-label="code-block-57-31"></a><span class="at">       </span><span class="fu">condition</span><span class="kw">:</span><span class="at"> service_healthy</span></span>
-<span id="cb57-32"><a href="#cb57-32" tabindex="-1" aria-label="code-block-57-32"></a></span>
-<span id="cb57-33"><a href="#cb57-33" tabindex="-1" aria-label="code-block-57-33"></a><span class="fu">volumes</span><span class="kw">:</span></span>
-<span id="cb57-34"><a href="#cb57-34" tabindex="-1" aria-label="code-block-57-34"></a><span class="at">  </span><span class="fu">spuc-volume</span><span class="kw">:</span></span></code></pre>
+<span id="cb57-15"><a href="#cb57-15" tabindex="-1" aria-label="code-block-57-15"></a><span class="at">    </span><span class="fu">healthcheck</span><span class="kw">:</span><span class="co">                                                  # Starts section for declaring healthchecks</span></span>
+<span id="cb57-16"><a href="#cb57-16" tabindex="-1" aria-label="code-block-57-16"></a><span class="at">      </span><span class="fu">test</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"CMD"</span><span class="kw">,</span><span class="at"> </span><span class="st">"curl"</span><span class="kw">,</span><span class="at"> </span><span class="st">"--fail"</span><span class="kw">,</span><span class="at"> </span><span class="st">"http://spuc:8321/export"</span><span class="kw">]</span><span class="co">  # Specifies the healthcheck command (ran from inside the container)</span></span>
+<span id="cb57-17"><a href="#cb57-17" tabindex="-1" aria-label="code-block-57-17"></a><span class="at">      </span><span class="fu">interval</span><span class="kw">:</span><span class="at"> 3s</span><span class="co">                                                # Specifies the interval between healthchecks</span></span>
+<span id="cb57-18"><a href="#cb57-18" tabindex="-1" aria-label="code-block-57-18"></a><span class="at">      </span><span class="fu">timeout</span><span class="kw">:</span><span class="at"> 2s</span><span class="co">                                                 # Specifies the timeout for the healthcheck</span></span>
+<span id="cb57-19"><a href="#cb57-19" tabindex="-1" aria-label="code-block-57-19"></a><span class="at">      </span><span class="fu">retries</span><span class="kw">:</span><span class="at"> </span><span class="dv">5</span><span class="co">                                                  # Specifies the number of retries before failing completely</span></span>
+<span id="cb57-20"><a href="#cb57-20" tabindex="-1" aria-label="code-block-57-20"></a></span>
+<span id="cb57-21"><a href="#cb57-21" tabindex="-1" aria-label="code-block-57-21"></a><span class="at">  </span><span class="fu">spucsvi</span><span class="kw">:</span></span>
+<span id="cb57-22"><a href="#cb57-22" tabindex="-1" aria-label="code-block-57-22"></a><span class="at">    </span><span class="fu">image</span><span class="kw">:</span><span class="at"> spuacv/spucsvi:latest</span></span>
+<span id="cb57-23"><a href="#cb57-23" tabindex="-1" aria-label="code-block-57-23"></a><span class="at">    </span><span class="fu">container_name</span><span class="kw">:</span><span class="at"> spucsvi</span></span>
+<span id="cb57-24"><a href="#cb57-24" tabindex="-1" aria-label="code-block-57-24"></a><span class="at">    </span><span class="fu">ports</span><span class="kw">:</span></span>
+<span id="cb57-25"><a href="#cb57-25" tabindex="-1" aria-label="code-block-57-25"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="st">"8322:8322"</span></span>
+<span id="cb57-26"><a href="#cb57-26" tabindex="-1" aria-label="code-block-57-26"></a><span class="at">    </span><span class="fu">environment</span><span class="kw">:</span></span>
+<span id="cb57-27"><a href="#cb57-27" tabindex="-1" aria-label="code-block-57-27"></a><span class="at">      </span><span class="kw">-</span><span class="at"> SPUC_URL=http://spuc:8321</span></span>
+<span id="cb57-28"><a href="#cb57-28" tabindex="-1" aria-label="code-block-57-28"></a><span class="at">    </span><span class="fu">depends_on</span><span class="kw">:</span></span>
+<span id="cb57-29"><a href="#cb57-29" tabindex="-1" aria-label="code-block-57-29"></a><span class="at">      </span><span class="fu">spuc</span><span class="kw">:</span><span class="co">                                                       # This changed from a list (- spuc) to a mapping (spuc:)</span></span>
+<span id="cb57-30"><a href="#cb57-30" tabindex="-1" aria-label="code-block-57-30"></a><span class="at">        </span><span class="fu">condition</span><span class="kw">:</span><span class="at"> service_healthy</span><span class="co">                                # Specifies further conditions for starting the service</span></span>
+<span id="cb57-31"><a href="#cb57-31" tabindex="-1" aria-label="code-block-57-31"></a></span>
+<span id="cb57-32"><a href="#cb57-32" tabindex="-1" aria-label="code-block-57-32"></a><span class="fu">volumes</span><span class="kw">:</span></span>
+<span id="cb57-33"><a href="#cb57-33" tabindex="-1" aria-label="code-block-57-33"></a><span class="at">  </span><span class="fu">spuc-volume</span><span class="kw">:</span></span></code></pre>
 </div>
+<p>Now, when we run <code>docker compose up</code>, the SPUCSVi service
+will only start when the SPUC service is <em>ready</em>.</p>
+<div id="accordionSpoiler4" class="accordion spoiler-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler4" aria-expanded="false" aria-controls="collapseSpoiler4">
+  <h3 class="accordion-header" id="headingSpoiler4">
+  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>
+  Simulating a slow start
+  </h3>
+</button>
+<div id="collapseSpoiler4" class="accordion-collapse collapse" aria-labelledby="headingSpoiler4" data-bs-parent="#accordionSpoiler4">
+<div class="accordion-body">
+<p>This is a little hard to see in action as the SPUC service starts so
+quickly. To be able to see it, let’s add a <code>sleep</code> command to
+the <code>entrypoint</code> of the SPUC service to simulate a slow
+start.</p>
 <div class="codewrapper sourceCode" id="cb58">
+<h3 class="code-label">YML<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode yml" tabindex="0"><code class="sourceCode yaml"><span id="cb58-1"><a href="#cb58-1" tabindex="-1" aria-label="code-block-58-1"></a><span class="co"># compose.yml</span></span>
+<span id="cb58-2"><a href="#cb58-2" tabindex="-1" aria-label="code-block-58-2"></a><span class="fu">services</span><span class="kw">:</span></span>
+<span id="cb58-3"><a href="#cb58-3" tabindex="-1" aria-label="code-block-58-3"></a><span class="at">  </span><span class="fu">spuc</span><span class="kw">:</span></span>
+<span id="cb58-4"><a href="#cb58-4" tabindex="-1" aria-label="code-block-58-4"></a><span class="at">    </span><span class="fu">build</span><span class="kw">:</span></span>
+<span id="cb58-5"><a href="#cb58-5" tabindex="-1" aria-label="code-block-58-5"></a><span class="at">      </span><span class="fu">context</span><span class="kw">:</span><span class="at"> .</span></span>
+<span id="cb58-6"><a href="#cb58-6" tabindex="-1" aria-label="code-block-58-6"></a><span class="at">      </span><span class="fu">dockerfile</span><span class="kw">:</span><span class="at"> Dockerfile</span></span>
+<span id="cb58-7"><a href="#cb58-7" tabindex="-1" aria-label="code-block-58-7"></a><span class="at">    </span><span class="fu">container_name</span><span class="kw">:</span><span class="at"> spuc_container</span></span>
+<span id="cb58-8"><a href="#cb58-8" tabindex="-1" aria-label="code-block-58-8"></a><span class="at">    </span><span class="fu">volumes</span><span class="kw">:</span></span>
+<span id="cb58-9"><a href="#cb58-9" tabindex="-1" aria-label="code-block-58-9"></a><span class="at">      </span><span class="kw">-</span><span class="at"> ./print.config:/spuc/config/print.config</span></span>
+<span id="cb58-10"><a href="#cb58-10" tabindex="-1" aria-label="code-block-58-10"></a><span class="at">      </span><span class="kw">-</span><span class="at"> spuc-volume:/spuc/output</span></span>
+<span id="cb58-11"><a href="#cb58-11" tabindex="-1" aria-label="code-block-58-11"></a><span class="at">      </span><span class="kw">-</span><span class="at"> ./stats.py:/spuc/plugins/stats.py</span></span>
+<span id="cb58-12"><a href="#cb58-12" tabindex="-1" aria-label="code-block-58-12"></a><span class="at">    </span><span class="fu">environment</span><span class="kw">:</span></span>
+<span id="cb58-13"><a href="#cb58-13" tabindex="-1" aria-label="code-block-58-13"></a><span class="at">      </span><span class="kw">-</span><span class="at"> EXPORT=true</span></span>
+<span id="cb58-14"><a href="#cb58-14" tabindex="-1" aria-label="code-block-58-14"></a><span class="at">    </span><span class="fu">command</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"--units"</span><span class="kw">,</span><span class="at"> </span><span class="st">"iulu"</span><span class="kw">]</span></span>
+<span id="cb58-15"><a href="#cb58-15" tabindex="-1" aria-label="code-block-58-15"></a><span class="at">    </span><span class="fu">entrypoint</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"sh"</span><span class="kw">,</span><span class="at"> </span><span class="st">"-c"</span><span class="kw">,</span><span class="at"> </span><span class="st">"sleep 5 &amp;&amp; python /spuc/spuc.py"</span><span class="kw">]</span><span class="co">   # Adds a sleep command to the entrypoint to simulate a slow start</span></span>
+<span id="cb58-16"><a href="#cb58-16" tabindex="-1" aria-label="code-block-58-16"></a><span class="at">    </span><span class="fu">healthcheck</span><span class="kw">:</span></span>
+<span id="cb58-17"><a href="#cb58-17" tabindex="-1" aria-label="code-block-58-17"></a><span class="at">      </span><span class="fu">test</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"CMD"</span><span class="kw">,</span><span class="at"> </span><span class="st">"curl"</span><span class="kw">,</span><span class="at"> </span><span class="st">"--fail"</span><span class="kw">,</span><span class="at"> </span><span class="st">"http://spuc:8321/export"</span><span class="kw">]</span></span>
+<span id="cb58-18"><a href="#cb58-18" tabindex="-1" aria-label="code-block-58-18"></a><span class="at">      </span><span class="fu">interval</span><span class="kw">:</span><span class="at"> 3s</span></span>
+<span id="cb58-19"><a href="#cb58-19" tabindex="-1" aria-label="code-block-58-19"></a><span class="at">      </span><span class="fu">timeout</span><span class="kw">:</span><span class="at"> 2s</span></span>
+<span id="cb58-20"><a href="#cb58-20" tabindex="-1" aria-label="code-block-58-20"></a><span class="at">      </span><span class="fu">retries</span><span class="kw">:</span><span class="at"> </span><span class="dv">5</span></span>
+<span id="cb58-21"><a href="#cb58-21" tabindex="-1" aria-label="code-block-58-21"></a></span>
+<span id="cb58-22"><a href="#cb58-22" tabindex="-1" aria-label="code-block-58-22"></a><span class="at">  </span><span class="fu">spucsvi</span><span class="kw">:</span></span>
+<span id="cb58-23"><a href="#cb58-23" tabindex="-1" aria-label="code-block-58-23"></a><span class="at">    </span><span class="fu">image</span><span class="kw">:</span><span class="at"> spuacv/spucsvi:latest</span></span>
+<span id="cb58-24"><a href="#cb58-24" tabindex="-1" aria-label="code-block-58-24"></a><span class="at">    </span><span class="fu">container_name</span><span class="kw">:</span><span class="at"> spucsvi</span></span>
+<span id="cb58-25"><a href="#cb58-25" tabindex="-1" aria-label="code-block-58-25"></a><span class="at">    </span><span class="fu">ports</span><span class="kw">:</span></span>
+<span id="cb58-26"><a href="#cb58-26" tabindex="-1" aria-label="code-block-58-26"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="st">"8322:8322"</span></span>
+<span id="cb58-27"><a href="#cb58-27" tabindex="-1" aria-label="code-block-58-27"></a><span class="at">    </span><span class="fu">environment</span><span class="kw">:</span></span>
+<span id="cb58-28"><a href="#cb58-28" tabindex="-1" aria-label="code-block-58-28"></a><span class="at">      </span><span class="kw">-</span><span class="at"> SPUC_URL=http://spuc:8321</span></span>
+<span id="cb58-29"><a href="#cb58-29" tabindex="-1" aria-label="code-block-58-29"></a><span class="at">    </span><span class="fu">depends_on</span><span class="kw">:</span></span>
+<span id="cb58-30"><a href="#cb58-30" tabindex="-1" aria-label="code-block-58-30"></a><span class="at">      </span><span class="fu">spuc</span><span class="kw">:</span></span>
+<span id="cb58-31"><a href="#cb58-31" tabindex="-1" aria-label="code-block-58-31"></a><span class="at">       </span><span class="fu">condition</span><span class="kw">:</span><span class="at"> service_healthy</span></span>
+<span id="cb58-32"><a href="#cb58-32" tabindex="-1" aria-label="code-block-58-32"></a></span>
+<span id="cb58-33"><a href="#cb58-33" tabindex="-1" aria-label="code-block-58-33"></a><span class="fu">volumes</span><span class="kw">:</span></span>
+<span id="cb58-34"><a href="#cb58-34" tabindex="-1" aria-label="code-block-58-34"></a><span class="at">  </span><span class="fu">spuc-volume</span><span class="kw">:</span></span></code></pre>
+</div>
+<div class="codewrapper sourceCode" id="cb59">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb58-1"><a href="#cb58-1" tabindex="-1" aria-label="code-block-58-1"></a><span class="ex">docker</span> compose up <span class="at">-d</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb59-1"><a href="#cb59-1" tabindex="-1" aria-label="code-block-59-1"></a><span class="ex">docker</span> compose up <span class="at">-d</span></span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1666,47 +1672,47 @@ service was healthy.</p>
 the <code>EXPORT</code> environment variable to <code>false</code> in
 the SPUC service. This will mean that the export endpoint is not
 available, so the healthcheck will fail.</p>
-<div class="codewrapper sourceCode" id="cb60">
+<div class="codewrapper sourceCode" id="cb61">
 <h3 class="code-label">YML<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode yml" tabindex="0"><code class="sourceCode yaml"><span id="cb60-1"><a href="#cb60-1" tabindex="-1" aria-label="code-block-60-1"></a><span class="co"># compose.yml</span></span>
-<span id="cb60-2"><a href="#cb60-2" tabindex="-1" aria-label="code-block-60-2"></a><span class="fu">services</span><span class="kw">:</span></span>
-<span id="cb60-3"><a href="#cb60-3" tabindex="-1" aria-label="code-block-60-3"></a><span class="at">  </span><span class="fu">spuc</span><span class="kw">:</span></span>
-<span id="cb60-4"><a href="#cb60-4" tabindex="-1" aria-label="code-block-60-4"></a><span class="at">    </span><span class="fu">build</span><span class="kw">:</span></span>
-<span id="cb60-5"><a href="#cb60-5" tabindex="-1" aria-label="code-block-60-5"></a><span class="at">      </span><span class="fu">context</span><span class="kw">:</span><span class="at"> .</span></span>
-<span id="cb60-6"><a href="#cb60-6" tabindex="-1" aria-label="code-block-60-6"></a><span class="at">      </span><span class="fu">dockerfile</span><span class="kw">:</span><span class="at"> Dockerfile</span></span>
-<span id="cb60-7"><a href="#cb60-7" tabindex="-1" aria-label="code-block-60-7"></a><span class="at">    </span><span class="fu">container_name</span><span class="kw">:</span><span class="at"> spuc_container</span></span>
-<span id="cb60-8"><a href="#cb60-8" tabindex="-1" aria-label="code-block-60-8"></a><span class="at">    </span><span class="fu">volumes</span><span class="kw">:</span></span>
-<span id="cb60-9"><a href="#cb60-9" tabindex="-1" aria-label="code-block-60-9"></a><span class="at">      </span><span class="kw">-</span><span class="at"> ./print.config:/spuc/config/print.config</span></span>
-<span id="cb60-10"><a href="#cb60-10" tabindex="-1" aria-label="code-block-60-10"></a><span class="at">      </span><span class="kw">-</span><span class="at"> spuc-volume:/spuc/output</span></span>
-<span id="cb60-11"><a href="#cb60-11" tabindex="-1" aria-label="code-block-60-11"></a><span class="at">      </span><span class="kw">-</span><span class="at"> ./stats.py:/spuc/plugins/stats.py</span></span>
-<span id="cb60-12"><a href="#cb60-12" tabindex="-1" aria-label="code-block-60-12"></a><span class="at">    </span><span class="fu">environment</span><span class="kw">:</span></span>
-<span id="cb60-13"><a href="#cb60-13" tabindex="-1" aria-label="code-block-60-13"></a><span class="at">      </span><span class="kw">-</span><span class="at"> EXPORT=false</span><span class="co">                                # Sets the EXPORT environment variable to false</span></span>
-<span id="cb60-14"><a href="#cb60-14" tabindex="-1" aria-label="code-block-60-14"></a><span class="at">    </span><span class="fu">command</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"--units"</span><span class="kw">,</span><span class="at"> </span><span class="st">"iulu"</span><span class="kw">]</span></span>
-<span id="cb60-15"><a href="#cb60-15" tabindex="-1" aria-label="code-block-60-15"></a><span class="at">    </span><span class="fu">healthcheck</span><span class="kw">:</span></span>
-<span id="cb60-16"><a href="#cb60-16" tabindex="-1" aria-label="code-block-60-16"></a><span class="at">      </span><span class="fu">test</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"CMD"</span><span class="kw">,</span><span class="at"> </span><span class="st">"curl"</span><span class="kw">,</span><span class="at"> </span><span class="st">"--fail"</span><span class="kw">,</span><span class="at"> </span><span class="st">"http://spuc:8321/export"</span><span class="kw">]</span></span>
-<span id="cb60-17"><a href="#cb60-17" tabindex="-1" aria-label="code-block-60-17"></a><span class="at">      </span><span class="fu">interval</span><span class="kw">:</span><span class="at"> 3s</span></span>
-<span id="cb60-18"><a href="#cb60-18" tabindex="-1" aria-label="code-block-60-18"></a><span class="at">      </span><span class="fu">timeout</span><span class="kw">:</span><span class="at"> 2s</span></span>
-<span id="cb60-19"><a href="#cb60-19" tabindex="-1" aria-label="code-block-60-19"></a><span class="at">      </span><span class="fu">retries</span><span class="kw">:</span><span class="at"> </span><span class="dv">5</span></span>
-<span id="cb60-20"><a href="#cb60-20" tabindex="-1" aria-label="code-block-60-20"></a></span>
-<span id="cb60-21"><a href="#cb60-21" tabindex="-1" aria-label="code-block-60-21"></a><span class="at">  </span><span class="fu">spucsvi</span><span class="kw">:</span></span>
-<span id="cb60-22"><a href="#cb60-22" tabindex="-1" aria-label="code-block-60-22"></a><span class="at">    </span><span class="fu">image</span><span class="kw">:</span><span class="at"> spuacv/spucsvi:latest</span></span>
-<span id="cb60-23"><a href="#cb60-23" tabindex="-1" aria-label="code-block-60-23"></a><span class="at">    </span><span class="fu">container_name</span><span class="kw">:</span><span class="at"> spucsvi</span></span>
-<span id="cb60-24"><a href="#cb60-24" tabindex="-1" aria-label="code-block-60-24"></a><span class="at">    </span><span class="fu">ports</span><span class="kw">:</span></span>
-<span id="cb60-25"><a href="#cb60-25" tabindex="-1" aria-label="code-block-60-25"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="st">"8322:8322"</span></span>
-<span id="cb60-26"><a href="#cb60-26" tabindex="-1" aria-label="code-block-60-26"></a><span class="at">    </span><span class="fu">environment</span><span class="kw">:</span></span>
-<span id="cb60-27"><a href="#cb60-27" tabindex="-1" aria-label="code-block-60-27"></a><span class="at">      </span><span class="kw">-</span><span class="at"> SPUC_URL=http://spuc:8321</span></span>
-<span id="cb60-28"><a href="#cb60-28" tabindex="-1" aria-label="code-block-60-28"></a><span class="at">    </span><span class="fu">depends_on</span><span class="kw">:</span></span>
-<span id="cb60-29"><a href="#cb60-29" tabindex="-1" aria-label="code-block-60-29"></a><span class="at">      </span><span class="fu">spuc</span><span class="kw">:</span></span>
-<span id="cb60-30"><a href="#cb60-30" tabindex="-1" aria-label="code-block-60-30"></a><span class="at">       </span><span class="fu">condition</span><span class="kw">:</span><span class="at"> service_healthy</span></span>
-<span id="cb60-31"><a href="#cb60-31" tabindex="-1" aria-label="code-block-60-31"></a></span>
-<span id="cb60-32"><a href="#cb60-32" tabindex="-1" aria-label="code-block-60-32"></a><span class="fu">volumes</span><span class="kw">:</span></span>
-<span id="cb60-33"><a href="#cb60-33" tabindex="-1" aria-label="code-block-60-33"></a><span class="at">  </span><span class="fu">spuc-volume</span><span class="kw">:</span></span></code></pre>
+<pre class="sourceCode yml" tabindex="0"><code class="sourceCode yaml"><span id="cb61-1"><a href="#cb61-1" tabindex="-1" aria-label="code-block-61-1"></a><span class="co"># compose.yml</span></span>
+<span id="cb61-2"><a href="#cb61-2" tabindex="-1" aria-label="code-block-61-2"></a><span class="fu">services</span><span class="kw">:</span></span>
+<span id="cb61-3"><a href="#cb61-3" tabindex="-1" aria-label="code-block-61-3"></a><span class="at">  </span><span class="fu">spuc</span><span class="kw">:</span></span>
+<span id="cb61-4"><a href="#cb61-4" tabindex="-1" aria-label="code-block-61-4"></a><span class="at">    </span><span class="fu">build</span><span class="kw">:</span></span>
+<span id="cb61-5"><a href="#cb61-5" tabindex="-1" aria-label="code-block-61-5"></a><span class="at">      </span><span class="fu">context</span><span class="kw">:</span><span class="at"> .</span></span>
+<span id="cb61-6"><a href="#cb61-6" tabindex="-1" aria-label="code-block-61-6"></a><span class="at">      </span><span class="fu">dockerfile</span><span class="kw">:</span><span class="at"> Dockerfile</span></span>
+<span id="cb61-7"><a href="#cb61-7" tabindex="-1" aria-label="code-block-61-7"></a><span class="at">    </span><span class="fu">container_name</span><span class="kw">:</span><span class="at"> spuc_container</span></span>
+<span id="cb61-8"><a href="#cb61-8" tabindex="-1" aria-label="code-block-61-8"></a><span class="at">    </span><span class="fu">volumes</span><span class="kw">:</span></span>
+<span id="cb61-9"><a href="#cb61-9" tabindex="-1" aria-label="code-block-61-9"></a><span class="at">      </span><span class="kw">-</span><span class="at"> ./print.config:/spuc/config/print.config</span></span>
+<span id="cb61-10"><a href="#cb61-10" tabindex="-1" aria-label="code-block-61-10"></a><span class="at">      </span><span class="kw">-</span><span class="at"> spuc-volume:/spuc/output</span></span>
+<span id="cb61-11"><a href="#cb61-11" tabindex="-1" aria-label="code-block-61-11"></a><span class="at">      </span><span class="kw">-</span><span class="at"> ./stats.py:/spuc/plugins/stats.py</span></span>
+<span id="cb61-12"><a href="#cb61-12" tabindex="-1" aria-label="code-block-61-12"></a><span class="at">    </span><span class="fu">environment</span><span class="kw">:</span></span>
+<span id="cb61-13"><a href="#cb61-13" tabindex="-1" aria-label="code-block-61-13"></a><span class="at">      </span><span class="kw">-</span><span class="at"> EXPORT=false</span><span class="co">                                # Sets the EXPORT environment variable to false</span></span>
+<span id="cb61-14"><a href="#cb61-14" tabindex="-1" aria-label="code-block-61-14"></a><span class="at">    </span><span class="fu">command</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"--units"</span><span class="kw">,</span><span class="at"> </span><span class="st">"iulu"</span><span class="kw">]</span></span>
+<span id="cb61-15"><a href="#cb61-15" tabindex="-1" aria-label="code-block-61-15"></a><span class="at">    </span><span class="fu">healthcheck</span><span class="kw">:</span></span>
+<span id="cb61-16"><a href="#cb61-16" tabindex="-1" aria-label="code-block-61-16"></a><span class="at">      </span><span class="fu">test</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"CMD"</span><span class="kw">,</span><span class="at"> </span><span class="st">"curl"</span><span class="kw">,</span><span class="at"> </span><span class="st">"--fail"</span><span class="kw">,</span><span class="at"> </span><span class="st">"http://spuc:8321/export"</span><span class="kw">]</span></span>
+<span id="cb61-17"><a href="#cb61-17" tabindex="-1" aria-label="code-block-61-17"></a><span class="at">      </span><span class="fu">interval</span><span class="kw">:</span><span class="at"> 3s</span></span>
+<span id="cb61-18"><a href="#cb61-18" tabindex="-1" aria-label="code-block-61-18"></a><span class="at">      </span><span class="fu">timeout</span><span class="kw">:</span><span class="at"> 2s</span></span>
+<span id="cb61-19"><a href="#cb61-19" tabindex="-1" aria-label="code-block-61-19"></a><span class="at">      </span><span class="fu">retries</span><span class="kw">:</span><span class="at"> </span><span class="dv">5</span></span>
+<span id="cb61-20"><a href="#cb61-20" tabindex="-1" aria-label="code-block-61-20"></a></span>
+<span id="cb61-21"><a href="#cb61-21" tabindex="-1" aria-label="code-block-61-21"></a><span class="at">  </span><span class="fu">spucsvi</span><span class="kw">:</span></span>
+<span id="cb61-22"><a href="#cb61-22" tabindex="-1" aria-label="code-block-61-22"></a><span class="at">    </span><span class="fu">image</span><span class="kw">:</span><span class="at"> spuacv/spucsvi:latest</span></span>
+<span id="cb61-23"><a href="#cb61-23" tabindex="-1" aria-label="code-block-61-23"></a><span class="at">    </span><span class="fu">container_name</span><span class="kw">:</span><span class="at"> spucsvi</span></span>
+<span id="cb61-24"><a href="#cb61-24" tabindex="-1" aria-label="code-block-61-24"></a><span class="at">    </span><span class="fu">ports</span><span class="kw">:</span></span>
+<span id="cb61-25"><a href="#cb61-25" tabindex="-1" aria-label="code-block-61-25"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="st">"8322:8322"</span></span>
+<span id="cb61-26"><a href="#cb61-26" tabindex="-1" aria-label="code-block-61-26"></a><span class="at">    </span><span class="fu">environment</span><span class="kw">:</span></span>
+<span id="cb61-27"><a href="#cb61-27" tabindex="-1" aria-label="code-block-61-27"></a><span class="at">      </span><span class="kw">-</span><span class="at"> SPUC_URL=http://spuc:8321</span></span>
+<span id="cb61-28"><a href="#cb61-28" tabindex="-1" aria-label="code-block-61-28"></a><span class="at">    </span><span class="fu">depends_on</span><span class="kw">:</span></span>
+<span id="cb61-29"><a href="#cb61-29" tabindex="-1" aria-label="code-block-61-29"></a><span class="at">      </span><span class="fu">spuc</span><span class="kw">:</span></span>
+<span id="cb61-30"><a href="#cb61-30" tabindex="-1" aria-label="code-block-61-30"></a><span class="at">       </span><span class="fu">condition</span><span class="kw">:</span><span class="at"> service_healthy</span></span>
+<span id="cb61-31"><a href="#cb61-31" tabindex="-1" aria-label="code-block-61-31"></a></span>
+<span id="cb61-32"><a href="#cb61-32" tabindex="-1" aria-label="code-block-61-32"></a><span class="fu">volumes</span><span class="kw">:</span></span>
+<span id="cb61-33"><a href="#cb61-33" tabindex="-1" aria-label="code-block-61-33"></a><span class="at">  </span><span class="fu">spuc-volume</span><span class="kw">:</span></span></code></pre>
 </div>
-<div class="codewrapper sourceCode" id="cb61">
+<div class="codewrapper sourceCode" id="cb62">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb61-1"><a href="#cb61-1" tabindex="-1" aria-label="code-block-61-1"></a><span class="ex">docker</span> compose up <span class="at">-d</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb62-1"><a href="#cb62-1" tabindex="-1" aria-label="code-block-62-1"></a><span class="ex">docker</span> compose up <span class="at">-d</span></span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1819,8 +1825,8 @@ it is <em>ready</em>.</li>
   "url": "https://uomresearchit.github.io/docker-introduction/instructor/docker-compose.html",
   "identifier": "https://uomresearchit.github.io/docker-introduction/instructor/docker-compose.html",
   "dateCreated": "2015-04-18",
-  "dateModified": "2026-11-10",
-  "datePublished": "2026-11-10"
+  "dateModified": "2026-11-13",
+  "datePublished": "2026-11-13"
 }
 
   </script><script>
