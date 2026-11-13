@@ -33,6 +33,25 @@ but we can't be throwing our unicorn sightings away like this!
 Also, with the file being in the container, we can't (easily) do much with it.
 Luckily, Docker has methods for allowing containers to persist data.
 
+::::::::::::::::::::::::::::::::::::::: callout
+
+In this section, we will be directly interacting with the filesystem of our machine for the first time.
+
+If you haven't done so already, please create a directory called `docker-intro` and navigate to it.
+```bash
+mkdir docker-intro
+cd docker-intro
+```
+
+**Note:** If you are a **Windows** user, you may want to make sure the file is in a more accessible location than the wsl home directory.
+Before creating the directory, consider moving to the Windows' `Documents` folder, for example, with:
+```bash
+cd /mnt/c/Users/<your_username>/Documents
+```
+then create the `docker-intro` directory there and navigate to it.
+
+:::::::::::::::::::::::::::::::::::::::::::::::
+
 ## Volumes
 
 One way to allow a container to access the host filesystem is by using a `volume`.
